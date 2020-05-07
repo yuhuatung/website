@@ -1,0 +1,36 @@
+<template>
+  <div id="app">
+    <div class="nav">
+      <router-link to="/">首頁</router-link> |
+      <router-link to="/services">服務</router-link> |
+      <router-link to="/customers">顧客</router-link> |
+      <router-link to="/news">新聞</router-link> |
+      <router-link to="/jobs">人才招募</router-link> |
+      <router-link to="/contacts">聯繫</router-link>
+    </div>
+    <router-view/>
+  </div>
+</template>
+
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.nav {
+  // padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>
