@@ -1,13 +1,15 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="@/assets/img/building.jpg">
+    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <div class="title">{{myJson.homepage[0].title}}
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+// import HelloWorld from '@/components/HelloWorld.vue'
 import json from '@/assets/json/home.json'
 
 export default {
@@ -18,10 +20,29 @@ export default {
     }
   },
   components: {
-    HelloWorld
+    // HelloWorld
   },
   mounted(){
     console.log(this.myJson)
   }
 }
 </script>
+
+<style lang="scss">
+.home{
+  margin: -56px auto;
+  width: 1243px;
+  height: 800px;
+  position: relative;
+  z-index: -1;
+  img{
+    width: 1243px;
+    height: 800px;
+  }
+  .title{
+    position: absolute;
+    left:100px;
+    top:100px;
+  }
+}
+</style>
