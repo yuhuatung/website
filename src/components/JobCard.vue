@@ -1,12 +1,12 @@
 <template>
-  <div class="main">
+    <div class="main">
         <div class="avatar"></div>
         <div class="title">{{name}}</div>
         <div class="salary">NT 
             <span class="num">{{salary}}</span> /month
         </div>
         <div class="requirement">工作需求 
-            <span class="total">({{myJson}}項)</span>
+            <span class="total">({{numOfRequirement}}項)</span>
         </div>
         <div class="list">
             <div v-for="(item, index) in requirement" :key="index" class="content">
@@ -16,32 +16,22 @@
         <div class="buttom"></div>
         <div class="apply">立即應徵</div>
         <div class="bottom">請勾選工作需求後前往應徵。</div>
-  </div>
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'JobCard',
-  data(){
-    return{
-      myJson: '5',
-      name: '招募專員（HR）',
-      salary: '40k+',
-      requirement: [
-                        "招募各部門所需人員、電話E-mail面試邀約安排與職務內容說明、福利制度解說。",
-                        "拓展多元招募管道。",
-                        "人員教育訓練課程規劃與執行。",
-                        "人力資源盤點並製作員工職務工作說明書。",
-                        "新進員工到職任用作業及離職員工手續辦理。",
-                        "員工關懷面談及面談記錄填寫。",
-                        "出缺勤紀錄統計與維護，報表整理。",
-                        "薪資計算作業協助，二代健保申報作業。"
-                    ]
-    }
-  },
-//   props: {
-//     msg: String
-//   }
+    name: 'JobCard',
+    props: ['name', 'salary', 'requirement', 'priority', 'link'],
+    data(){
+        return{
+        }
+    },
+    computed: {
+        numOfRequirement: function(){
+            return this.requirement.length;
+        }
+    },
 }
 </script>
 
@@ -60,6 +50,7 @@ export default {
     border-color: rgb(235, 235, 235);
     border-style: solid;
     border-width: 6px;
+    margin-top: 30px;
     .avatar{
         transform: translateX(35px) translateY(38px) rotateY(0deg);
         width: 64px;
@@ -107,8 +98,8 @@ export default {
         }
     }
     .list{
-        transform: translateX(32px) translateY(169px) rotateY(0deg);
-        width: 279px;
+        transform: translateX(32px) translateY(157px) rotateY(0deg);
+        width: 268px;
         height: 310px;
         position: absolute;
         border-bottom: 1px solid rgb(145, 145, 145);

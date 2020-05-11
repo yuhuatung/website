@@ -51,7 +51,19 @@
         </div>
       </div>
     </div>
-    <JobCard />
+    <div>
+      {{jobs.title}}
+    </div>
+    <div>
+      {{jobs.content}}
+    </div>
+    <div class="vacancy">
+      <div v-for="(item, index) in jobs.vacancy" :key="index">
+        <JobCard v-bind="item"/>
+      </div>
+    </div>
+    <div class="apply-form">
+    </div>
   </div>
 </template>
 
@@ -70,6 +82,11 @@ export default {
     return{
       welfare: json.recruitment.welfare,
       jobs: json.recruitment.jobs
+    }
+  },
+  computed: {
+    numOfJobs: function(){
+      return this.jobs.vacancy.length;
     }
   },
   mounted(){
@@ -103,12 +120,13 @@ export default {
   }
   .welfare{
     width: 1243px;
-    height: 800px;
+    height: 700px;
     .cards{
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      margin: auto 85px;
       .outer{
-        margin: 0 20px;
+        margin: 0 15px;
         width: 333px;
         span{
           margin-top: 20px;
@@ -116,7 +134,6 @@ export default {
           display: inline-block;
         }
         .card{
-          width: 333px;
           height: 496px;
           border-radius: 8px;
           border-style: solid;
@@ -147,6 +164,18 @@ export default {
         }
       }
     }
+  }
+  .vacancy{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: auto 95px;
+  }
+  .apply-form{
+    width: 1243px;
+    height: 608px;
+    background-color: rgb(235, 235, 235);
+    margin-top: 60px;
   }
 }
 </style>
