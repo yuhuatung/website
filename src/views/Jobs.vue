@@ -94,13 +94,6 @@ export default {
 }
 </script>
 <style lang="scss">
-::-webkit-scrollbar {
-    width: 2px;
-}
-::-webkit-scrollbar-thumb {
-    background: #d6d6d6;
-    border-radius: 1px;
-}
 .jobs{
   margin: -56px auto;
   width: 1243px;
@@ -134,6 +127,9 @@ export default {
           display: inline-block;
         }
         .card{
+          ::-webkit-scrollbar {
+            width: 2px;
+          }
           height: 496px;
           border-radius: 8px;
           border-style: solid;
