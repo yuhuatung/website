@@ -66,12 +66,12 @@ body {
   .logo {
     width: 40px;
     height: 40px;
-    margin-right: 10px;
+    margin: 10px;
   }
   .company {
     width: 69px;
-    height: 16px;
-    margin-right: 10px;
+    height: 40px;
+    margin: 10px;
   }
 }
 </style>
