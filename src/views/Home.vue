@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="@/assets/img/building.jpg">
+    <img alt="Vue logo" src="@/assets/img/philosophy.jpg">
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <div class="title">{{myJson.homepage[0].title}}
     </div>
@@ -41,8 +41,8 @@ export default {
   }
   .title{
     position: absolute;
-    left:100px;
-    top:100px;
+    left: 100px;
+    top: 100px;
   }
 }
 </style>
