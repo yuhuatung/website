@@ -1,15 +1,18 @@
 <template>
   <div class="jobs">
     <div class="header">
-      <span class="subject">Work together for success!</span>
+      <div class="subject">Work together for success!</div>
+      <div class="footer">Welcome! Let's create your profile</div>
     </div>
     <div class="welfare">
-      <div>
+      <div class="title">
         {{welfare.title}}
       </div>
-      <div>
+      <div class="content">
         {{welfare.content}}
       </div>
+    </div>
+    <div class="welfare-card">
       <div class="cards">
         <div class="outer">
           <span>{{welfare.category[0]}}</span>
@@ -51,13 +54,15 @@
         </div>
       </div>
     </div>
-    <div>
-      {{jobs.title}}
-    </div>
-    <div>
-      {{jobs.content}}
-    </div>
     <div class="vacancy">
+      <div class="title">
+        {{jobs.title}}
+      </div>
+      <div class="content">
+        {{jobs.content}}
+      </div>
+    </div>
+    <div class="vacancy-card">
       <div v-for="(item, index) in jobs.vacancy" :key="index">
         <JobCard v-bind="item"/>
       </div>
@@ -70,7 +75,6 @@
 <script>
 // @ is an alias to /src
 import json from '@/assets/json/jobs.json'
-// import Logo from '@/assets/svg/logo.svg';
 import JobCard from '@/components/JobCard.vue'
 
 export default {
@@ -105,15 +109,32 @@ export default {
     background-repeat: no-repeat;
     // filter: blur(3px);
     .subject{
-      margin-top: 200px;
+      margin-top: 270px;
       display: inline-block;
       font-size: 48px;
+      color: #fff;
+    }
+    .footer{
+      margin-top: 400px;
+      font-size: 12px;
       color: #fff;
     }
   }
   .welfare{
     width: 1243px;
-    height: 700px;
+    height: 120px;
+    .title{
+      margin-top: 80px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .content{
+      margin: 30px auto;
+      width: 620px;
+      font-size: 16px;
+    }
+  }
+  .welfare-card{
     .cards{
       display: flex;
       justify-content: space-between;
@@ -122,8 +143,8 @@ export default {
         margin: 0 15px;
         width: 333px;
         span{
-          margin-top: 20px;
-          margin-bottom: 20px;
+          margin-top: 35px;
+          margin-bottom: 25px;
           display: inline-block;
         }
         .card{
@@ -162,6 +183,20 @@ export default {
     }
   }
   .vacancy{
+    width: 1243px;
+    height: 300px;
+    .title{
+      margin-top: 130px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .content{
+      margin: 30px auto;
+      width: 620px;
+      font-size: 16px;
+    }
+  }
+  .vacancy-card{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
