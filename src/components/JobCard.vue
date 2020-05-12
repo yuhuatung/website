@@ -63,10 +63,10 @@ export default {
         transform: translateX(113px) translateY(29px) rotateY(0deg);
         font-size: 18px;
         padding: 8px;
-        width: 141px;
+        width: 161px;
         height: 26px;
         position: absolute;
-        font-family: "Noto Sans HK";
+        text-align: left;
         font-weight: 700;
         color: rgb(0, 0, 0);
     }
@@ -76,6 +76,7 @@ export default {
         height: 26px;
         position: absolute;
         padding: 8px;
+        text-align: left;
         color: rgb(145, 145, 145);
         .num{
             font-size: 26px;
