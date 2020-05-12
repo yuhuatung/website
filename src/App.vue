@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="nav">
-      <div>
-        <Logo class="logo"/>
+      <div class="logo">
+        <Logo class="logo-img"/>
         <WanLian class="company"/>
       </div>
       <div class="link">
@@ -48,14 +48,15 @@ body {
   margin: 0;
 }
 .nav {
-  // padding: 30px;
+  box-sizing: border-box;
+  padding: 0 20px;
   margin: 0px auto;
   width: 1243px;
   height: 56px;
-  opacity: 0.6;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(15, 48, 58);
   display: flex;
   justify-content: space-between;
+  z-index: 1;
   a {
     // font-weight: bold;
     color: #fff;
@@ -68,17 +69,22 @@ body {
     // }
   }
   .link{
-     margin: 20px 65px auto;
+    display: flex;
+    align-items: center;
   }
-  .logo {
-    width: 40px;
-    height: 40px;
-    margin: 10px;
-  }
-  .company {
-    width: 69px;
-    height: 40px;
-    margin: 10px;
+  .logo{
+    display: flex;
+    align-items: center;
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      // margin: 10px;
+    }
+    .company {
+      width: 69px;
+      height: 40px;
+      // margin: 10px;
+    }
   }
 }
 </style>
