@@ -104,7 +104,7 @@ export default {
     .list{
         transform: translateX(32px) translateY(157px) rotateY(0deg);
         width: 268px;
-        height: 310px;
+        height: 315px;
         position: absolute;
         border-bottom: 1px solid rgb(145, 145, 145);
         overflow: auto;
