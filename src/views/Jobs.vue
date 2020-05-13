@@ -68,6 +68,35 @@
       </div>
     </div>
     <div class="apply-form">
+      <div class="picture"></div>
+      <div class="form">
+        <div class="row1">
+          <div>
+            <div>姓名</div>
+            <input text="text" placeholder="請輸入真實姓名">
+          </div>
+          <div>
+            <div>手機</div>
+            <input text="text" placeholder="+886-000-000-000">
+          </div>
+        </div>
+        <div class="row2">
+          <div>
+            <div>信箱</div>
+            <input text="text" placeholder="@gmail.com">
+          </div>
+          <div>
+            <div>職業</div>
+            <input text="text" placeholder="輸入您目前的職業性質">
+          </div>
+        </div>
+        <div class="row3">
+          <div>
+            <div>地址</div>
+            <input text="text" placeholder="縣市-區-路">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -99,7 +128,7 @@ export default {
 </script>
 <style lang="scss">
 .jobs{
-  margin: -56px auto;
+  margin: 0 auto;
   width: 1243px;
   height: 800px;
   .header{
@@ -207,6 +236,45 @@ export default {
     height: 608px;
     background-color: rgb(235, 235, 235);
     margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    .picture{
+      width: 200px;
+    }
+    .form{
+      padding-top: 65px;
+      width: 560px;
+      ::placeholder {
+        color: rgb(145, 145, 145);
+        // padding: 10px;
+        font-size: 12p;
+      }
+      input{
+        border:1px rgb(214, 214, 214) solid;
+        width: 207px;
+        height: 46px;
+        border-radius: 10px;
+        padding: 0px 15px;
+      }
+      .row1, .row2{
+        padding-top: 20px;
+        text-align: left;
+        display: flex;
+        justify-content: space-around;
+        input{
+          margin-top: 15px;
+        }
+      }
+      .row3{
+        padding-top: 20px;
+        text-align: left;
+        padding-left: 20px;
+        input{
+          margin-top: 15px;
+          width: 487px;
+        }
+      }
+    }
   }
 }
 </style>
