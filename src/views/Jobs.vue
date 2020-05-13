@@ -61,6 +61,9 @@
       <div class="content">
         {{jobs.content}}
       </div>
+      <div class="subscribe">
+        立即訂閱
+      </div>
     </div>
     <div class="vacancy-card">
       <div v-for="(item, index) in jobs.vacancy" :key="index">
@@ -227,7 +230,7 @@ export default {
   }
   .vacancy{
     width: 1243px;
-    height: 300px;
+    height: 250px;
     .title{
       margin-top: 130px;
       font-size: 24px;
@@ -238,6 +241,26 @@ export default {
       width: 620px;
       font-size: 16px;
     }
+    .subscribe{
+      position: relative;
+      margin: 0 auto;
+      width: 216px;
+      height: 48px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: rgb(255, 255, 255);
+      border-radius: 10px;
+      margin-top: 40px;
+      right: 20px;
+      line-height:46px;
+    }
+    .subscribe:before{
+      content:url('~@/assets/img/icons8-expand_arrow-1_2x.png');
+      display: block;
+      position: absolute;
+      left: 168px;
+      top: -9px;
+      transform: rotate(-90deg) rotateY(0deg) scale(.5);
+    }
   }
   .vacancy-card{
     display: flex;
@@ -247,7 +270,7 @@ export default {
   }
   .apply-form{
     width: 1243px;
-    height: 608px;
+    height: 570px;
     background-color: rgb(235, 235, 235);
     margin-top: 60px;
     display: flex;
