@@ -53,10 +53,15 @@ body {
   margin: 0px auto;
   width: 1243px;
   height: 56px;
-  background-color: rgb(15, 48, 58);
+  opacity: 0.6;
+  background-color: rgb(0, 0, 0);
   display: flex;
   justify-content: space-between;
   z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   a {
     // font-weight: bold;
     color: #fff;

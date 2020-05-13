@@ -107,7 +107,7 @@ export default {
   .container {
     position: absolute;
     left: 30px;
-    top: 20px;
+    top: 80px;
     z-index: 2;
     .title {
       font-size: 80px;
