@@ -10,7 +10,10 @@
         </div>
         <div class="list">
             <div v-for="(item, index) in requirement" :key="index" class="content">
-                <div class="check"></div><div class="item-list">{{item}}</div>
+                <div class="check">
+                    <div class="check-box"></div>
+                </div>
+                <div class="item-list">{{item}}</div>
             </div>
         </div>
         <div class="buttom"></div>
@@ -113,6 +116,12 @@ export default {
             display: flex;
             .check{
                 width: 50px;
+                .check-box{
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 3px;
+                    box-shadow: rgb(146, 146, 146) 0px 0px 4px inset
+                }
             }
             .item-list{
                 width: 250px;
