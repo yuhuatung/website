@@ -130,7 +130,7 @@ export default {
                     height: 24px;
                     top: -2px;
                     left: -2px;
-                    border-radius: 2px;
+                    border-radius: 3px;
                     box-shadow: rgb(146, 146, 146) 0px 0px 4px inset;
                 }
                 input[type=checkbox]:checked:after {
