@@ -11,7 +11,7 @@
         <div class="list">
             <div v-for="(item, index) in requirement" :key="index" class="content">
                 <div class="check">
-                    <div class="check-box"></div>
+                    <input type="checkbox" />
                 </div>
                 <div class="item-list">{{item}}</div>
             </div>
@@ -116,11 +116,34 @@ export default {
             display: flex;
             .check{
                 width: 50px;
-                .check-box{
+                input[type=checkbox]{
+                    position: relative;
+                    cursor: pointer;
+                    margin: 5px;
+                }
+                input[type=checkbox]:before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    background-color: white;
                     width: 24px;
                     height: 24px;
-                    border-radius: 3px;
-                    box-shadow: rgb(146, 146, 146) 0px 0px 4px inset
+                    top: -2px;
+                    left: -2px;
+                    border-radius: 2px;
+                    box-shadow: rgb(146, 146, 146) 0px 0px 4px inset;
+                }
+                input[type=checkbox]:checked:after {
+                    content: "";
+                    display: block;
+                    width: 4px;
+                    height: 11px;
+                    border: solid blue;
+                    border-width: 0  1px 1px 0;
+                    transform: rotate(45deg);
+                    position: absolute;
+                    top: 3px;
+                    left: 8px;
                 }
             }
             .item-list{
