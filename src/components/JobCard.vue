@@ -138,8 +138,8 @@ export default {
                     display: block;
                     width: 4px;
                     height: 11px;
-                    border: solid blue;
-                    border-width: 0  1px 1px 0;
+                    border: solid #00BFFF;
+                    border-width: 0 1.5px 1.5px 0;
                     transform: rotate(45deg);
                     position: absolute;
                     top: 3px;
