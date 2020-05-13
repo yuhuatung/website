@@ -68,33 +68,47 @@
       </div>
     </div>
     <div class="apply-form">
-      <div class="picture"></div>
+      <div class="picture">
+        <div class="photo">
+          <img class="icon-photo" src="@/assets/img/folder_filled_2x.png">
+        </div>
+        <div class="hint">
+          請選擇進3個月的求職照片。照片大小限3MB
+        </div>
+        <div class="choose-photo">
+          選擇照片
+        </div>
+      </div>
       <div class="form">
         <div class="row1">
           <div>
-            <div>姓名</div>
+            <div class="form-name">姓名</div>
             <input text="text" placeholder="請輸入真實姓名">
           </div>
           <div>
-            <div>手機</div>
+            <div class="form-name">手機</div>
             <input text="text" placeholder="+886-000-000-000">
           </div>
         </div>
         <div class="row2">
           <div>
-            <div>信箱</div>
+            <div class="form-name">信箱</div>
             <input text="text" placeholder="@gmail.com">
           </div>
           <div>
-            <div>職業</div>
+            <div class="form-name">職業</div>
             <input text="text" placeholder="輸入您目前的職業性質">
           </div>
         </div>
         <div class="row3">
           <div>
-            <div>地址</div>
+            <div class="form-name">地址</div>
             <input text="text" placeholder="縣市-區-路">
           </div>
+        </div>
+        <div class="row4">
+          <div class="subscribe">立即訂閱</div>
+          <div class="hint">沒看到適合您的職缺嗎！ 別擔心，訂閱即可收到最新職缺通知。</div>
         </div>
       </div>
     </div>
@@ -237,13 +251,51 @@ export default {
     background-color: rgb(235, 235, 235);
     margin-top: 60px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     .picture{
+      margin-left: 170px;
       width: 200px;
+      .photo{
+        margin-left: 20px;
+        margin-top: 70px;
+        width: 151px;
+        height: 166px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 8px;
+        img{
+          margin-top: 60px;
+          width: 50px;
+          height: 50px;
+        }
+      }
+      .hint{
+        margin-top: 25px;
+        color: rgb(145, 145, 145);
+        display: inline-block;
+        font-size: 12px;
+        width: 154px;
+        text-align: left;
+      }
+      .choose-photo{
+        margin-top: 25px;
+        margin-left: 20px;
+        width: 158px;
+        height: 46px;
+        border-style: solid;
+        background-color: rgb(255, 255, 255);
+        border-width: 1px;
+        border-color: rgb(214, 214, 214);
+        border-radius: 10px;
+        line-height:46px;
+      }
     }
     .form{
-      padding-top: 65px;
+      margin-left: 90px;
+      padding-top: 50px;
       width: 560px;
+      .form-name{
+        padding-left: 10px;
+      }
       ::placeholder {
         color: rgb(145, 145, 145);
         // padding: 10px;
@@ -272,6 +324,36 @@ export default {
         input{
           margin-top: 15px;
           width: 487px;
+        }
+      }
+      .row4{
+        padding-top: 20px;
+        position: relative;
+        .subscribe{
+          position: absolute;
+          width: 241px;
+          height: 46px;
+          background-color: rgba(0, 0, 0, 0.8);
+          color: rgb(255, 255, 255);
+          font-size: 18px;
+          border-radius: 10px;
+          margin-top: 30px;
+          right: 20px;
+          line-height:46px;
+        }
+        .hint{
+          width: 228px;
+          height: 21px;
+          position: absolute;
+          display: inline-block;
+          letter-spacing: 0px;
+          font-size: 12px;
+          line-height: 18px;
+          overflow-wrap: break-word;
+          text-align: center;
+          color: rgb(121, 121, 121);
+          margin-top: 86px;
+          margin-left: 24px;
         }
       }
     }
