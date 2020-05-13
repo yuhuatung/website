@@ -10,7 +10,7 @@
         </div>
         <div class="list">
             <div v-for="(item, index) in requirement" :key="index" class="content">
-                {{item}}
+                <div class="check"></div><div class="item-list">{{item}}</div>
             </div>
         </div>
         <div class="buttom"></div>
@@ -106,10 +106,17 @@ export default {
         border-bottom: 1px solid rgb(145, 145, 145);
         overflow: auto;
         .content{
-            width: 220px;
+            width: 250px;
             text-align: left;
-            padding: 8px;
+            padding: 15px 15px 15px 0;
             font-size: 14px;
+            display: flex;
+            .check{
+                width: 50px;
+            }
+            .item-list{
+                width: 250px;
+            }
         }
     }
     .buttom{
