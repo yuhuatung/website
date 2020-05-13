@@ -6,17 +6,16 @@
       :alt="`Big image${k}`"
       :src="item.src"
       class="big-image"
-      :class="{blur:showBottom && page === 0}"
       :style="{left:`${1243*(k - page)}px`}"
     />
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <div class="page-one" v-show="page === 0">
+    <div v-for="(item,k) in data.homepage" :key="item.titleCht" class="page" v-show="page === k">
       <div class="container">
         <transition name="fadeTitle">
-          <div v-show="show" class="title">{{data.homepage[0].title}}</div>
+          <div v-show="show && page === k" class="title">{{item.title}}</div>
         </transition>
         <transition name="fadeTitle">
-          <div v-show="show" class="content">{{data.homepage[0].content}}</div>
+          <div v-show="show && page === k" class="content">{{item.content}}</div>
         </transition>
         <div class="more-content" @click="showBottom = !showBottom">
           <img class="icon-more" src="@/assets/img/icons8-more-1_2x.png" alt="Icons8 more" />
@@ -24,9 +23,9 @@
         </div>
       </div>
       <transition name="fadeBottom">
-        <div v-show="showBottom" class="bottom">
-          <h1>企業理念</h1>
-          <span>萬聯科技，是由一群曾在知名系統與網路公司的核心技術菁英人才而組成的團隊，公司致力於軟體及應用程式研發與系統建置開發設計服務於一體的平台型公司，服務各大網站及手機APP營運商。</span>
+        <div v-show="showBottom" class="bottom-content">
+          <h1>{{item.titleCht}}</h1>
+          <span>{{item.More}}</span>
         </div>
       </transition>
       <transition name="opacity">
@@ -71,7 +70,9 @@ export default {
       image: [
         { src: require("@/assets/img/philosophy.jpg") },
         { src: require("@/assets/img/concept.jpg") },
-        { src: require("@/assets/img/banner_service.jpg") }
+        {
+          src: require("@/assets/img/garrhet-sampson-JzNmtlSJ0wk-unsplash_2x.jpg")
+        }
       ]
     };
   },
@@ -79,7 +80,11 @@ export default {
     // HelloWorld
   },
   methods: {
+    closeBottom() {
+      this.showBottom = false;
+    },
     turnPage(i) {
+      this.closeBottom();
       this.page += i;
       if (this.page > this.image.length - 1) this.page = 0;
       if (this.page < 0) this.page = this.image.length - 1;
@@ -98,7 +103,7 @@ export default {
   },
   mounted() {
     var self = this;
-    setInterval(function() {
+    setTimeout(() => {
       self.show = true;
     }, 100);
   }
@@ -120,18 +125,18 @@ export default {
     height: 800px;
     transition: all 0.4s;
   }
-  .blur {
-    -webkit-filter: blur(4px);
-    -moz-filter: blur(4px);
-    -o-filter: blur(4px);
-    -ms-filter: blur(4px);
-    filter: blur(4px);
-  }
-  .page-one {
+  // .blur {
+  //   -webkit-filter: blur(4px);
+  //   -moz-filter: blur(4px);
+  //   -o-filter: blur(4px);
+  //   -ms-filter: blur(4px);
+  //   filter: blur(4px);
+  // }
+  .page {
     .container {
       position: absolute;
       left: 30px;
-      top: 80px;
+      top: 100px;
       z-index: 2;
       .title {
         font-size: 80px;
@@ -141,10 +146,11 @@ export default {
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
       }
       .content {
-        margin: 20px 0 30px;
+        margin: 30px 0 40px;
         font-size: 30px;
         color: #fff;
         width: 400px;
+        padding-left: 10px;
         text-align: left;
         font-size: 16px;
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
@@ -179,7 +185,7 @@ export default {
         }
       }
     }
-    .bottom {
+    .bottom-content {
       width: 1243px;
       height: 300px;
       transform: translateX(0px) translateY(500px) rotateY(0deg);
@@ -191,10 +197,20 @@ export default {
       position: absolute;
       z-index: 2;
       box-shadow: rgb(0, 0, 0) 0px 0px 1px;
+      h1,span{
+        font-size: 16px;
+        margin: 70px auto 0;
+        flex-direction: column;
+        display: flex;
+        width: 550px;
+      }
+      span{
+        margin-top: 30px;
+      }
     }
     .fadeBottom-enter-active,
     .fadeBottom-leave-active {
-      transition: all 0.3s;
+      transition: all 0.2s linear;
     }
     .fadeBottom-enter,
     .fadeBottom-leave-to {
@@ -205,7 +221,7 @@ export default {
       height: 100%;
       position: absolute;
       top: 0;
-      background-color: rgba(0, 0, 0, 0.2);
+      background-color: rgba(0, 0, 0, 0.5);
       cursor: pointer;
     }
     .opacity-enter,
@@ -214,23 +230,23 @@ export default {
     }
     .opacity-enter-active,
     .opacity-leave-active {
-      transition: all 0.3s;
+      transition: all 0.2s linear;
     }
   }
   .img-btn {
-    width: 96px;
+    width: 100px;
     // height: 43px;
     position: absolute;
     // background-color: #fff;
-    right: 20px;
-    top: 250px;
+    right: 80px;
+    top: 390px;
     display: flex;
     justify-content: space-between;
     .left-btn,
     .right-btn {
       width: 45px;
       height: 45px;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 0, 0, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -243,7 +259,8 @@ export default {
       span {
         position: absolute;
         z-index: 111;
-        background-color: rgba(255, 255, 255, 0.76);
+        background-color: rgba(255, 255, 255);
+        opacity: 0.6;
       }
       .left {
         left: 0px;
