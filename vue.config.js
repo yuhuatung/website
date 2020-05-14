@@ -1,4 +1,11 @@
 module.exports = {
+  css: {
+    loaderOptions: {
+      less: {
+        javascriptEnabled: true
+      }
+    }
+  },
   chainWebpack: (config) => {
     const svgRule = config.module.rule('svg');
  
