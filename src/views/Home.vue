@@ -323,12 +323,12 @@ export default {
       h1,
       span {
         font-size: 16px;
-        margin: 70px auto 0;
+        margin: 40px auto 0;
         flex-direction: column;
         display: flex;
       }
       span {
-        margin-top: 30px;
+        margin-top: 20px;
       }
     }
     .fadeBottom-enter-active,
