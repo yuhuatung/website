@@ -6,7 +6,8 @@
       :alt="`Big image${k}`"
       :src="item.src"
       class="big-image"
-      :style="{left:`${1243*(k - page)}px`}"
+      :style="{left:`${imageWidth*(k - page)}px`}"
+      ref="imageWidth"
     />
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <div v-for="(item,k) in data.homepage" :key="item.titleCht" class="page" v-show="page === k">
@@ -33,19 +34,19 @@
       </transition>
     </div>
     <div class="img-btn">
-      <div class="left-btn" @click="turnPage(-1);borderAnimation('left')">
+      <div class="left-btn" @click="turnPage(-1);borderAnimation('left')" v-show="showLeftBtn">
         <img src="@/assets/img/icons8-expand_arrow_2x.png" alt="left-btn" />
-        <span :class="{animateLeft:showLeftBtn}" class="left"></span>
-        <span :class="{animateTop:showLeftBtn}" class="top"></span>
-        <span :class="{animateRight:showLeftBtn}" class="right"></span>
-        <span :class="{animateBottom:showLeftBtn}" class="bottom"></span>
+        <span :class="{animateLeft:showLeftBtnBorder}" class="left"></span>
+        <span :class="{animateTop:showLeftBtnBorder}" class="top"></span>
+        <span :class="{animateRight:showLeftBtnBorder}" class="right"></span>
+        <span :class="{animateBottom:showLeftBtnBorder}" class="bottom"></span>
       </div>
-      <div class="right-btn" @click="turnPage(1);borderAnimation('right')">
+      <div class="right-btn" @click="turnPage(1);borderAnimation('right')" v-show="showRightBtn">
         <img src="@/assets/img/icons8-expand_arrow_2x.png" alt="right-btn" />
-        <span :class="{animateLeft:showRightBtn}" class="left"></span>
-        <span :class="{animateTop:showRightBtn}" class="top"></span>
-        <span :class="{animateRight:showRightBtn}" class="right"></span>
-        <span :class="{animateBottom:showRightBtn}" class="bottom"></span>
+        <span :class="{animateLeft:showRightBtnBorder}" class="left"></span>
+        <span :class="{animateTop:showRightBtnBorder}" class="top"></span>
+        <span :class="{animateRight:showRightBtnBorder}" class="right"></span>
+        <span :class="{animateBottom:showRightBtnBorder}" class="bottom"></span>
       </div>
     </div>
   </div>
@@ -64,9 +65,10 @@ export default {
       show: false,
       showBottom: false,
       page: 0,
-      showLeftBtn: false,
-      showRightBtn: false,
+      showLeftBtnBorder: false,
+      showRightBtnBorder: false,
       timer: null,
+      imageWidth: 1243,
       image: [
         { src: require("@/assets/img/philosophy.jpg") },
         { src: require("@/assets/img/concept.jpg") },
@@ -78,6 +80,22 @@ export default {
   },
   components: {
     // HelloWorld
+  },
+  computed: {
+    showLeftBtn() {
+      let show = true;
+      if (this.page === 0 && this.imageWidth < 810) {
+        show = false;
+      }
+      return show;
+    },
+    showRightBtn() {
+      let show = true;
+      if (this.page === this.image.length - 1 && this.imageWidth < 810) {
+        show = false;
+      }
+      return show;
+    }
   },
   methods: {
     closeBottom() {
@@ -91,14 +109,14 @@ export default {
     },
     borderAnimation(p) {
       clearTimeout(this.timer);
-      this.showLeftBtn = false;
-      this.showRightBtn = false;
-      if (p === "left") this.showLeftBtn = true;
-      if (p === "right") this.showRightBtn = true;
+      this.showLeftBtnBorder = false;
+      this.showRightBtnBorder = false;
+      if (p === "left") this.showLeftBtnBorder = true;
+      if (p === "right") this.showRightBtnBorder = true;
       this.timer = setTimeout(() => {
-        this.showLeftBtn = false;
-        this.showRightBtn = false;
-      }, 390);
+        this.showLeftBtnBorder = false;
+        this.showRightBtnBorder = false;
+      }, 500);
     }
   },
   mounted() {
@@ -106,24 +124,137 @@ export default {
     setTimeout(() => {
       self.show = true;
     }, 100);
+    self.imageWidth = this.$refs.imageWidth[0].offsetWidth;
+    window.onresize = () => {
+      // 通過捕獲系統的onresize事件觸發我們需要執行的事件
+      self.imageWidth = this.$refs.imageWidth[0].offsetWidth;
+    };
   }
 };
 </script>
 
 <style lang="scss">
+@media screen and (min-width: 810px) {
+  .home {
+    width: 1243px;
+    height: 800px;
+    .big-image {
+      height: 800px;
+    }
+    .page {
+      .container {
+        left: 30px;
+        width: 400px;
+        .title {
+          font-size: 80px;
+        }
+        .content {
+          margin: 30px 0 40px;
+          font-size: 16px;
+        }
+        .more-content {
+          height: 40px;
+          box-shadow: rgb(0, 0, 0) 0px 0px 2px;
+        }
+      }
+    }
+    .bottom-content {
+      h1,
+      span {
+        width: 50%;
+      }
+    }
+    .img-btn {
+      top: 390px;
+      right: 80px;
+      .left-btn,
+      .right-btn {
+        span {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 576px) and (max-width: 810px) {
+  .home {
+    width: 100%;
+    height: 1000px;
+    .page {
+      .container {
+        left: 30px;
+        width: 400px;
+        .title {
+          font-size: 80px;
+        }
+        .content {
+          margin: 30px 0 40px;
+          font-size: 16px;
+        }
+        .more-content {
+          height: 40px;
+          box-shadow: rgb(0, 0, 0) 0px 0px 2px;
+        }
+      }
+    }
+    .bottom-content {
+      h1,
+      span {
+        width: 70%;
+      }
+    }
+    .img-btn {
+      top: 480px;
+      right: 80px;
+    }
+  }
+}
+@media screen and (max-width: 576px) {
+  .home {
+    width: 100%;
+    height: 800px;
+    .page {
+      .container {
+        left: 15px;
+        width: 80%;
+        padding-top: 35px;
+        .title {
+          font-size: 24px;
+        }
+        .content {
+          margin: 15px 0 20px;
+          font-size: 14px;
+        }
+        .more-content {
+          height: 32px;
+          margin-left: 8px;
+        }
+      }
+    }
+    .bottom-content {
+      h1,
+      span {
+        width: 85%;
+      }
+    }
+    .img-btn {
+      top: 300px;
+      right: 30px;
+    }
+  }
+}
 .home {
   margin: 0 auto;
-  width: 1243px;
-  height: 800px;
   position: relative;
   overflow: hidden;
   .big-image {
     position: absolute;
     left: 0;
     top: 0;
-    width: 1243px;
-    height: 800px;
-    transition: all 0.4s;
+    width: 100%;
+    height: 100%;
+    transition: left 0.5s;
+    background-size: contain;
   }
   // .blur {
   //   -webkit-filter: blur(4px);
@@ -135,24 +266,19 @@ export default {
   .page {
     .container {
       position: absolute;
-      left: 30px;
       top: 100px;
       z-index: 2;
       .title {
-        font-size: 80px;
         color: #fff;
-        width: 400px;
+        width: 100%;
         text-align: left;
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
       }
       .content {
-        margin: 30px 0 40px;
-        font-size: 30px;
         color: #fff;
-        width: 400px;
+        width: 100%;
         padding-left: 10px;
         text-align: left;
-        font-size: 16px;
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
       }
       .fadeTitle-enter-active {
@@ -166,10 +292,8 @@ export default {
         font-size: 30px;
         color: #fff;
         width: 129px;
-        height: 40px;
         border: 1px solid rgb(255, 255, 255);
         border-radius: 20px;
-        box-shadow: rgb(0, 0, 0) 0px 0px 2px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -186,35 +310,34 @@ export default {
       }
     }
     .bottom-content {
-      width: 1243px;
+      width: 100%;
       height: 300px;
-      transform: translateX(0px) translateY(500px) rotateY(0deg);
       opacity: 0.9;
       background-color: rgb(255, 255, 255);
       border-width: 0px;
       border-color: rgb(216, 221, 228);
-      overflow: visible;
       position: absolute;
       z-index: 2;
       box-shadow: rgb(0, 0, 0) 0px 0px 1px;
-      h1,span{
+      bottom: 0px;
+      h1,
+      span {
         font-size: 16px;
         margin: 70px auto 0;
         flex-direction: column;
         display: flex;
-        width: 550px;
       }
-      span{
+      span {
         margin-top: 30px;
       }
     }
     .fadeBottom-enter-active,
     .fadeBottom-leave-active {
-      transition: all 0.2s linear;
+      transition: bottom 0.2s linear;
     }
     .fadeBottom-enter,
     .fadeBottom-leave-to {
-      transform: translateX(0px) translateY(800px) rotateY(0deg);
+      bottom: -300px;
     }
     .background {
       width: 100%;
@@ -238,8 +361,6 @@ export default {
     // height: 43px;
     position: absolute;
     // background-color: #fff;
-    right: 80px;
-    top: 390px;
     display: flex;
     justify-content: space-between;
     .left-btn,
@@ -259,8 +380,7 @@ export default {
       span {
         position: absolute;
         z-index: 111;
-        background-color: rgba(255, 255, 255);
-        opacity: 0.6;
+        background-color: rgb(255, 255, 255);
       }
       .left {
         left: 0px;
@@ -291,11 +411,11 @@ export default {
         animation-fill-mode: forwards;
       }
       .animateRight {
-        animation: animateRight 0.06s linear 0.24s;
+        animation: animateRight 0.08s linear 0.26s;
         animation-fill-mode: forwards;
       }
       .animateBottom {
-        animation: animateBottom 0.04s linear 0.28s;
+        animation: animateBottom 0.06s linear 0.32s;
         animation-fill-mode: forwards;
       }
       @keyframes animateLeft {
@@ -330,6 +450,9 @@ export default {
           width: 41px;
         }
       }
+    }
+    .right-btn {
+      margin-left: auto;
     }
     .left-btn img {
       transform: rotate(90deg);
