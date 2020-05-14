@@ -68,20 +68,48 @@ export default {
       showLeftBtnBorder: false,
       showRightBtnBorder: false,
       timer: null,
-      imageWidth: 1243,
-      image: [
-        { src: require("@/assets/img/philosophy.jpg") },
-        { src: require("@/assets/img/concept.jpg") },
-        {
-          src: require("@/assets/img/garrhet-sampson-JzNmtlSJ0wk-unsplash_2x.jpg")
-        }
-      ]
+      imageWidth: 1243
+      // image: [
+      //   { src: require("@/assets/img/philosophy.jpg") },
+      //   { src: require("@/assets/img/concept.jpg") },
+      //   {
+      //     src: require("@/assets/img/garrhet-sampson-JzNmtlSJ0wk-unsplash_2x.jpg")
+      //   }
+      // ]
     };
   },
   components: {
     // HelloWorld
   },
   computed: {
+    image() {
+      let img = [
+        { src: require("@/assets/img/philosophy.jpg") },
+        { src: require("@/assets/img/concept.jpg") },
+        {
+          src: require("@/assets/img/garrhet-sampson-JzNmtlSJ0wk-unsplash_2x.jpg")
+        }
+      ];
+      if (this.imageWidth < 810 && this.imageWidth > 576) {
+        img = [
+          { src: require("@/assets/img/philosophy1.jpg") },
+          { src: require("@/assets/img/concept1.jpg") },
+          {
+            src: require("@/assets/img/garrhet-sampson-JzNmtlSJ0wk-unsplash_2x1.jpg")
+          }
+        ];
+      }
+      if (this.imageWidth < 576) {
+        img = [
+          { src: require("@/assets/img/philosophy2.jpg") },
+          { src: require("@/assets/img/concept2.jpg") },
+          {
+            src: require("@/assets/img/garrhet-sampson-JzNmtlSJ0wk-unsplash_2x2.jpg")
+          }
+        ];
+      }
+      return img;
+    },
     showLeftBtn() {
       let show = true;
       if (this.page === 0 && this.imageWidth < 810) {
