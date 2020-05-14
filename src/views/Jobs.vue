@@ -3,6 +3,7 @@
     <div class="header">
       <div class="subject">Work together for success!</div>
       <div class="footer">Welcome! Let's create your profile</div>
+      <div class="to-bottom" @click="toBottom(step)"></div>
     </div>
     <div class="welfare">
       <div class="title">
@@ -61,7 +62,7 @@
       <div class="content">
         {{jobs.content}}
       </div>
-      <div class="subscribe">
+      <div class="subscribe" @click="toBottom(step)">
         立即訂閱
       </div>
     </div>
@@ -131,12 +132,26 @@ export default {
   data(){
     return{
       welfare: json.recruitment.welfare,
-      jobs: json.recruitment.jobs
+      jobs: json.recruitment.jobs,
+      step: 200, //此数据是控制动画快慢的
     }
   },
   computed: {
     numOfJobs: function(){
       return this.jobs.vacancy.length;
+    }
+  },
+  methods:{
+    toBottom(i){
+      var clientHeight=document.documentElement.clientHeight || document.body.clientHeight;
+      var scrollHeight=document.documentElement.scrollHeight;
+      var height=scrollHeight-clientHeight; //超出窗口上界的值就是底部的scrolTop的值
+      document.documentElement.scrollTop += i;
+      if (document.documentElement.scrollTop < height) {
+        var c = setTimeout(() => this.toBottom(i), 16);
+      } else {
+        clearTimeout(c);
+      }
     }
   },
   mounted(){
@@ -153,6 +168,7 @@ export default {
     height: 800px;
     background-image: url("~@/assets/img/recruitment.jpg");;
     background-repeat: no-repeat;
+    position: relative;
     // filter: blur(3px);
     .subject{
       margin-top: 270px;
@@ -164,6 +180,19 @@ export default {
       margin-top: 400px;
       font-size: 12px;
       color: #fff;
+    }
+    .to-bottom{
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      background-color: rgb(95, 172, 240);
+      background-image: url("~@/assets/img/icons8-expand_arrow_2x.png");
+      background-repeat: no-repeat;
+      background-size: 32px 32px;
+      background-position: center;
+      right: 15px;
+      bottom: 50px;
+      cursor: pointer;
     }
   }
   .welfare{
@@ -252,6 +281,7 @@ export default {
       margin-top: 40px;
       right: 20px;
       line-height:46px;
+      cursor: pointer;
     }
     .subscribe:before{
       content:url('~@/assets/img/icons8-expand_arrow-1_2x.png');
@@ -310,6 +340,7 @@ export default {
         border-color: rgb(214, 214, 214);
         border-radius: 10px;
         line-height:46px;
+        cursor: pointer;
       }
     }
     .form{
@@ -363,6 +394,7 @@ export default {
           margin-top: 30px;
           right: 20px;
           line-height:46px;
+          cursor: pointer;
         }
         .hint{
           width: 228px;
