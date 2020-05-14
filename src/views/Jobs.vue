@@ -3,6 +3,14 @@
     <div class="header">
       <div class="subject">Work together for success!</div>
       <div class="footer">Welcome! Let's create your profile</div>
+      <a-dropdown>
+      <a-menu slot="overlay">
+        <template v-for="(item, index) in searchJob">
+        <a-menu-item :key="index"> {{ item }} </a-menu-item>
+        </template>
+      </a-menu>
+      <a-button class="search"> 搜尋職缺 <a-icon type="search" /> </a-button>
+    </a-dropdown>
       <div class="to-bottom" @click="toBottom(step)"></div>
     </div>
     <div class="welfare">
@@ -139,7 +147,16 @@ export default {
   computed: {
     numOfJobs: function(){
       return this.jobs.vacancy.length;
-    }
+    },
+    searchJob: function(){
+      let result = this.jobs.vacancy.map(jobs => (jobs.name ));
+      // this.$set(this.config, 'options', result)
+
+      // let result = this.jobs.vacancy.map(item => Object.values(item)[1]);
+      console.log(this.jobs.vacancy)
+      console.log(result)
+      return result;
+    },
   },
   methods:{
     toBottom(i){
@@ -159,6 +176,10 @@ export default {
 }
 </script>
 <style lang="scss">
+.ant-dropdown-menu{
+  max-height: 280px;
+  overflow: scroll;
+}
 .jobs{
   margin: 0 auto;
   width: 1243px;
@@ -175,6 +196,19 @@ export default {
       display: inline-block;
       font-size: 48px;
       color: #fff;
+    }
+    .search{
+      position: absolute;
+      width: 560px;
+      height: 56px;
+      left: 350px;
+      top: 400px;
+      background-color: white;
+      font-size: 20px;
+      border-radius: 8px;
+      i{
+        margin-left: 20px;
+      }
     }
     .footer{
       margin-top: 400px;

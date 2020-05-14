@@ -33,6 +33,9 @@ export default {
 };
 </script>
 <style lang="scss">
+*, *::before, *::after {
+    box-sizing: unset;
+}
 ::-webkit-scrollbar {
   width: 6px;
 }
