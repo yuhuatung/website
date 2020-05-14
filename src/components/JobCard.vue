@@ -16,8 +16,9 @@
                 <div class="item-list">{{item}}</div>
             </div>
         </div>
-        <div class="buttom"></div>
-        <div class="apply">立即應徵</div>
+        <div class="buttom" @click="openLink(link)">
+            <span class="apply">立即應徵</span>
+        </div>
         <div class="bottom">請勾選工作需求後前往應徵。</div>
     </div>
 </template>
@@ -35,6 +36,11 @@ export default {
             return this.requirement.length;
         }
     },
+    methods:{
+      openLink: function (url) {
+          window.open(url, "_blank");
+      }
+    }
 }
 </script>
 
@@ -162,13 +168,14 @@ export default {
         box-shadow: rgb(145, 145, 145) 0px 0px 3px;
         background-image: -webkit-linear-gradient(225deg, rgb(99, 179, 242), rgb(81, 117, 224));
         border-color: rgb(0, 111, 216);
-    }
-    .apply{
-        transform: translateX(126px) translateY(502px) rotateY(0deg);
-        position: absolute;
-        padding: 8px;
-        font-size: 16px;
-        color: rgb(255, 255, 255);
+        cursor: pointer;
+        .apply{
+            transform: translateX(126px) translateY(502px) rotateY(0deg);
+            font-size: 16px;
+            color: rgb(255, 255, 255);
+            position: relative;
+            top: 14px;
+        }
     }
     .bottom{
         transform: translateX(85px) translateY(554px) rotateY(0deg);
