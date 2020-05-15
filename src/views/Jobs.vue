@@ -217,6 +217,9 @@ export default {
     }
     .welfare-card .cards {
       justify-content: center;
+      left: 0;
+      right: 0;
+      margin: auto;
       .outer {
         margin: 0 15px;
       }
