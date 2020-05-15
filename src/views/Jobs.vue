@@ -1,28 +1,34 @@
 <template>
   <div class="jobs">
-    <div class="header">
+    <div class="header" :style="{height:`${screenHight}px`}">
+      <img class="big-img" src="@/assets/img/recruitment.jpg" alt="recruitment" />
       <div class="subject">Work together for success!</div>
       <div class="footer">Welcome! Let's create your profile</div>
       <a-dropdown>
-      <a-menu slot="overlay" @click="handleMenuClick">
-        <template v-for="(item, index) in searchJob">
-        <a-menu-item :key="index"> {{ item }} </a-menu-item>
-        </template>
-      </a-menu>
-      <a-button class="search"> 搜尋職缺 <a-icon type="search" /> </a-button>
-    </a-dropdown>
+        <a-menu slot="overlay" @click="handleMenuClick">
+          <template v-for="(item, index) in searchJob">
+            <a-menu-item :key="index">{{ item }}</a-menu-item>
+          </template>
+        </a-menu>
+        <a-button class="search">
+          搜尋職缺
+          <a-icon type="search" />
+        </a-button>
+      </a-dropdown>
       <div class="to-bottom" @click="toBottom(stepBottom)"></div>
     </div>
     <div class="welfare">
-      <div class="title">
-        {{welfare.title}}
-      </div>
-      <div class="content">
-        {{welfare.content}}
-      </div>
+      <div class="title">{{welfare.title}}</div>
+      <div class="content">{{welfare.content}}</div>
     </div>
     <div class="welfare-card">
       <div class="cards">
+        <div v-show="screenwidth<810" class="left-btn">
+          <img src="@/assets/img/icons8-expand_arrow_2x.png" alt="jobs-left-bnt">
+        </div>
+        <div v-show="screenwidth<810" class="right-btn">
+          <img src="@/assets/img/icons8-expand_arrow_2x.png" alt="jobs-right-bnt">
+        </div>
         <div class="outer">
           <span>{{welfare.category[0]}}</span>
           <div class="card">
@@ -43,7 +49,11 @@
                 <div v-html="item.content"></div>
               </div>
               <div class="border"></div>
-              <div v-for="(item, index) in welfare.bonus.slice(4, 10)" :key="'welfare'+index" class="content">
+              <div
+                v-for="(item, index) in welfare.bonus.slice(4, 10)"
+                :key="'welfare'+index"
+                class="content"
+              >
                 <div class="subject">{{item.name}}</div>
                 <div v-html="item.content"></div>
               </div>
@@ -64,58 +74,48 @@
       </div>
     </div>
     <div class="vacancy">
-      <div class="title">
-        {{jobs.title}}
-      </div>
-      <div class="content">
-        {{jobs.content}}
-      </div>
-      <div class="subscribe" @click="toBottom(stepBottom)">
-        立即訂閱
-      </div>
+      <div class="title">{{jobs.title}}</div>
+      <div class="content">{{jobs.content}}</div>
+      <div class="subscribe" @click="toBottom(stepBottom)">立即訂閱</div>
     </div>
     <div class="vacancy-card">
       <div v-for="(item, index) in jobs.vacancy" :key="index">
-        <JobCard v-bind="item" :selected="selectedJOb" ref="vacancy"/>
+        <JobCard v-bind="item" :selected="selectedJOb" ref="vacancy" />
       </div>
     </div>
-    <div class="apply-form">
+    <div class="apply-form" v-show="false">
       <div class="picture">
         <div class="photo">
-          <img class="icon-photo" src="@/assets/img/folder_filled_2x.png">
+          <img class="icon-photo" src="@/assets/img/folder_filled_2x.png" />
         </div>
-        <div class="hint">
-          請選擇進3個月的求職照片。照片大小限3MB
-        </div>
-        <div class="choose-photo">
-          選擇照片
-        </div>
+        <div class="hint">請選擇進3個月的求職照片。照片大小限3MB</div>
+        <div class="choose-photo">選擇照片</div>
       </div>
       <div class="form">
         <div class="row1">
           <div>
             <div class="form-name">姓名</div>
-            <input text="text" placeholder="請輸入真實姓名">
+            <input text="text" placeholder="請輸入真實姓名" />
           </div>
           <div>
             <div class="form-name">手機</div>
-            <input text="text" placeholder="+886-000-000-000">
+            <input text="text" placeholder="+886-000-000-000" />
           </div>
         </div>
         <div class="row2">
           <div>
             <div class="form-name">信箱</div>
-            <input text="text" placeholder="@gmail.com">
+            <input text="text" placeholder="@gmail.com" />
           </div>
           <div>
             <div class="form-name">職業</div>
-            <input text="text" placeholder="輸入您目前的職業性質">
+            <input text="text" placeholder="輸入您目前的職業性質" />
           </div>
         </div>
         <div class="row3">
           <div>
             <div class="form-name">地址</div>
-            <input text="text" placeholder="縣市-區-路">
+            <input text="text" placeholder="縣市-區-路" />
           </div>
         </div>
         <div class="row4">
@@ -129,39 +129,41 @@
 
 <script>
 // @ is an alias to /src
-import json from '@/assets/json/jobs.json'
-import JobCard from '@/components/JobCard.vue'
+import json from "@/assets/json/jobs.json";
+import JobCard from "@/components/JobCard.vue";
 
 export default {
-  name: 'Jobs',
+  name: "Jobs",
   components: {
     JobCard
   },
-  data(){
-    return{
+  props: ["screenHight", "screenwidth"],
+  data() {
+    return {
       welfare: json.recruitment.welfare,
       jobs: json.recruitment.jobs,
       stepBottom: 200, //此数据是控制动画快慢的
       stepJob: 50,
-      selectedJOb: ''
-    }
+      selectedJOb: ""
+    };
   },
   computed: {
-    numOfJobs: function(){
+    numOfJobs: function() {
       return this.jobs.vacancy.length;
     },
-    searchJob: function(){
-      let result = this.jobs.vacancy.map(jobs => (jobs.name ));
+    searchJob: function() {
+      let result = this.jobs.vacancy.map(jobs => jobs.name);
       // this.$set(this.config, 'options', result)
       // let result = this.jobs.vacancy.map(item => Object.values(item)[1]);
       return result;
-    },
+    }
   },
-  methods:{
-    toBottom(i){
-      let clientHeight=document.documentElement.clientHeight || document.body.clientHeight;
-      let scrollHeight=document.documentElement.scrollHeight;
-      let height = scrollHeight-clientHeight - 10; //超出窗口上界的值就是底部的scrolTop的值
+  methods: {
+    toBottom(i) {
+      let clientHeight =
+        document.documentElement.clientHeight || document.body.clientHeight;
+      let scrollHeight = document.documentElement.scrollHeight;
+      let height = scrollHeight - clientHeight - 10; //超出窗口上界的值就是底部的scrolTop的值
       document.documentElement.scrollTop += i;
       let c;
       if (document.documentElement.scrollTop < height) {
@@ -173,9 +175,9 @@ export default {
     handleMenuClick(e) {
       let height = this.$refs.vacancy[e.key].$el.offsetTop - 30;
       this.selectedJOb = this.jobs.vacancy[e.key].name;
-      this.toJobCard(this.stepJob, height)
+      this.toJobCard(this.stepJob, height);
     },
-    toJobCard(i, height){
+    toJobCard(i, height) {
       document.documentElement.scrollTop += i;
       let c;
       if (document.documentElement.scrollTop < height) {
@@ -185,51 +187,149 @@ export default {
       }
     }
   },
-  mounted(){
-  }
-}
+  mounted() {}
+};
 </script>
 <style lang="scss">
-.ant-dropdown-menu{
+@import "../assets/style/utils/_variables.scss";
+@media screen and (min-width: $bigWidth) {
+  .jobs {
+    width: 1243px;
+    .subject {
+    }
+    .search {
+      width: 560px;
+      margin-top: 5%;
+    }
+    .footer {
+      position: absolute;
+      bottom: 35px;
+    }
+    .welfare .content {
+      width: 540px;
+    }
+    .welfare-card .cards {
+      justify-content: center;
+      .outer {
+        margin: 0 15px;
+      }
+    }
+  }
+}
+@media screen and (min-width: $smallWidth) and (max-width: $bigWidth) {
+  .jobs {
+    width: 100%;
+    .subject {
+    }
+    .search {
+      width: 70%;
+      margin-top: 5%;
+    }
+    .footer {
+      position: absolute;
+      bottom: 35px;
+    }
+    .welfare .content {
+      width: 540px;
+    }
+    .welfare-card .cards {
+      justify-content: flex-start;
+      .left-btn{
+        
+      }
+      .right-btn{
+      }
+      .outer {
+        margin: 0 1%;
+      }
+    }
+  }
+}
+@media screen and (max-width: $smallWidth) {
+  .jobs {
+    width: 100%;
+    .subject {
+      text-align: left;
+      padding-left: 10%;
+      padding-right: 2%;
+    }
+    .search {
+      width: 80%;
+      margin-top: 10%;
+    }
+    .footer {
+      width: 76%;
+      text-align: left;
+      margin-top: 2%;
+    }
+    .welfare .content {
+      width: 100%;
+      padding: 0 7%;
+      box-sizing: border-box;
+    }
+    .welfare-card .cards {
+      justify-content: flex-start;
+      .left-btn{
+
+      }
+      .right-btn{
+
+      }
+      .outer {
+        margin: 0 1%;
+      }
+    }
+  }
+}
+.ant-dropdown-menu {
   max-height: 280px;
   overflow: scroll;
 }
-.jobs{
+.jobs {
   margin: 0 auto;
-  width: 1243px;
   height: 800px;
-  .header{
-    width: 1243px;
-    height: 800px;
-    background-image: url("~@/assets/img/recruitment.jpg");;
+  .header {
+    width: 100%;
+    // height: 800px;
+    // background-image: url("~@/assets/img/recruitment.jpg");
     background-repeat: no-repeat;
     position: relative;
-    // filter: blur(3px);
-    .subject{
-      margin-top: 270px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .big-img {
+      width: 100%;
+      height: 100%;
+      filter: blur(3px);
+      position: absolute;
+      z-index: -1;
+    }
+    .subject {
+      // margin-top: 270px;
       display: inline-block;
       font-size: 48px;
       color: #fff;
+      line-height: 1.2;
     }
-    .search{
-      position: absolute;
-      width: 560px;
+    .search {
+      // width: 560px;
       height: 56px;
-      left: 350px;
-      top: 400px;
       background-color: white;
       font-size: 20px;
       border-radius: 8px;
-      i{
+
+      i {
         margin-left: 20px;
       }
     }
-    .footer{
-      margin-top: 400px;
+    .footer {
+      // margin-top: 400px;
+
       font-size: 12px;
       color: #fff;
     }
-    .to-bottom{
+    .to-bottom {
       width: 50px;
       height: 50px;
       position: absolute;
@@ -243,34 +343,60 @@ export default {
       cursor: pointer;
     }
   }
-  .welfare{
-    width: 1243px;
-    height: 120px;
-    .title{
+  .welfare {
+    width: 100%;
+    .title {
       margin-top: 80px;
       font-size: 24px;
       font-weight: bold;
     }
-    .content{
+    .content {
       margin: 30px auto;
-      width: 620px;
       font-size: 16px;
     }
   }
-  .welfare-card{
-    .cards{
+  .welfare-card {
+    .cards {
       display: flex;
-      justify-content: space-between;
-      margin: auto 85px;
-      .outer{
-        margin: 0 15px;
+      // margin: auto 85px;
+      overflow: hidden;
+      position: relative;
+      .left-btn,.right-btn{
+        position: absolute;
+        width: 43px;
+        height: 43px;
+        background-color: rgba(0, 0, 0, 0.8);
+        opacity: .7;
+        bottom: 240px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+          width: 22px;
+          height: 22px;
+        }
+      }
+      .left-btn{
+        left: 4%;
+        img{
+          transform: rotate(90deg);
+        }
+      }
+      .right-btn{
+        right: 4%;
+        img{
+          transform: rotate(-90deg);
+        }
+      }
+      .outer {
         width: 333px;
-        span{
+        flex-shrink: 0;
+        span {
           margin-top: 35px;
           margin-bottom: 25px;
           display: inline-block;
         }
-        .card{
+        .card {
           ::-webkit-scrollbar {
             width: 2px;
           }
@@ -282,21 +408,21 @@ export default {
           border-color: rgb(214, 214, 214);
           box-shadow: rgb(0, 0, 0) 0px 0px 1px;
           padding: 10px;
-          .inner{
+          .inner {
             margin-right: 25px;
             margin-left: 25px;
             overflow: auto;
             height: 490px;
-            .border{
+            .border {
               margin-top: 20px;
               border-bottom: 1px solid rgb(0, 0, 0);
             }
-            .content{
+            .content {
               font-size: 14px;
               margin-top: 20px;
               text-align: left;
               line-height: 23px;
-              .subject{
+              .subject {
                 font-weight: bold;
               }
             }
@@ -305,20 +431,20 @@ export default {
       }
     }
   }
-  .vacancy{
-    width: 1243px;
+  .vacancy {
+    width: 100%;
     height: 250px;
-    .title{
+    .title {
       margin-top: 130px;
       font-size: 24px;
       font-weight: bold;
     }
-    .content{
+    .content {
       margin: 30px auto;
       width: 620px;
       font-size: 16px;
     }
-    .subscribe{
+    .subscribe {
       position: relative;
       margin: 0 auto;
       width: 216px;
@@ -328,48 +454,48 @@ export default {
       border-radius: 10px;
       margin-top: 40px;
       right: 20px;
-      line-height:46px;
+      line-height: 46px;
       cursor: pointer;
     }
-    .subscribe:before{
-      content:url('~@/assets/img/icons8-expand_arrow-1_2x.png');
+    .subscribe:before {
+      content: url("~@/assets/img/icons8-expand_arrow-1_2x.png");
       display: block;
       position: absolute;
       left: 168px;
       top: -9px;
-      transform: rotate(-90deg) rotateY(0deg) scale(.5);
+      transform: rotate(-90deg) rotateY(0deg) scale(0.5);
     }
   }
-  .vacancy-card{
+  .vacancy-card {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin: auto 95px;
   }
-  .apply-form{
-    width: 1243px;
+  .apply-form {
+    width: 100%;
     height: 570px;
     background-color: rgb(235, 235, 235);
     margin-top: 60px;
     display: flex;
     justify-content: flex-start;
-    .picture{
+    .picture {
       margin-left: 170px;
       width: 200px;
-      .photo{
+      .photo {
         margin-left: 20px;
         margin-top: 70px;
         width: 151px;
         height: 166px;
         background-color: rgb(255, 255, 255);
         border-radius: 8px;
-        img{
+        img {
           margin-top: 60px;
           width: 50px;
           height: 50px;
         }
       }
-      .hint{
+      .hint {
         margin-top: 25px;
         color: rgb(145, 145, 145);
         display: inline-block;
@@ -377,7 +503,7 @@ export default {
         width: 154px;
         text-align: left;
       }
-      .choose-photo{
+      .choose-photo {
         margin-top: 25px;
         margin-left: 20px;
         width: 158px;
@@ -387,15 +513,15 @@ export default {
         border-width: 1px;
         border-color: rgb(214, 214, 214);
         border-radius: 10px;
-        line-height:46px;
+        line-height: 46px;
         cursor: pointer;
       }
     }
-    .form{
+    .form {
       margin-left: 90px;
       padding-top: 50px;
       width: 560px;
-      .form-name{
+      .form-name {
         padding-left: 10px;
       }
       ::placeholder {
@@ -403,35 +529,36 @@ export default {
         // padding: 10px;
         font-size: 12p;
       }
-      input{
-        border:1px rgb(214, 214, 214) solid;
+      input {
+        border: 1px rgb(214, 214, 214) solid;
         width: 207px;
         height: 46px;
         border-radius: 10px;
         padding: 0px 15px;
       }
-      .row1, .row2{
+      .row1,
+      .row2 {
         padding-top: 20px;
         text-align: left;
         display: flex;
         justify-content: space-around;
-        input{
+        input {
           margin-top: 15px;
         }
       }
-      .row3{
+      .row3 {
         padding-top: 20px;
         text-align: left;
         padding-left: 20px;
-        input{
+        input {
           margin-top: 15px;
           width: 487px;
         }
       }
-      .row4{
+      .row4 {
         padding-top: 20px;
         position: relative;
-        .subscribe{
+        .subscribe {
           position: absolute;
           width: 241px;
           height: 46px;
@@ -441,10 +568,10 @@ export default {
           border-radius: 10px;
           margin-top: 30px;
           right: 20px;
-          line-height:46px;
+          line-height: 46px;
           cursor: pointer;
         }
-        .hint{
+        .hint {
           width: 228px;
           height: 21px;
           position: absolute;
