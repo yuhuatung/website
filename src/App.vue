@@ -14,7 +14,7 @@
         <router-link to="/contacts">聯繫</router-link>
       </div>
     </div>
-    <router-view :screenHight="screenHight" />
+    <router-view :screenHight="screenHight" :screenwidth="screenwidth" />
   </div>
 </template>
 <script>
@@ -29,12 +29,14 @@ export default {
   },
   data() {
     return {
-      screenHight: 0
+      screenHight: 0,
+      screenwidth: 0,
     };
   },
   mounted() {
     let vm = this;
     vm.screenHight = document.documentElement.clientHeight;
+    vm.screenwidth = document.documentElement.clientWidth;
   }
 };
 </script>
