@@ -39,7 +39,7 @@
             "vacancy":[
                 { 
                     "name": "COCOS 工程師",
-                    "salary": "40k+",
+                    "salary": "40k",
                     "requirement": [
                         "使用Cocos2dx引擎，使用c++和Lua語言開發Android和ios手機遊戲。",
                         "根據專案需求進行遊戲功能編寫，界面設計，優化遊戲細節，提升品質。",
@@ -52,7 +52,7 @@
                 },
                 { 
                     "name": "UI/UX 設計師",
-                    "salary": "40k+",
+                    "salary": "40k",
                     "requirement": [
                         "APP與網站視覺設計，使用者介面設計，情境設計，動畫製作，平面設計，排版設計。",
                         "精通Sketch、Photoshop、Illustrator等相關軟體。",
@@ -66,7 +66,7 @@
                 },
                 { 
                     "name": "前端高級工程師",
-                    "salary": "40k+",
+                    "salary": "40k",
                     "requirement": [
                         "與UIUX設計師/後端工程師共同完成開發工作。",
                         "網站開發，需熟悉VueJS開發框架。",
@@ -78,7 +78,7 @@
                 },
                 { 
                     "name": "招募專員（HR）",
-                    "salary": "40k+",
+                    "salary": "40k",
                     "requirement": [
                         "招募各部門所需人員、電話E-mail面試邀約安排與職務內容說明、福利制度解說。",
                         "拓展多元招募管道。",
@@ -95,7 +95,7 @@
                 },
                 { 
                     "name": "JAVA高級工程師",
-                    "salary": "40k+",
+                    "salary": "40k",
                     "requirement": [
                         "Java Web程式開發，依據專案需求，平台功能開發。",
                         "參與系統分析與設計，完成代碼編寫，資料串接。",
@@ -107,7 +107,7 @@
                 },
                 { 
                     "name": "PHP高級工程師",
-                    "salary": "40k+",
+                    "salary": "40k",
                     "requirement": [
                         "主要以開發設計能承載高流量的網站為主。",
                         "維護已有程式的升級和bug修改。",
