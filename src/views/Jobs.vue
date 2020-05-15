@@ -76,7 +76,7 @@
     </div>
     <div class="vacancy-card">
       <div v-for="(item, index) in jobs.vacancy" :key="index">
-        <JobCard v-bind="item"/>
+        <JobCard v-bind="item" :selected="'COCOS 工程師'"/>
       </div>
     </div>
     <div class="apply-form">
