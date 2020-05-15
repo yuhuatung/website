@@ -76,7 +76,7 @@
     </div>
     <div class="vacancy-card">
       <div v-for="(item, index) in jobs.vacancy" :key="index">
-        <JobCard v-bind="item" :selected="selectedJOb"/>
+        <JobCard v-bind="item" :selected="selectedJOb" ref="vacancy"/>
       </div>
     </div>
     <div class="apply-form">
@@ -171,8 +171,7 @@ export default {
       }
     },
     handleMenuClick(e) {
-      let topHeight = 1950; //第一個 JobCard 錨點定位
-      let height = topHeight + 645 * (Math.floor(e.key / 3)); //計算 JobCard 列數
+      let height = this.$refs.vacancy[e.key].$el.offsetTop;
       this.selectedJOb = this.jobs.vacancy[e.key].name;
       this.toJobCard(this.stepJob, height)
     },
