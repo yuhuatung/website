@@ -162,7 +162,8 @@ export default {
 </script>
 
 <style lang="scss">
-@media screen and (min-width: 810px) {
+@import "../assets/style/utils/_variables.scss";
+@media screen and (min-width: $bigWidth) {
   .home {
     width: 1243px;
     height: 800px;
@@ -204,7 +205,7 @@ export default {
     }
   }
 }
-@media screen and (min-width: 576px) and (max-width: 810px) {
+@media screen and (min-width: $smallWidth) and (max-width: $bigWidth) {
   .home {
     width: 100%;
     height: 1000px;
@@ -237,7 +238,7 @@ export default {
     }
   }
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: $smallWidth) {
   .home {
     width: 100%;
     height: 800px;

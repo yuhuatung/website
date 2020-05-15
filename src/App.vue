@@ -33,8 +33,12 @@ export default {
 };
 </script>
 <style lang="scss">
-*, *::before, *::after {
-    box-sizing: unset;
+@import "./assets/style/utils/_variables.scss";
+
+*,
+*::before,
+*::after {
+  box-sizing: unset;
 }
 ::-webkit-scrollbar {
   width: 6px;
@@ -53,7 +57,7 @@ export default {
 body {
   margin: 0;
 }
-@media screen and (min-width: 810px) {
+@media screen and (min-width: $bigWidth) {
   .nav {
     width: 1243px;
     justify-content: space-between;
@@ -65,7 +69,7 @@ body {
     }
   }
 }
-@media screen and (min-width: 576px) and (max-width: 810px) {
+@media screen and (min-width: $smallWidth) and (max-width: $bigWidth) {
   .nav {
     width: 100%;
     justify-content: space-between;
@@ -80,7 +84,7 @@ body {
     }
   }
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: $smallWidth) {
   .nav {
     width: 100%;
     justify-content: center;
