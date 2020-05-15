@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" :style="height">
     <img
       v-for="(item,k) in image"
       :key="k"
@@ -59,6 +59,7 @@ import data from "@/assets/json/home.json";
 
 export default {
   name: "Home",
+  props: ["screenHight"],
   data() {
     return {
       data: data,
@@ -123,6 +124,10 @@ export default {
         show = false;
       }
       return show;
+    },
+    height() {
+      let h = this.imageWidth < 810 ? `${this.screenHight}px` : "800px";
+      return { height: h };
     }
   },
   methods: {
@@ -162,7 +167,8 @@ export default {
 </script>
 
 <style lang="scss">
-@media screen and (min-width: 810px) {
+@import "../assets/style/utils/_variables.scss";
+@media screen and (min-width: $bigWidth) {
   .home {
     width: 1243px;
     height: 800px;
@@ -204,10 +210,10 @@ export default {
     }
   }
 }
-@media screen and (min-width: 576px) and (max-width: 810px) {
+@media screen and (min-width: $smallWidth) and (max-width: $bigWidth) {
   .home {
     width: 100%;
-    height: 1000px;
+    // height: 1000px;
     .page {
       .container {
         left: 30px;
@@ -237,10 +243,10 @@ export default {
     }
   }
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: $smallWidth) {
   .home {
     width: 100%;
-    height: 800px;
+    // height: 800px;
     .page {
       .container {
         left: 15px;

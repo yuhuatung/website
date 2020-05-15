@@ -3,6 +3,9 @@ module.exports = {
     loaderOptions: {
       less: {
         javascriptEnabled: true
+      },
+      scss:{
+        prependData: `@import "~@/assets/main.scss";`
       }
     }
   },
