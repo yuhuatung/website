@@ -4,14 +4,14 @@
       <div class="subject">Work together for success!</div>
       <div class="footer">Welcome! Let's create your profile</div>
       <a-dropdown>
-      <a-menu slot="overlay">
+      <a-menu slot="overlay" @click="handleMenuClick">
         <template v-for="(item, index) in searchJob">
         <a-menu-item :key="index"> {{ item }} </a-menu-item>
         </template>
       </a-menu>
       <a-button class="search"> 搜尋職缺 <a-icon type="search" /> </a-button>
     </a-dropdown>
-      <div class="to-bottom" @click="toBottom(step)"></div>
+      <div class="to-bottom" @click="toBottom(stepBottom)"></div>
     </div>
     <div class="welfare">
       <div class="title">
@@ -70,7 +70,7 @@
       <div class="content">
         {{jobs.content}}
       </div>
-      <div class="subscribe" @click="toBottom(step)">
+      <div class="subscribe" @click="toBottom(stepBottom)">
         立即訂閱
       </div>
     </div>
@@ -141,7 +141,8 @@ export default {
     return{
       welfare: json.recruitment.welfare,
       jobs: json.recruitment.jobs,
-      step: 200, //此数据是控制动画快慢的
+      stepBottom: 200, //此数据是控制动画快慢的
+      stepJob: 50,
     }
   },
   computed: {
@@ -151,21 +152,33 @@ export default {
     searchJob: function(){
       let result = this.jobs.vacancy.map(jobs => (jobs.name ));
       // this.$set(this.config, 'options', result)
-
       // let result = this.jobs.vacancy.map(item => Object.values(item)[1]);
-      console.log(this.jobs.vacancy)
-      console.log(result)
       return result;
     },
   },
   methods:{
     toBottom(i){
-      var clientHeight=document.documentElement.clientHeight || document.body.clientHeight;
-      var scrollHeight=document.documentElement.scrollHeight;
-      var height=scrollHeight-clientHeight; //超出窗口上界的值就是底部的scrolTop的值
+      let clientHeight=document.documentElement.clientHeight || document.body.clientHeight;
+      let scrollHeight=document.documentElement.scrollHeight;
+      let height = scrollHeight-clientHeight - 10; //超出窗口上界的值就是底部的scrolTop的值
       document.documentElement.scrollTop += i;
+      let c;
       if (document.documentElement.scrollTop < height) {
-        var c = setTimeout(() => this.toBottom(i), 16);
+        c = setTimeout(() => this.toBottom(i), 16);
+      } else {
+        clearTimeout(c);
+      }
+    },
+    handleMenuClick(e) {
+      let topHeight = 1950; //第一個 JobCard 錨點定位
+      let height = topHeight + 645 * (Math.floor(e.key / 3)); //計算 JobCard 列數
+      this.toJobCard(this.stepJob, height)
+    },
+    toJobCard(i, height){
+      document.documentElement.scrollTop += i;
+      let c;
+      if (document.documentElement.scrollTop < height) {
+        c = setTimeout(() => this.toJobCard(i, height), 16);
       } else {
         clearTimeout(c);
       }
