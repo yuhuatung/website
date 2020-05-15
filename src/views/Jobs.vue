@@ -76,7 +76,7 @@
     </div>
     <div class="vacancy-card">
       <div v-for="(item, index) in jobs.vacancy" :key="index">
-        <JobCard v-bind="item" :selected="'COCOS 工程師'"/>
+        <JobCard v-bind="item" :selected="selectedJOb"/>
       </div>
     </div>
     <div class="apply-form">
@@ -143,6 +143,7 @@ export default {
       jobs: json.recruitment.jobs,
       stepBottom: 200, //此数据是控制动画快慢的
       stepJob: 50,
+      selectedJOb: ''
     }
   },
   computed: {
@@ -172,6 +173,7 @@ export default {
     handleMenuClick(e) {
       let topHeight = 1950; //第一個 JobCard 錨點定位
       let height = topHeight + 645 * (Math.floor(e.key / 3)); //計算 JobCard 列數
+      this.selectedJOb = this.jobs.vacancy[e.key].name;
       this.toJobCard(this.stepJob, height)
     },
     toJobCard(i, height){
