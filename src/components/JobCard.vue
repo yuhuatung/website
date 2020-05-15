@@ -29,7 +29,7 @@
 <script>
 export default {
   name: "JobCard",
-  props: ["name", "salary", "requirement", "priority", "selected"],
+  props: ["name", "salary", "requirement", "priority", "selected", "link"],
   data() {
     return {};
   },
