@@ -22,13 +22,13 @@
       <div class="content">{{welfare.content}}</div>
     </div>
     <div class="welfare-card">
+      <div v-show="screenwidth<810" class="left-btn">
+        <img src="@/assets/img/icons8-expand_arrow_2x.png" alt="jobs-left-bnt" />
+      </div>
+      <div v-show="screenwidth<810" class="right-btn">
+        <img src="@/assets/img/icons8-expand_arrow_2x.png" alt="jobs-right-bnt" />
+      </div>
       <div class="cards">
-        <div v-show="screenwidth<810" class="left-btn">
-          <img src="@/assets/img/icons8-expand_arrow_2x.png" alt="jobs-left-bnt">
-        </div>
-        <div v-show="screenwidth<810" class="right-btn">
-          <img src="@/assets/img/icons8-expand_arrow_2x.png" alt="jobs-right-bnt">
-        </div>
         <div class="outer">
           <span>{{welfare.category[0]}}</span>
           <div class="card">
@@ -76,7 +76,10 @@
     <div class="vacancy">
       <div class="title">{{jobs.title}}</div>
       <div class="content">{{jobs.content}}</div>
-      <div class="subscribe" @click="toBottom(stepBottom)">立即訂閱</div>
+      <div class="subscribe" @click="toBottom(stepBottom)">
+        立即訂閱
+        <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="subscribe-btn" />
+      </div>
     </div>
     <div class="vacancy-card">
       <div v-for="(item, index) in jobs.vacancy" :key="index">
@@ -205,8 +208,12 @@ export default {
       position: absolute;
       bottom: 35px;
     }
-    .welfare .content {
+    .welfare .content,
+    .vacancy .content {
       width: 540px;
+    }
+    .vacancy .subscribe {
+      width: 216px;
     }
     .welfare-card .cards {
       justify-content: center;
@@ -229,16 +236,15 @@ export default {
       position: absolute;
       bottom: 35px;
     }
-    .welfare .content {
+    .welfare .content,
+    .vacancy .content {
       width: 540px;
+    }
+    .vacancy .subscribe {
+      width: 216px;
     }
     .welfare-card .cards {
       justify-content: flex-start;
-      .left-btn{
-        
-      }
-      .right-btn{
-      }
       .outer {
         margin: 0 1%;
       }
@@ -262,19 +268,17 @@ export default {
       text-align: left;
       margin-top: 2%;
     }
-    .welfare .content {
+    .welfare .content,
+    .vacancy .content {
       width: 100%;
       padding: 0 7%;
       box-sizing: border-box;
     }
+    .vacancy .subscribe {
+      width: 40%;
+    }
     .welfare-card .cards {
       justify-content: flex-start;
-      .left-btn{
-
-      }
-      .right-btn{
-
-      }
       .outer {
         margin: 0 1%;
       }
@@ -356,38 +360,45 @@ export default {
     }
   }
   .welfare-card {
+    position: relative;
+    overflow: hidden;
+    height: 596px;
+    .left-btn,
+    .right-btn {
+      position: absolute;
+      width: 43px;
+      height: 43px;
+      background-color: rgba(0, 0, 0, 0.8);
+      opacity: 0.7;
+      bottom: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      img {
+        width: 22px;
+        height: 22px;
+      }
+    }
+    .left-btn {
+      left: 4%;
+      img {
+        transform: rotate(90deg);
+      }
+    }
+    .right-btn {
+      right: 4%;
+      img {
+        transform: rotate(-90deg);
+      }
+    }
     .cards {
       display: flex;
+      width: 999px;
+      position: absolute;
+      left: 0;
+      transition: all .3s;
       // margin: auto 85px;
-      overflow: hidden;
-      position: relative;
-      .left-btn,.right-btn{
-        position: absolute;
-        width: 43px;
-        height: 43px;
-        background-color: rgba(0, 0, 0, 0.8);
-        opacity: .7;
-        bottom: 240px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        img{
-          width: 22px;
-          height: 22px;
-        }
-      }
-      .left-btn{
-        left: 4%;
-        img{
-          transform: rotate(90deg);
-        }
-      }
-      .right-btn{
-        right: 4%;
-        img{
-          transform: rotate(-90deg);
-        }
-      }
       .outer {
         width: 333px;
         flex-shrink: 0;
@@ -441,13 +452,11 @@ export default {
     }
     .content {
       margin: 30px auto;
-      width: 620px;
       font-size: 16px;
     }
     .subscribe {
       position: relative;
       margin: 0 auto;
-      width: 216px;
       height: 48px;
       background-color: rgba(0, 0, 0, 0.8);
       color: rgb(255, 255, 255);
@@ -456,14 +465,16 @@ export default {
       right: 20px;
       line-height: 46px;
       cursor: pointer;
-    }
-    .subscribe:before {
-      content: url("~@/assets/img/icons8-expand_arrow-1_2x.png");
-      display: block;
-      position: absolute;
-      left: 168px;
-      top: -9px;
-      transform: rotate(-90deg) rotateY(0deg) scale(0.5);
+      img {
+        position: absolute;
+        margin: auto;
+        right: 10%;
+        top: 0;
+        bottom: 0;
+        width: 22px;
+        height: 22px;
+        transform: rotate(-90deg);
+      }
     }
   }
   .vacancy-card {
