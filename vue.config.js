@@ -4,9 +4,6 @@ module.exports = {
       less: {
         javascriptEnabled: true
       },
-      scss:{
-        prependData: `@import "~@/assets/main.scss";`
-      }
     }
   },
   chainWebpack: (config) => {
