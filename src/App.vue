@@ -14,7 +14,7 @@
         <router-link to="/contacts">聯繫</router-link>
       </div>
     </div>
-    <router-view />
+    <router-view :screenHight="screenHight" />
   </div>
 </template>
 <script>
@@ -28,7 +28,13 @@ export default {
     WanLian
   },
   data() {
-    return {};
+    return {
+      screenHight: 0
+    };
+  },
+  mounted() {
+    let vm = this;
+    vm.screenHight = document.documentElement.clientHeight;
   }
 };
 </script>
