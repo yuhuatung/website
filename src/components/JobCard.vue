@@ -1,5 +1,12 @@
 <template>
-  <div class="main" :class="selected === name?'selected':''">
+  <div class="main" :class="selected === name?'selected':''" :style="{maxHeight:height}">
+    <img
+      class="btn"
+      :src="image"
+      alt="showListBtn"
+      v-show="screenwidth<576 && showList===false"
+      @click="showList = !showList"
+    />
     <div class="avatar"></div>
     <div class="title">{{name}}</div>
     <div class="salary">
@@ -7,35 +14,67 @@
       <span class="num">{{salary}}</span>
       <i>↑</i>/ month
     </div>
-    <div class="requirement">
-      工作需求
-      <span class="total">({{numOfRequirement}}項)</span>
-    </div>
-    <div class="list">
-      <div v-for="(item, index) in requirement" :key="index" class="content">
-        <div class="check">
-          <input type="checkbox" />
-        </div>
-        <div class="item-list">{{item}}</div>
+    <transition name="opacity">
+      <div class="requirement" v-show="showList || screenwidth>576">
+        工作需求
+        <span class="total">({{numOfRequirement}}項)</span>
       </div>
+    </transition>
+    <transition name="opacity">
+      <div class="list" v-show="showList || screenwidth>576">
+        <div v-for="(item, index) in requirement" :key="index" class="content">
+          <div class="check">
+            <input type="checkbox" />
+          </div>
+          <div class="item-list">{{item}}</div>
+        </div>
+      </div>
+    </transition>
+    <transition name="opacity">
+      <div class="buttom" @click="openLink(link)" v-show="showList || screenwidth>576">
+        <span class="apply">立即應徵</span>
+      </div>
+    </transition>
+    <div class="bottom" v-show="screenwidth>576">請勾選工作需求後前往應徵。</div>
+    <div class="close" @click="showList = false" v-show="showList">
+      <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="closeBtn" />
     </div>
-    <div class="buttom" @click="openLink(link)">
-      <span class="apply">立即應徵</span>
-    </div>
-    <div class="bottom">請勾選工作需求後前往應徵。</div>
   </div>
 </template>
 
 <script>
 export default {
   name: "JobCard",
-  props: ["name", "salary", "requirement", "priority", "selected", "link"],
+  props: [
+    "name",
+    "salary",
+    "requirement",
+    "priority",
+    "selected",
+    "link",
+    "screenwidth"
+  ],
   data() {
-    return {};
+    return {
+      showList: false
+    };
   },
   computed: {
     numOfRequirement: function() {
       return this.requirement.length;
+    },
+    image() {
+      let img = [
+        { src: require("@/assets/img/icons8-more-1_2x.png") },
+        { src: require("@/assets/img/icons8-more-4_2x.png") }
+      ];
+      let i = this.selected === this.name ? img[0].src : img[1].src;
+      return i;
+    },
+    height() {
+      let i = "603px";
+      if (this.screenwidth < 576 && this.showList === false) i = "140px";
+      return i;
     }
   },
   methods: {
@@ -47,6 +86,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../assets/style/utils/_variables.scss";
+@media screen and (min-width: $bigWidth) {
+  .main {
+    border: 6px solid rgb(235, 235, 235);
+  }
+}
+@media screen and (min-width: $smallWidth) and (max-width: $bigWidth) {
+  .main {
+    border: 6px solid rgb(235, 235, 235);
+  }
+}
+@media screen and (max-width: $smallWidth) {
+  .main {
+    border: 1px solid rgb(235, 235, 235);
+  }
+}
 ::-webkit-scrollbar {
   width: 2px;
 }
@@ -55,11 +110,28 @@ export default {
   border-radius: 1px;
 }
 .main {
+  .opacity-enter {
+    opacity: 0;
+  }
+  .opacity-enter-active {
+    transition: opacity 1s;
+  }
   width: 322px;
   height: 603px;
   border-radius: 10px;
-  border: 6px solid rgb(235, 235, 235);
   margin: 30px 15px 0;
+  position: relative;
+  transition: max-height 0.4s;
+  .btn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: -5px;
+    width: 30px;
+    height: 30px;
+    transform: rotate(90deg);
+  }
   .avatar {
     transform: translateX(35px) translateY(38px) rotateY(0deg);
     width: 64px;
@@ -111,12 +183,13 @@ export default {
     }
   }
   .list {
-    transform: translateX(32px) translateY(157px) rotateY(0deg);
+    // transform: translateX(32px) translateY(157px) rotateY(0deg);
     width: 268px;
     height: 315px;
-    position: absolute;
+    // position: absolute;
     border-bottom: 1px solid rgb(145, 145, 145);
     overflow: auto;
+    margin: 157px auto 0;
     .content {
       width: 250px;
       text-align: left;
@@ -161,10 +234,11 @@ export default {
     }
   }
   .buttom {
-    transform: translateX(34px) translateY(495px) rotateY(0deg);
+    // transform: translateX(34px) translateY(495px) rotateY(0deg);
     width: 260px;
     height: 48px;
-    position: absolute;
+    // position: absolute;
+    margin: 25px auto 0;
     border-style: solid;
     border-width: 1px;
     border-radius: 5px;
@@ -185,9 +259,9 @@ export default {
     }
   }
   .bottom {
-    transform: translateX(85px) translateY(554px) rotateY(0deg);
-    position: absolute;
-    padding: 8px;
+    // transform: translateX(85px) translateY(554px) rotateY(0deg);
+    // position: absolute;
+    margin-top: 20px;
     color: rgb(0, 0, 0);
     font-family: "Noto Sans HK";
     font-size: 12px;
@@ -228,6 +302,23 @@ export default {
     .apply {
       color: rgb(0, 150, 255);
     }
+  }
+}
+.close {
+  width: 324px;
+  height: 34px;
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  background-color: rgb(232, 235, 237);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: rgb(94, 94, 94) 0px 0px 1px inset;
+  line-height: 34px;
+  img {
+    width: 24px;
+    height: 24px;
+    transform: rotate(180deg);
   }
 }
 </style>

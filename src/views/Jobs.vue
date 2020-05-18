@@ -1,6 +1,6 @@
 <template>
   <div class="jobs">
-    <div class="header" :style="{height:`${screenHight}px`}">
+    <div class="header">
       <img class="big-img" src="@/assets/img/recruitment.jpg" alt="recruitment" />
       <div class="subject">Work together for success!</div>
       <div class="footer">Welcome! Let's create your profile</div>
@@ -83,7 +83,7 @@
     </div>
     <div class="vacancy-card">
       <div v-for="(item, index) in jobs.vacancy" :key="index">
-        <JobCard v-bind="item" :selected="selectedJOb" ref="vacancy" />
+        <JobCard v-bind="item" :selected="selectedJOb" :screenwidth="screenwidth" ref="vacancy" />
       </div>
     </div>
     <div class="apply-form" v-show="false">
@@ -140,7 +140,7 @@ export default {
   components: {
     JobCard
   },
-  props: ["screenHight", "screenwidth"],
+  props: ["screenwidth"],
   data() {
     return {
       welfare: json.recruitment.welfare,
@@ -223,6 +223,7 @@ export default {
 @media screen and (min-width: $bigWidth) {
   .jobs {
     width: 100%;
+    min-width: 1243px;
     .subject {
     }
     .search {
@@ -342,10 +343,10 @@ export default {
 }
 .jobs {
   margin: 0 auto;
-  height: 800px;
+  overflow: auto;
   .header {
     width: 100%;
-    // height: 800px;
+    height: 100vh;
     // background-image: url("~@/assets/img/recruitment.jpg");
     background-repeat: no-repeat;
     position: relative;
@@ -494,24 +495,25 @@ export default {
   .vacancy {
     width: 100%;
     height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;;
     .title {
-      margin-top: 130px;
       font-size: 24px;
       font-weight: bold;
     }
     .content {
-      margin: 30px auto;
+      margin-top: 30px;
       font-size: 16px;
     }
     .subscribe {
       position: relative;
-      margin: 0 auto;
       height: 48px;
       background-color: rgba(0, 0, 0, 0.8);
       color: rgb(255, 255, 255);
       border-radius: 10px;
       margin-top: 40px;
-      right: 20px;
       line-height: 46px;
       cursor: pointer;
       img {
