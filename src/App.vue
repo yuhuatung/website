@@ -67,7 +67,8 @@ body {
 }
 @media screen and (min-width: $bigWidth) {
   .nav {
-    width: 100%;
+    width: 100vw;
+    min-width: 1243px;
     justify-content: space-between;
     .link {
       a {
@@ -79,7 +80,7 @@ body {
 }
 @media screen and (min-width: $smallWidth) and (max-width: $bigWidth) {
   .nav {
-    width: 100%;
+    width: 100vw;
     justify-content: space-between;
     .link {
       a + a {
@@ -94,7 +95,7 @@ body {
 }
 @media screen and (max-width: $smallWidth) {
   .nav {
-    width: 100%;
+    width: 100vw;
     justify-content: center;
     .link {
       position: fixed;
