@@ -6,8 +6,7 @@
       :alt="`Big image${k}`"
       :src="item.src"
       class="big-image"
-      :style="{left:`${imageWidth*(k - page)}px`}"
-      ref="imageWidth"
+      :style="{left:`${screenwidth*(k - page)}px`}"
       v-touch:swipeleft="leftSlide"
       v-touch:swiperight="rightSlide"
     />
@@ -61,6 +60,7 @@ import data from "@/assets/json/home.json";
 
 export default {
   name: "Home",
+  props: ["screenwidth"],
   data() {
     return {
       data: data,
@@ -70,7 +70,6 @@ export default {
       showLeftBtnBorder: false,
       showRightBtnBorder: false,
       timer: null,
-      imageWidth: 9999
       // image: [
       //   { src: require("@/assets/img/philosophy.jpg") },
       //   { src: require("@/assets/img/concept.jpg") },
@@ -92,7 +91,7 @@ export default {
           src: require("@/assets/img/garrhet-sampson-JzNmtlSJ0wk-unsplash_2x.jpg")
         }
       ];
-      if (this.imageWidth < 810 && this.imageWidth > 576) {
+      if (this.screenwidth < 810 && this.screenwidth > 576) {
         img = [
           { src: require("@/assets/img/philosophy1.jpg") },
           { src: require("@/assets/img/concept1.jpg") },
@@ -101,7 +100,7 @@ export default {
           }
         ];
       }
-      if (this.imageWidth < 576) {
+      if (this.screenwidth < 576) {
         img = [
           { src: require("@/assets/img/philosophy2.jpg") },
           { src: require("@/assets/img/concept2.jpg") },
@@ -114,14 +113,14 @@ export default {
     },
     showLeftBtn() {
       let show = true;
-      if (this.page === 0 && this.imageWidth < 810) {
+      if (this.page === 0 && this.screenwidth < 810) {
         show = false;
       }
       return show;
     },
     showRightBtn() {
       let show = true;
-      if (this.page === this.image.length - 1 && this.imageWidth < 810) {
+      if (this.page === this.image.length - 1 && this.screenwidth < 810) {
         show = false;
       }
       return show;
@@ -162,11 +161,6 @@ export default {
     setTimeout(() => {
       self.show = true;
     }, 100);
-    self.imageWidth = this.$refs.imageWidth[0].offsetWidth;
-    window.onresize = () => {
-      // 通過捕獲系統的onresize事件觸發我們需要執行的事件
-      self.imageWidth = this.$refs.imageWidth[0].offsetWidth;
-    };
   }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="nav">
+    <div class="nav" ref="navWidth">
       <div class="logo">
         <Logo class="logo-img" />
         <router-link to="/"><WanLian class="company" /></router-link>
@@ -35,7 +35,11 @@ export default {
   mounted() {
     let vm = this;
     vm.screenHight = document.documentElement.clientHeight;
-    vm.screenwidth = document.documentElement.clientWidth;
+    vm.screenwidth = vm.$refs.navWidth.offsetWidth;
+    window.onresize = () => {
+      // 通過捕獲系統的onresize事件觸發我們需要執行的事件
+      vm.screenwidth = vm.$refs.navWidth.offsetWidth;
+    };
   }
 };
 </script>
