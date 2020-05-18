@@ -22,13 +22,13 @@
       <div class="content">{{welfare.content}}</div>
     </div>
     <div class="welfare-card">
-      <div v-show="screenwidth<810" class="left-btn">
+      <div v-show="screenwidth<810 && showLeftBtn === true" class="left-btn" @click="turnLeft">
         <img src="@/assets/img/icons8-expand_arrow_2x.png" alt="jobs-left-bnt" />
       </div>
-      <div v-show="screenwidth<810" class="right-btn">
+      <div v-show="screenwidth<810 && showRightBtn === true" class="right-btn" @click="turnRight">
         <img src="@/assets/img/icons8-expand_arrow_2x.png" alt="jobs-right-bnt" />
       </div>
-      <div class="cards">
+      <div class="cards" :style="{left:`${left}px`}">
         <div class="outer">
           <span>{{welfare.category[0]}}</span>
           <div class="card">
@@ -86,7 +86,7 @@
         <JobCard v-bind="item" :selected="selectedJOb" ref="vacancy" />
       </div>
     </div>
-    <div class="apply-form" v-show="true">
+    <div class="apply-form" v-show="false">
       <div class="picture">
         <div class="photo">
           <img class="icon-photo" src="@/assets/img/folder_filled_2x.png" />
@@ -147,7 +147,10 @@ export default {
       jobs: json.recruitment.jobs,
       stepBottom: 200, //此数据是控制动画快慢的
       stepJob: 50,
-      selectedJOb: ""
+      selectedJOb: "",
+      showLeftBtn: false,
+      showRightBtn: true,
+      left: 0
     };
   },
   computed: {
@@ -162,6 +165,28 @@ export default {
     }
   },
   methods: {
+    turnLeft() {
+      if (this.screenwidth > 576) {
+        this.showLeftBtn = false;
+        this.showRightBtn = true;
+        this.left = 0;
+      } else {
+        this.left += 343;
+        this.showRightBtn = this.left !== -686 ? true : false;
+        this.showLeftBtn = this.left !== 0 ? true : false;
+      }
+    },
+    turnRight() {
+      if (this.screenwidth > 576) {
+        this.showLeftBtn = true;
+        this.showRightBtn = false;
+        this.left = -300;
+      } else {
+        this.left -= 343;
+        this.showRightBtn = this.left !== -686 ? true : false;
+        this.showLeftBtn = this.left !== 0 ? true : false;
+      }
+    },
     toBottom(i) {
       let clientHeight =
         document.documentElement.clientHeight || document.body.clientHeight;
@@ -216,13 +241,20 @@ export default {
       width: 216px;
     }
     .welfare-card .cards {
+      width: 1092px;
       justify-content: center;
       left: 0;
       right: 0;
       margin: auto;
       .outer {
-        margin: 0 15px;
+        margin: 0 10px;
+        span {
+          margin-bottom: 25px;
+        }
       }
+    }
+    .vacancy-card {
+      width: 1092px;
     }
   }
 }
@@ -249,8 +281,16 @@ export default {
     .welfare-card .cards {
       justify-content: flex-start;
       .outer {
-        margin: 0 1%;
+        margin: 0 5px;
+        span {
+          margin-bottom: 15px;
+          text-align: left;
+          padding-left: 10px;
+        }
       }
+    }
+    .vacancy-card {
+      width: 728px;
     }
   }
 }
@@ -283,8 +323,16 @@ export default {
     .welfare-card .cards {
       justify-content: flex-start;
       .outer {
-        margin: 0 1%;
+        margin: 0 5px;
+        span {
+          margin-bottom: 15px;
+          text-align: left;
+          padding-left: 10px;
+        }
       }
+    }
+    .vacancy-card {
+      width: 364px;
     }
   }
 }
@@ -397,18 +445,16 @@ export default {
     }
     .cards {
       display: flex;
-      width: 999px;
       position: absolute;
       left: 0;
-      transition: all .3s;
-      // margin: auto 85px;
+      transition: all 0.3s;
+      padding: 0 20px;
       .outer {
         width: 333px;
         flex-shrink: 0;
         span {
           margin-top: 35px;
-          margin-bottom: 25px;
-          display: inline-block;
+          display: block;
         }
         .card {
           ::-webkit-scrollbar {
@@ -482,9 +528,9 @@ export default {
   }
   .vacancy-card {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    margin: auto 95px;
+    margin: auto;
   }
   .apply-form {
     width: 100%;
