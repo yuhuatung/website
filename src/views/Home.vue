@@ -8,6 +8,8 @@
       class="big-image"
       :style="{left:`${imageWidth*(k - page)}px`}"
       ref="imageWidth"
+      v-touch:swipeleft="leftSlide"
+      v-touch:swiperight="rightSlide"
     />
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <div v-for="(item,k) in data.homepage" :key="item.titleCht" class="page" v-show="page === k">
@@ -131,6 +133,14 @@ export default {
     }
   },
   methods: {
+    leftSlide() {
+      this.turnPage(1);
+      this.borderAnimation("right");
+    },
+    rightSlide() {
+      this.turnPage(-1);
+      this.borderAnimation("left");
+    },
     closeBottom() {
       this.showBottom = false;
     },
@@ -153,7 +163,7 @@ export default {
     }
   },
   mounted() {
-    var self = this;
+    let self = this;
     setTimeout(() => {
       self.show = true;
     }, 100);
@@ -171,6 +181,7 @@ export default {
 @media screen and (min-width: $bigWidth) {
   .home {
     width: 100%;
+    min-width: 1243px;
     height: 800px;
     .big-image {
       height: 800px;
