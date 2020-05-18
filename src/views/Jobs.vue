@@ -86,7 +86,7 @@
         <JobCard v-bind="item" :selected="selectedJOb" :screenwidth="screenwidth" ref="vacancy" />
       </div>
     </div>
-    <div class="apply-form" v-show="false">
+    <div class="apply-form" v-show="screenwidth>810">
       <div class="picture">
         <div class="photo">
           <img class="icon-photo" src="@/assets/img/folder_filled_2x.png" />
@@ -125,6 +125,16 @@
           <div class="subscribe">立即訂閱</div>
           <div class="hint">沒看到適合您的職缺嗎！ 別擔心，訂閱即可收到最新職缺通知。</div>
         </div>
+      </div>
+    </div>
+    <div class="small-apply-form" v-show="screenwidth<810">
+      <div class="subscribe">
+        立即訂閱
+        <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="subscribe-btn" />
+      </div>
+      <div class="hint">
+        沒看到適合您的職缺嗎！
+        <br />別擔心，訂閱即可收到最新職缺通知。
       </div>
     </div>
   </div>
@@ -238,8 +248,11 @@ export default {
     .vacancy .content {
       width: 540px;
     }
-    .vacancy .subscribe {
-      width: 216px;
+    .vacancy {
+      flex-direction: column;
+      .subscribe {
+        width: 216px;
+      }
     }
     .welfare-card .cards {
       width: 1092px;
@@ -256,6 +269,12 @@ export default {
     }
     .vacancy-card {
       width: 1092px;
+    }
+    .apply-form {
+      height: 570px;
+    }
+    .small-apply-form {
+      flex-direction: row;
     }
   }
 }
@@ -276,8 +295,11 @@ export default {
     .vacancy .content {
       width: 540px;
     }
-    .vacancy .subscribe {
-      width: 216px;
+    .vacancy {
+      flex-direction: column;
+      .subscribe {
+        width: 216px;
+      }
     }
     .welfare-card .cards {
       justify-content: flex-start;
@@ -292,6 +314,19 @@ export default {
     }
     .vacancy-card {
       width: 728px;
+    }
+    .apply-form {
+      height: 139px;
+    }
+    .small-apply-form {
+      flex-direction: row;
+      .subscribe {
+        margin-right: 7%;
+      }
+      .hint {
+        text-align: left;
+        line-height: 18px;
+      }
     }
   }
 }
@@ -318,8 +353,11 @@ export default {
       padding: 0 7%;
       box-sizing: border-box;
     }
-    .vacancy .subscribe {
-      width: 40%;
+    .vacancy {
+      flex-direction: column;
+      .subscribe {
+        width: 40%;
+      }
     }
     .welfare-card .cards {
       justify-content: flex-start;
@@ -334,6 +372,20 @@ export default {
     }
     .vacancy-card {
       width: 364px;
+    }
+    .apply-form {
+      height: 570px;
+    }
+    .small-apply-form {
+      flex-direction: column;
+      .subscribe {
+        margin-right: 0%;
+      }
+      .hint {
+        margin-top: 10px;
+        text-align: center;
+        line-height: unset;
+      }
     }
   }
 }
@@ -492,13 +544,13 @@ export default {
       }
     }
   }
-  .vacancy {
+  .vacancy,
+  .small-apply-form {
     width: 100%;
     height: 250px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;;
+    align-items: center;
     .title {
       font-size: 24px;
       font-weight: bold;
@@ -536,7 +588,6 @@ export default {
   }
   .apply-form {
     width: 100%;
-    height: 570px;
     background-color: rgb(235, 235, 235);
     margin-top: 60px;
     display: flex;
@@ -648,6 +699,31 @@ export default {
           margin-left: 24px;
         }
       }
+    }
+  }
+  .small-apply-form {
+    height: 139px;
+    background-color: rgb(235, 235, 235);
+    margin-top: 60px;
+    margin-bottom: 56px;
+    // height: ;
+    .subscribe {
+      width: 241px;
+      height: 46px;
+      background-color: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 0;
+    }
+    .hint {
+      width: 228px;
+      display: inline-block;
+      letter-spacing: 0px;
+      font-size: 12px;
+      overflow-wrap: break-word;
+      color: rgb(121, 121, 121);
     }
   }
 }
