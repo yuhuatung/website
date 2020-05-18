@@ -1,5 +1,5 @@
 <template>
-  <div class="home" :style="height">
+  <div class="home">
     <img
       v-for="(item,k) in image"
       :key="k"
@@ -61,7 +61,6 @@ import data from "@/assets/json/home.json";
 
 export default {
   name: "Home",
-  props: ["screenHight"],
   data() {
     return {
       data: data,
@@ -127,10 +126,6 @@ export default {
       }
       return show;
     },
-    height() {
-      let h = this.imageWidth < 810 ? `${this.screenHight}px` : "800px";
-      return { height: h };
-    }
   },
   methods: {
     leftSlide() {
@@ -182,10 +177,6 @@ export default {
   .home {
     width: 100%;
     min-width: 1243px;
-    height: 800px;
-    .big-image {
-      height: 800px;
-    }
     .page {
       .container {
         left: 30px;
@@ -224,7 +215,6 @@ export default {
 @media screen and (min-width: $smallWidth) and (max-width: $bigWidth) {
   .home {
     width: 100%;
-    // height: 1000px;
     .page {
       .container {
         left: 30px;
@@ -257,7 +247,6 @@ export default {
 @media screen and (max-width: $smallWidth) {
   .home {
     width: 100%;
-    // height: 800px;
     .page {
       .container {
         left: 15px;
@@ -292,6 +281,7 @@ export default {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
+  height: 100vh;
   .big-image {
     position: absolute;
     left: 0;
