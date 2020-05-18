@@ -23,11 +23,11 @@ Vue.use(VueRouter)
     name: 'Customers',
     component: () => import('../views/Customers.vue')
   },
-  {
-    path: '/news',
-    name: 'News',
-    component: () => import('../views/News.vue')
-  },
+  // {
+  //   path: '/news',
+  //   name: 'News',
+  //   component: () => import('../views/News.vue')
+  // },
   {
     path: '/jobs',
     name: 'Jobs',

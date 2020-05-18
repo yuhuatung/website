@@ -3,13 +3,12 @@
     <div class="nav">
       <div class="logo">
         <Logo class="logo-img" />
-        <WanLian class="company" />
+        <router-link to="/"><WanLian class="company" /></router-link>
       </div>
       <div class="link">
-        <router-link to="/">首頁</router-link>
         <router-link to="/services">服務</router-link>
         <router-link to="/customers">顧客</router-link>
-        <router-link to="/news">新聞</router-link>
+        <!-- <router-link to="/news">新聞</router-link> -->
         <router-link to="/jobs">招募</router-link>
         <router-link to="/contacts">聯繫</router-link>
       </div>
