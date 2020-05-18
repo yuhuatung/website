@@ -59,8 +59,7 @@ export default {
   height: 603px;
   border-radius: 10px;
   border: 6px solid rgb(235, 235, 235);
-  margin-top: 30px;
-  margin-right: 30px;
+  margin: 30px 15px 0;
   .avatar {
     transform: translateX(35px) translateY(38px) rotateY(0deg);
     width: 64px;
