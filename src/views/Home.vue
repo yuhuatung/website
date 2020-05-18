@@ -69,7 +69,7 @@ export default {
       showLeftBtnBorder: false,
       showRightBtnBorder: false,
       timer: null,
-      imageWidth: 1243
+      imageWidth: 9999
       // image: [
       //   { src: require("@/assets/img/philosophy.jpg") },
       //   { src: require("@/assets/img/concept.jpg") },
@@ -170,7 +170,7 @@ export default {
 @import "../assets/style/utils/_variables.scss";
 @media screen and (min-width: $bigWidth) {
   .home {
-    width: 1243px;
+    width: 100%;
     height: 800px;
     .big-image {
       height: 800px;

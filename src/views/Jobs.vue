@@ -86,7 +86,7 @@
         <JobCard v-bind="item" :selected="selectedJOb" ref="vacancy" />
       </div>
     </div>
-    <div class="apply-form" v-show="false">
+    <div class="apply-form" v-show="true">
       <div class="picture">
         <div class="photo">
           <img class="icon-photo" src="@/assets/img/folder_filled_2x.png" />
@@ -197,7 +197,7 @@ export default {
 @import "../assets/style/utils/_variables.scss";
 @media screen and (min-width: $bigWidth) {
   .jobs {
-    width: 1243px;
+    width: 100%;
     .subject {
     }
     .search {
@@ -482,7 +482,7 @@ export default {
   }
   .vacancy-card {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     margin: auto 95px;
   }
@@ -492,9 +492,9 @@ export default {
     background-color: rgb(235, 235, 235);
     margin-top: 60px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     .picture {
-      margin-left: 170px;
+      // margin-left: 170px;
       width: 200px;
       .photo {
         margin-left: 20px;

@@ -64,10 +64,11 @@ export default {
 }
 body {
   margin: 0;
+  line-height: unset;
 }
 @media screen and (min-width: $bigWidth) {
   .nav {
-    width: 1243px;
+    width: 100%;
     justify-content: space-between;
     .link {
       a {
