@@ -99,11 +99,13 @@
             <div class="photo">
               <img class="icon-photo" src="@/assets/img/folder_filled_2x.png" />
             </div>
-            <p class="hint">
-              請選擇進3個月的求職照片。
-              <br />照片大小限3MB
-            </p>
-            <p class="choose-photo">選擇照片</p>
+            <div class="content-btn">
+              <p class="hint">
+                請選擇進3個月的求職照片。
+                <br />照片大小限3MB
+              </p>
+              <p class="choose-photo">選擇照片</p>
+            </div>
           </div>
           <div class="form">
             <div class="row1">
@@ -407,15 +409,13 @@ export default {
         height: 100%;
         margin-top: 35px;
         .picture {
-          margin: 5% 10px 0;
+          margin-top: 5%;
           display: flex;
-          flex-direction: column;
-          height: 130px;
-          flex-wrap: wrap;
-          width: 380px;
+          // height: 130px;
           .photo {
             width: 117px;
             height: 130px;
+            margin-right: 5%;
             img {
               width: 50px;
               height: 50px;
@@ -423,10 +423,8 @@ export default {
           }
           .hint {
             height: 30px;
-            margin-top: auto;
           }
           .choose-photo {
-            width: 158px;
             height: 46px;
             margin-top: 10px;
           }
@@ -529,13 +527,12 @@ export default {
         padding: 0 15px;
         height: 100%;
         margin-top: 35px;
+        align-items: center;
         .picture {
-          margin: 10% auto 0;
+          margin-top: 10%;
           // height: 166px;
           display: flex;
-          flex-direction: column;
-          height: 130px;
-          flex-wrap: wrap;
+          // height: 140px;
           width: 90%;
           .photo {
             width: 117px;
@@ -554,7 +551,7 @@ export default {
             }
           }
           .choose-photo {
-            width: 150px;
+            // width: 150px;
             margin-top: 0;
           }
         }
@@ -857,20 +854,23 @@ export default {
           justify-content: center;
           align-items: center;
         }
-        .hint {
-          color: rgb(145, 145, 145);
-          font-size: 12px;
-          text-align: left;
-        }
-        .choose-photo {
-          margin-bottom: 0;
-          border-style: solid;
-          background-color: rgb(255, 255, 255);
-          border-width: 1px;
-          border-color: rgb(214, 214, 214);
-          border-radius: 10px;
-          line-height: 46px;
-          cursor: pointer;
+        .content-btn {
+          margin-top: auto;
+          .hint {
+            color: rgb(145, 145, 145);
+            font-size: 12px;
+            text-align: left;
+          }
+          .choose-photo {
+            margin-bottom: 0;
+            border-style: solid;
+            background-color: rgb(255, 255, 255);
+            border-width: 1px;
+            border-color: rgb(214, 214, 214);
+            border-radius: 10px;
+            line-height: 46px;
+            cursor: pointer;
+          }
         }
       }
       .form {
