@@ -127,10 +127,10 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   z-index: 3;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  // right: 0;
   a {
     // font-weight: bold;
     text-decoration: none;
