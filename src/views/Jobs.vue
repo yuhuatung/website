@@ -86,49 +86,63 @@
         <JobCard v-bind="item" :selected="selectedJOb" :screenwidth="screenwidth" ref="vacancy" />
       </div>
     </div>
-    <div class="apply-form" v-show="screenwidth>810">
-      <div class="picture">
-        <div class="photo">
-          <img class="icon-photo" src="@/assets/img/folder_filled_2x.png" />
+    <transition name="opacity">
+      <div class="opacity" v-show="showApplyForm" @click="showApplyForm = false"></div>
+    </transition>
+    <transition name="slide-out">
+      <div class="apply-form" v-show="showApplyForm || screenwidth>810">
+        <div class="closeBtn" v-show="screenwidth<810" @click="showApplyForm = false">
+          <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="applyFormCloseBtn" />
         </div>
-        <div class="hint">請選擇進3個月的求職照片。照片大小限3MB</div>
-        <div class="choose-photo">選擇照片</div>
+        <div class="containar">
+          <div class="picture">
+            <div class="photo">
+              <img class="icon-photo" src="@/assets/img/folder_filled_2x.png" />
+            </div>
+            <p class="hint">
+              請選擇進3個月的求職照片。
+              <br />照片大小限3MB
+            </p>
+            <p class="choose-photo">選擇照片</p>
+          </div>
+          <div class="form">
+            <div class="row1">
+              <div>
+                <div class="form-name">姓名</div>
+                <input text="text" placeholder="請輸入真實姓名" />
+              </div>
+              <div>
+                <div class="form-name">手機</div>
+                <input text="text" placeholder="+886-000-000-000" />
+              </div>
+            </div>
+            <div class="row2">
+              <div>
+                <div class="form-name">信箱</div>
+                <input text="text" placeholder="@gmail.com" />
+              </div>
+              <div>
+                <div class="form-name">職業</div>
+                <input text="text" placeholder="輸入您目前的職業性質" />
+              </div>
+            </div>
+            <div class="row3">
+              <div>
+                <div class="form-name">地址</div>
+                <input text="text" placeholder="縣市-區-路" />
+              </div>
+            </div>
+            <div class="row4">
+              <div class="subscribe">立即訂閱</div>
+              <div class="hint" v-if="screenwidth>810">沒看到適合您的職缺嗎！ 別擔心，訂閱即可收到最新職缺通知。</div>
+              <div class="hint" v-else>建立您的人履歷，將由專員親自與您聯繫。</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="form">
-        <div class="row1">
-          <div>
-            <div class="form-name">姓名</div>
-            <input text="text" placeholder="請輸入真實姓名" />
-          </div>
-          <div>
-            <div class="form-name">手機</div>
-            <input text="text" placeholder="+886-000-000-000" />
-          </div>
-        </div>
-        <div class="row2">
-          <div>
-            <div class="form-name">信箱</div>
-            <input text="text" placeholder="@gmail.com" />
-          </div>
-          <div>
-            <div class="form-name">職業</div>
-            <input text="text" placeholder="輸入您目前的職業性質" />
-          </div>
-        </div>
-        <div class="row3">
-          <div>
-            <div class="form-name">地址</div>
-            <input text="text" placeholder="縣市-區-路" />
-          </div>
-        </div>
-        <div class="row4">
-          <div class="subscribe">立即訂閱</div>
-          <div class="hint">沒看到適合您的職缺嗎！ 別擔心，訂閱即可收到最新職缺通知。</div>
-        </div>
-      </div>
-    </div>
+    </transition>
     <div class="small-apply-form" v-show="screenwidth<810">
-      <div class="subscribe">
+      <div class="subscribe" @click="showApplyForm = true">
         立即訂閱
         <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="subscribe-btn" />
       </div>
@@ -160,7 +174,8 @@ export default {
       selectedJOb: "",
       showLeftBtn: false,
       showRightBtn: true,
-      left: 0
+      left: 0,
+      showApplyForm: false
     };
   },
   computed: {
@@ -271,7 +286,59 @@ export default {
       width: 1092px;
     }
     .apply-form {
-      height: 570px;
+      margin-top: 60px;
+      .containar {
+        padding-top: 80px;
+        height: 570px;
+        justify-content: center;
+        .picture {
+          width: 200px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .photo {
+            width: 151px;
+            height: 166px;
+            img {
+              width: 50px;
+              height: 50px;
+            }
+          }
+          .hint {
+            margin-top: 30px;
+          }
+          .choose-photo {
+            width: 158px;
+            height: 46px;
+            margin-top: 10px;
+          }
+        }
+        .form {
+          margin-left: 90px;
+          width: 560px;
+          input {
+            width: 207px;
+          }
+          .row1,
+          .row2 {
+            justify-content: space-around;
+          }
+          .row2 {
+            margin: 30px 0;
+          }
+          .row3 {
+            display: flex;
+            justify-content: center;
+            input {
+              width: 487px;
+            }
+          }
+          .row4 {
+            align-items: flex-end;
+            margin: 15px 35px 100px;
+          }
+        }
+      }
     }
     .small-apply-form {
       flex-direction: row;
@@ -316,7 +383,72 @@ export default {
       width: 728px;
     }
     .apply-form {
-      height: 139px;
+      // height: 139px;
+      position: fixed;
+      bottom: 0;
+      z-index: 3;
+      height: 80%;
+      .containar {
+        box-sizing: border-box;
+        flex-direction: column;
+        // margin-top: 35px;
+        overflow: auto;
+        padding: 0 15px;
+        height: 100%;
+        padding-top: 35px;
+        .picture {
+          margin: 5% auto 0;
+          display: flex;
+          flex-direction: column;
+          height: 25%;
+          flex-wrap: wrap;
+          width: 400px;
+          .photo {
+            width: 35%;
+            height: 100%;
+            img {
+              width: 50px;
+              height: 50px;
+            }
+          }
+          .hint {
+            height: 30px;
+            margin-top: 60px;
+          }
+          .choose-photo {
+            width: 158px;
+            height: 46px;
+            margin-top: 10px;
+          }
+        }
+        .form {
+          width: 100%;
+          margin-top: 30px;
+          input {
+            width: 100%;
+          }
+          .row1,
+          .row2,
+          .row3,
+          .row4 {
+            // margin: 0 5%;
+            div {
+              width: 46%;
+            }
+          }
+          .row1,
+          .row2 {
+            justify-content: space-between;
+          }
+          .row2 {
+            margin: 30px 0;
+          }
+          .row4 {
+            align-items: center;
+            margin: 30px 20px 60px;
+          }
+        }
+      }
     }
     .small-apply-form {
       flex-direction: row;
@@ -373,8 +505,80 @@ export default {
     .vacancy-card {
       width: 364px;
     }
+
     .apply-form {
-      height: 570px;
+      // height: 139px;
+      position: fixed;
+      bottom: 0;
+      z-index: 3;
+      height: 80%;
+      .containar {
+        box-sizing: border-box;
+        flex-direction: column;
+        overflow: auto;
+        padding: 0 15px;
+        height: 100%;
+        padding-top: 35px;
+        .picture {
+          margin: 10% auto 0;
+          // height: 166px;
+          display: flex;
+          flex-direction: column;
+          height: 130px;
+          flex-wrap: wrap;
+          width: 90%;
+          .photo {
+            width: 117px;
+            height: 130px;
+            margin-right: 12%;
+            img {
+              width: 50px;
+              height: 50px;
+            }
+          }
+          .hint {
+            // height: 30px;
+            margin-top: 40px;
+            p {
+              margin: 0;
+            }
+          }
+          .choose-photo {
+            width: 150px;
+            margin-top: 0;
+          }
+        }
+        .form {
+          width: 100%;
+          margin-top: 30px;
+          input {
+            width: 100%;
+          }
+          .row1,
+          .row2,
+          .row3,
+          .row4 {
+            display: flex;
+            // flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            // margin: 0 5%;
+            div {
+              & + div {
+                margin-top: 28px;
+              }
+              width: 90%;
+            }
+          }
+          .row2 {
+            margin: 28px 0;
+          }
+          .row4 {
+            align-items: center;
+            margin: 10% 0 20%;
+          }
+        }
+      }
     }
     .small-apply-form {
       flex-direction: column;
@@ -585,117 +789,129 @@ export default {
     flex-wrap: wrap;
     margin: auto;
   }
+
+  .opacity-enter,
+  .opacity-leave-to {
+    opacity: 0;
+  }
+  .opacity-enter-active,
+  .opacity-leave-active {
+    transition: all 0.5s ease-in-out;
+  }
+  .opacity {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+  }
+  .slide-out-enter,
+  .slide-out-leave-to {
+    bottom: -800px;
+  }
+  .slide-out-enter-active,
+  .slide-out-leave-active {
+    transition: all 0.5s ease-in-out;
+  }
   .apply-form {
     width: 100%;
-    background-color: rgb(235, 235, 235);
-    margin-top: 60px;
-    display: flex;
-    justify-content: center;
-    .picture {
-      // margin-left: 170px;
-      width: 200px;
-      .photo {
-        margin-left: 20px;
-        margin-top: 70px;
-        width: 151px;
-        height: 166px;
-        background-color: rgb(255, 255, 255);
-        border-radius: 8px;
-        img {
-          margin-top: 60px;
-          width: 50px;
-          height: 50px;
-        }
-      }
-      .hint {
-        margin-top: 25px;
-        color: rgb(145, 145, 145);
-        display: inline-block;
-        font-size: 12px;
-        width: 154px;
-        text-align: left;
-      }
-      .choose-photo {
-        margin-top: 25px;
-        margin-left: 20px;
-        width: 158px;
-        height: 46px;
-        border-style: solid;
-        background-color: rgb(255, 255, 255);
-        border-width: 1px;
-        border-color: rgb(214, 214, 214);
-        border-radius: 10px;
-        line-height: 46px;
-        cursor: pointer;
+    .closeBtn {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 35px;
+      line-height: 35px;
+      border-top-left-radius: 10px;
+      background-image: -webkit-linear-gradient(
+        270deg,
+        rgb(255, 255, 255),
+        rgb(235, 235, 235)
+      );
+      border-top-right-radius: 10px;
+      box-shadow: rgb(0, 0, 0) 0px 0px 1px;
+      img {
+        width: 24px;
+        height: 24px;
       }
     }
-    .form {
-      margin-left: 90px;
-      padding-top: 50px;
-      width: 560px;
-      .form-name {
-        padding-left: 10px;
-      }
-      ::placeholder {
-        color: rgb(145, 145, 145);
-        // padding: 10px;
-        font-size: 12p;
-      }
-      input {
-        border: 1px rgb(214, 214, 214) solid;
-        width: 207px;
-        height: 46px;
-        border-radius: 10px;
-        padding: 0px 15px;
-      }
-      .row1,
-      .row2 {
-        padding-top: 20px;
-        text-align: left;
-        display: flex;
-        justify-content: space-around;
-        input {
-          margin-top: 15px;
+    .containar {
+      width: 100%;
+      background-color: rgb(235, 235, 235);
+      display: flex;
+      .picture {
+        .photo {
+          background-color: rgb(255, 255, 255);
+          border-radius: 8px;
+          border: 1px solid rgb(214, 214, 214);
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
-      }
-      .row3 {
-        padding-top: 20px;
-        text-align: left;
-        padding-left: 20px;
-        input {
-          margin-top: 15px;
-          width: 487px;
+        .hint {
+          color: rgb(145, 145, 145);
+          font-size: 12px;
+          text-align: left;
         }
-      }
-      .row4 {
-        padding-top: 20px;
-        position: relative;
-        .subscribe {
-          position: absolute;
-          width: 241px;
-          height: 46px;
-          background-color: rgba(0, 0, 0, 0.8);
-          color: rgb(255, 255, 255);
-          font-size: 18px;
+        .choose-photo {
+          margin-bottom: 0;
+          border-style: solid;
+          background-color: rgb(255, 255, 255);
+          border-width: 1px;
+          border-color: rgb(214, 214, 214);
           border-radius: 10px;
-          margin-top: 30px;
-          right: 20px;
           line-height: 46px;
           cursor: pointer;
         }
-        .hint {
-          width: 228px;
-          height: 21px;
-          position: absolute;
-          display: inline-block;
-          letter-spacing: 0px;
-          font-size: 12px;
-          line-height: 18px;
-          overflow-wrap: break-word;
-          text-align: center;
-          color: rgb(121, 121, 121);
-          margin-top: 86px;
-          margin-left: 24px;
+      }
+      .form {
+        .form-name {
+          padding-left: 10px;
+        }
+        ::placeholder {
+          color: rgb(145, 145, 145);
+          // padding: 10px;
+          font-size: 12p;
+        }
+        input {
+          border: 1px rgb(214, 214, 214) solid;
+          height: 46px;
+          border-radius: 10px;
+          margin-top: 15px;
+          padding: 0px 15px;
+          box-sizing: border-box;
+        }
+        .row1,
+        .row2 {
+          text-align: left;
+          display: flex;
+        }
+        .row3 {
+          text-align: left;
+        }
+        .row4 {
+          display: flex;
+          flex-direction: column;
+          .subscribe {
+            width: 241px;
+            height: 46px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: rgb(255, 255, 255);
+            font-size: 18px;
+            border-radius: 10px;
+            margin-top: 30px;
+            line-height: 46px;
+            cursor: pointer;
+          }
+          .hint {
+            width: 228px;
+            height: 21px;
+            letter-spacing: 0px;
+            font-size: 12px;
+            line-height: 18px;
+            overflow-wrap: break-word;
+            color: rgb(121, 121, 121);
+            margin-top: 10px;
+          }
         }
       }
     }
