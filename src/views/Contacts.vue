@@ -6,10 +6,22 @@
           <source src="https://www.308262.com/frontend/files/contacts.mov" type="video/mp4">
         </video>
         <div class="address">
+          <div class="subject">Address</div>
+          <div class="content">台北市信義區信義路四段<br/>世紀金融大樓</div>
+          <div class="copy"><img src="@/assets/img/icons8-copy_2x.png" />copy</div>
+          <div class="bottom">Google Map</div>
         </div>
         <div class="email">
+          <div class="subject">E-mail</div>
+          <div class="content">hr@Wanlian-tech.com</div>
+          <div class="copy"><img src="@/assets/img/icons8-copy_2x.png" />copy</div>
+          <div class="bottom">Outlook</div>
         </div>
         <div class="social-media">
+          <div class="subject">Social media</div>
+          <div class="content">Wanlian-tech</div>
+          <div class="copy"><img src="@/assets/img/icons8-copy_2x.png" />copy</div>
+          <div class="bottom">Facebook</div>
         </div>
       </div>
     </div>
@@ -71,11 +83,12 @@
 .contacts{
   width: 100vw;
   .animation{
-    height: 698px;
+    // height: 698px;
     // width: 100%;
     // display: flex;
     position: relative;
     .video-outer{
+      color: rgb(255, 255, 255);
       display: flex;
       max-height: 80vh;
       min-height: 80vh;
@@ -107,6 +120,45 @@
       .social-media{
         background:rgba(94,94,94,.7);
         width: 33%;
+      }
+      .subject{
+        position: relative;
+        top: calc(35%);
+        font-size: 36px;
+      }
+      .content{
+        margin:0 auto;
+        position: relative;
+        top: calc(40%);
+        width: 205px;
+        font-size: 16px;
+      }
+      .copy{
+        position: relative;
+        top: calc(40% + 10px);
+        font-size: 12px;
+        cursor: pointer;
+        font-style: italic;
+        img{
+          width: 16px;
+          margin-right: 5px;
+        }
+      }
+      .bottom{
+        margin:0 auto;
+        position: relative;
+        top: calc(50%);
+        width: 98px;
+        height: 16px;
+        border-radius: 13px;
+        border-color: rgb(255, 255, 255);
+        font-size: 13px;
+        text-align: center;
+        color: rgb(255, 255, 255);
+        border-style: solid;
+        padding: 6px;
+        border-width: 1px;
+        cursor: pointer;
       }
     }
   }
