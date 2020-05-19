@@ -2,16 +2,15 @@
   <div class="contacts">
     <div class="animation">
       <div class="video-outer">
-        <!-- <video autoplay muted loop id="myVideo">
-          <source src="@/assets/video/rain.mp4" type="video/mp4">
-          Your browser does not support HTML5 video.
-        </video> -->
-      </div>
-      <div class="address">
-      </div>
-      <div class="email">
-      </div>
-      <div class="social-media">
+        <video class="sleep-video" autoplay muted loop>
+          <source src="https://www.308262.com/frontend/files/contacts.mov" type="video/mp4">
+        </video>
+        <div class="address">
+        </div>
+        <div class="email">
+        </div>
+        <div class="social-media">
+        </div>
       </div>
     </div>
     <div class="contact-us">
@@ -70,25 +69,44 @@
 }
 
 .contacts{
+  width: 100vw;
   .animation{
     height: 698px;
+    // width: 100%;
     // display: flex;
     position: relative;
     .video-outer{
       display: flex;
-      video{
-        width: 100vw;
+      max-height: 80vh;
+      min-height: 80vh;
+      // max-width: 100vw;
+      // min-width: 100vw;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      .sleep-video {
+        height: auto;
+        left: 50%;
+        min-height: 80vh;
+        min-width: 100vw;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        top: 50%;
+        width: auto;
+        z-index: -1;
       }
       .address{
-        // height: 100%;
-        background:rgba(0,0,0,.7);
+        height: auto;
+        background:rgba(94,94,94,.7);
         width: 33%;
       }
       .email{
-        // background:rgba(0,0,0,.7);
+        background:rgba(0,150,255,.7);
+        width: 34%;
       }
       .social-media{
-        // background:rgba(0,0,0,.7);
+        background:rgba(94,94,94,.7);
+        width: 33%;
       }
     }
   }
@@ -99,7 +117,7 @@
       height: 80px;
       justify-content: center;
       margin-left: -340px;
-      margin-top: 50px;
+      margin-top: 80px;
       .subject{
         font-size: 64px;
       }
