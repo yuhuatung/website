@@ -1,6 +1,9 @@
 <template>
   <div class="customers-body">
     <div class="top">
+      <video class="sleep-video" autoplay muted loop>
+        <source src="https://www.308262.com/frontend/files/customers.mov" type="video/mp4">
+      </video>
       <div class="bigLogo">Success Case
       </div>
       <div class="smallLogo">Our Customers
@@ -9,7 +12,16 @@
         Wanlian has been involved in many projects, utilizing an amalgamation of various solutions.
       </div>
     </div>
-    <div class="customers"></div>
+    <div class="customers">
+      <img src="@/assets/img/icons8-expand_arrow-3_2x.png" class="arrow" />
+    </div>
+    <div class="footer">
+      <div class="media">
+        <img src="@/assets/img/icons8-facebook_new_2x.png" />
+        <img src="@/assets/img/icons8-facebook_messenger_2x.png" />
+      </div>
+      <div class="company">WANLIAN TECHNOLOGY LIMITED</div>
+    </div>
   </div>
 </template>
 
@@ -24,14 +36,19 @@
 @media screen and (max-width: $smallWidth) {
 }
 .customers-body {
-  background-image:url("~@/assets/img/recruitment.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100%;
   .top{
     height: 750px;
     color: white;
     position: relative;
+    .sleep-video {
+      left: 0;
+      top: 0;
+      position: fixed;
+      // width: 100%;
+      min-height: 100vh;
+      min-width: 100vw;
+      z-index: -20;
+    }
     .bigLogo{
       font-size: 96px;
       position: absolute;
@@ -54,10 +71,31 @@
     }
   }
   .customers{
-    height: 750px;
+    height: 1500px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #fff;
+    .arrow{
+      margin-top: 15px;
+      width: 32px;
+    }
   }
-  .tooter{
-
+  .footer{
+    height: 142px;
+    background-color: rgb(94, 94, 94);
+    display: flex;
+    .media{
+      margin-top: 45px;
+      margin-left: 145px;
+      img{
+        width: 40px;
+        margin-right: 30px;
+      }
+    }.company{
+      margin-top: 56px;
+      color: white;
+      font-size: 16px;
+    }
   }
 }
 </style>
