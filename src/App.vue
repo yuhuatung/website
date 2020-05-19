@@ -2,8 +2,8 @@
   <div id="app">
     <div class="nav" ref="navWidth">
       <div class="logo">
-        <Logo class="logo-img" />
-        <router-link to="/"><WanLian class="company" /></router-link>
+        <img src="@/assets/img/logo.png" class="logo-img" />
+        <router-link to="/"><img src="@/assets/img/wanlian.png" class="company" /></router-link>
       </div>
       <div class="link">
         <router-link to="/services">服務</router-link>
@@ -17,14 +17,14 @@
   </div>
 </template>
 <script>
-import Logo from "@/assets/svg/logo.svg";
-import WanLian from "@/assets/svg/wanlian.svg";
+// import Logo from "@/assets/svg/logo.svg";
+// import WanLian from "@/assets/svg/wanlian.svg";
 
 export default {
   name: "Home",
   components: {
-    Logo,
-    WanLian
+    // Logo,
+    // WanLian
   },
   data() {
     return {
@@ -144,16 +144,18 @@ body {
     align-items: center;
   }
   .logo {
+    margin-left: 20px;
     display: flex;
     align-items: center;
     .logo-img {
-      width: 40px;
-      height: 40px;
-      // margin: 10px;
+      width: 22px;
+      height: 31px;
+      margin-right: 10px;
     }
     .company {
       width: 69px;
-      height: 40px;
+      height: 16px;
+      margin-top: 5px;
       // margin: 10px;
     }
   }
