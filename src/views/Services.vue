@@ -1,6 +1,9 @@
 <template>
   <div class="services-body">
     <div class="top">
+      <video class="sleep-video" autoplay muted loop>
+        <source src="https://www.308262.com/frontend/files/service.mov" type="video/mp4">
+      </video>
       <div class="bigLogo">WeAre
       </div>
       <div class="smallLogo">professional
@@ -57,14 +60,23 @@ export default {
 @media screen and (max-width: $smallWidth) {
 }
 .services-body {
-  background-image:url("~@/assets/img/recruitment.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100%;
+  // background-image:url("~@/assets/img/recruitment.jpg");
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
+  // background-size: 100%;
   .top{
     height: 750px;
     color: white;
     position: relative;
+    .sleep-video {
+      left: 0;
+      top: 0;
+      position: fixed;
+      // width: 100%;
+      min-height: 100vh;
+      min-width: 100vw;
+      z-index: -20;
+    }
     .bigLogo{
       font-size: 96px;
       position: absolute;
@@ -101,8 +113,19 @@ export default {
   .services{
     height: 750px;
   }
-  .tooter{
-
+  .footer{
+    font-size: 12px;
+    color: white;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    .footer-left{
+      width: 466px;
+    }
+    .footer-right{
+      width: 466px;
+    }
   }
 }
 </style>
