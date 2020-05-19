@@ -1,7 +1,7 @@
 <template>
   <div class="jobs">
     <div class="header">
-      <img class="big-img" src="@/assets/img/recruitment.jpg" alt="recruitment" />
+      <img class="big-img" :src="bigImage" alt="recruitment" />
       <div class="subject">Work together for success!</div>
       <div class="footer">Welcome! Let's create your profile</div>
       <a-dropdown>
@@ -179,6 +179,16 @@ export default {
     };
   },
   computed: {
+    bigImage() {
+      let img = { src: require("@/assets/img/team_computer.jpg") };
+      if (this.screenwidth < 810 && this.screenwidth > 576) {
+        img = { src: require("@/assets/img/team_ipad.jpg") };
+      }
+      if (this.screenwidth < 576) {
+        img = { src: require("@/assets/img/team_ipone.jpg") };
+      }
+      return img.src;
+    },
     numOfJobs: function() {
       return this.jobs.vacancy.length;
     },
