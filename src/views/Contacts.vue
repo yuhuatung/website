@@ -112,14 +112,17 @@
         height: auto;
         background:rgba(94,94,94,.7);
         width: 33%;
+        position: relative;
       }
       .email{
         background:rgba(0,150,255,.7);
         width: 34%;
+        position: relative;
       }
       .social-media{
         background:rgba(94,94,94,.7);
         width: 33%;
+        position: relative;
       }
       .subject{
         position: relative;
@@ -146,8 +149,9 @@
       }
       .bottom{
         margin:0 auto;
-        position: relative;
-        top: calc(50%);
+        position: absolute;
+        bottom: calc(35%);
+        left: calc(38%);
         width: 98px;
         height: 16px;
         border-radius: 13px;
