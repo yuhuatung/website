@@ -9,7 +9,7 @@
       <div class="smallLogo">professional
       </div>
       <div class="our-service" @click="toBottom(stepBottom)">
-        Our Service
+        <img src="@/assets/img/icons8-expand_arrow-4_2x.png" alt="subscribe-btn" />Our Service
       </div>
       <div class="service-content">
         對於企業客戶，每一個決定都會產生影響，我們在這裡可以幫助您指導遷移或啟動過程中的動盪和壓力。 我們首先研究您的要求和需求，然後與我們經驗豐富的技術人員團隊一起開發可行的解決方案以及部署策略。
@@ -28,7 +28,7 @@ export default {
   name: "Services",
   data() {
     return {
-      stepBottom: 100, //此数据是控制动画快慢的
+      stepBottom: 50, //此数据是控制动画快慢的
     };
   },
   computed: {
@@ -60,10 +60,6 @@ export default {
 @media screen and (max-width: $smallWidth) {
 }
 .services-body {
-  // background-image:url("~@/assets/img/recruitment.jpg");
-  // background-repeat: no-repeat;
-  // background-attachment: fixed;
-  // background-size: 100%;
   .top{
     height: 750px;
     color: white;
@@ -100,6 +96,11 @@ export default {
       line-height: 56px;
       padding-left: 10px;
       cursor: pointer;
+      img{
+        width: 32px;
+        position: relative;
+        left: -10px;
+      }
     }
     .service-content{
       font-size: 14px;
