@@ -85,27 +85,27 @@ export default {
   computed: {
     image() {
       let img = [
-        { src: require("@/assets/img/philosophy.jpg") },
-        { src: require("@/assets/img/concept.jpg") },
+        { src: require("@/assets/img/company_philosophy_computer.jpg") },
+        { src: require("@/assets/img/business_concept_computer.jpg") },
         {
-          src: require("@/assets/img/garrhet-sampson-JzNmtlSJ0wk-unsplash_2x.jpg")
+          src: require("@/assets/img/garrhet-sampson_computer.jpg")
         }
       ];
       if (this.screenwidth < 810 && this.screenwidth > 576) {
         img = [
-          { src: require("@/assets/img/philosophy1.jpg") },
-          { src: require("@/assets/img/concept1.jpg") },
+          { src: require("@/assets/img/company_philosophy_ipad.jpg") },
+          { src: require("@/assets/img/business_concept_ipad.jpg") },
           {
-            src: require("@/assets/img/garrhet-sampson-JzNmtlSJ0wk-unsplash_2x1.jpg")
+            src: require("@/assets/img/garrhet-sampson_ipad.jpg")
           }
         ];
       }
       if (this.screenwidth < 576) {
         img = [
-          { src: require("@/assets/img/philosophy2.jpg") },
-          { src: require("@/assets/img/concept2.jpg") },
+          { src: require("@/assets/img/company_philosophy_iphone.jpg") },
+          { src: require("@/assets/img/business_concept_iphone.jpg") },
           {
-            src: require("@/assets/img/garrhet-sampson-JzNmtlSJ0wk-unsplash_2x2.jpg")
+            src: require("@/assets/img/garrhet-sampson_iphone.jpg")
           }
         ];
       }
