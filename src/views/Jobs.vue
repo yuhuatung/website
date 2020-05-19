@@ -86,12 +86,12 @@
         <JobCard v-bind="item" :selected="selectedJOb" :screenwidth="screenwidth" ref="vacancy" />
       </div>
     </div>
-    <transition name="opacity">
-      <div class="opacity" v-show="showApplyForm" @click="showApplyForm = false"></div>
+    <transition name="background-opacity">
+      <div class="background-opacity" v-show="showApplyForm" @click="showApplyForm = false"></div>
     </transition>
     <transition name="slide-out">
       <div class="apply-form" v-show="showApplyForm || screenwidth>810">
-        <div class="closeBtn" v-show="screenwidth<810" @click="showApplyForm = false">
+        <div class="close-btn" v-show="screenwidth<810" @click="showApplyForm = false">
           <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="applyFormCloseBtn" />
         </div>
         <div class="containar">
@@ -405,17 +405,17 @@ export default {
         overflow: auto;
         padding: 0 15px;
         height: 100%;
-        padding-top: 35px;
+        margin-top: 35px;
         .picture {
-          margin: 5% auto 0;
+          margin: 5% 10px 0;
           display: flex;
           flex-direction: column;
-          height: 25%;
+          height: 130px;
           flex-wrap: wrap;
-          width: 400px;
+          width: 380px;
           .photo {
-            width: 35%;
-            height: 100%;
+            width: 117px;
+            height: 130px;
             img {
               width: 50px;
               height: 50px;
@@ -423,7 +423,7 @@ export default {
           }
           .hint {
             height: 30px;
-            margin-top: 60px;
+            margin-top: 30px;
           }
           .choose-photo {
             width: 158px;
@@ -528,7 +528,7 @@ export default {
         overflow: auto;
         padding: 0 15px;
         height: 100%;
-        padding-top: 35px;
+        margin-top: 35px;
         .picture {
           margin: 10% auto 0;
           // height: 166px;
@@ -800,15 +800,15 @@ export default {
     margin: auto;
   }
 
-  .opacity-enter,
-  .opacity-leave-to {
+  .background-opacity-enter,
+  .background-opacity-leave-to {
     opacity: 0;
   }
-  .opacity-enter-active,
-  .opacity-leave-active {
+  .background-opacity-enter-active,
+  .background-opacity-leave-active {
     transition: all 0.5s ease-in-out;
   }
-  .opacity {
+  .background-opacity {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
@@ -825,7 +825,7 @@ export default {
   }
   .apply-form {
     width: 100%;
-    .closeBtn {
+    .close-btn {
       position: absolute;
       top: 0;
       width: 100%;
