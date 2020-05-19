@@ -190,7 +190,7 @@ export default {
       if (this.screenwidth > 576) {
         this.showLeftBtn = true;
         this.showRightBtn = false;
-        this.left = -300;
+        this.left = -(1029 - this.screenwidth + 40);
       } else {
         this.left -= 343;
         this.showRightBtn = this.left !== -686 ? true : false;
@@ -395,7 +395,6 @@ export default {
 }
 .jobs {
   margin: 0 auto;
-  overflow: auto;
   .header {
     width: 100%;
     height: 100vh;
