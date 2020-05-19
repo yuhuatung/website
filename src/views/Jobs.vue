@@ -423,7 +423,7 @@ export default {
           }
           .hint {
             height: 30px;
-            margin-top: 30px;
+            margin-top: auto;
           }
           .choose-photo {
             width: 158px;
@@ -548,7 +548,7 @@ export default {
           }
           .hint {
             // height: 30px;
-            margin-top: 40px;
+            margin-top: auto;
             p {
               margin: 0;
             }
