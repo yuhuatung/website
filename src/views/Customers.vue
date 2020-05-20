@@ -2,7 +2,7 @@
   <div class="customers-body">
     <div class="top">
       <video class="sleep-video" autoplay muted loop>
-        <source src="https://www.308262.com/frontend/files/customers.mov" type="video/mp4">
+        <source src="https://www.308262.com/vue/files/customers.mov" type="video/mp4">
       </video>
       <div class="bigLogo">Success Case
       </div>
