@@ -15,7 +15,15 @@
         對於企業客戶，每一個決定都會產生影響，我們在這裡可以幫助您指導遷移或啟動過程中的動盪和壓力。 我們首先研究您的要求和需求，然後與我們經驗豐富的技術人員團隊一起開發可行的解決方案以及部署策略。
       </div>
     </div>
-    <div class="services"></div>
+    <div class="services">
+      <div v-for="(item, index) in services" :key="index" class="services-item">
+        <img :src="getImgUrl(item.image)" >
+        <div class="mask">
+          <div class="services-title">{{item.title}}</div>
+          <div class="services-content">{{item.content}}</div>
+        </div>
+      </div>
+    </div>
     <div class="footer">
       <div class="footer-left">For Enterprise clients every decision has repercussions and we are here to help guide you through the turbulence and stress involved in migrations or start-ups. We start by delving into your requirements and needs, then working with our team of experienced technicians to develop a working solution as well as a deployment strategy.</div>
       <div class="footer-right">Consultation Services (Standardization, Strategic Technology and Adoption Assessment, Evaluation, POC, Mentoring) Implementation Services (Design, Architect, Plan and Build) Training Services (Standard or Customize) Managed Services (7/24 round the clock remote/on-site project nursing residency or support) Development Services (Java and Enterprise System Integration) Enterprise</div>
@@ -29,6 +37,37 @@ export default {
   data() {
     return {
       stepBottom: 50, //此数据是控制动画快慢的
+      services: [
+        {
+          "title": "諮詢服務",
+          "content": "標準化/戰略技術/採用評估/決策/POC/指導",
+          "image": "service_imge_step01.jpg"
+        },
+        {
+          "title": "實施服務",
+          "content": "設計/架構師/計劃/構建",
+          "image": "service_imge_step02.jpeg"
+        },
+        {
+          "title": "培訓服務",
+          "content": "標准/定制/限制條件",
+          "image": "service_imge_step03.jpg"
+        },
+        {
+          "title": "託管服務",
+          "content": "全天候24小時/遠程與現場/項目維護駐留或支持",
+          "image": "service_imge_step04.jpeg"
+        },
+        {
+          "title": "測試服務",
+          "content": "取得修正資訊創造更好的成果",
+          "image": "service_imge_step05.jpeg"
+        },
+        {
+          "title": "開發服務",
+          "content": "Java和企業系統集成",
+          "image": "service_imge_step06.jpg"
+        }]
     };
   },
   computed: {
@@ -47,6 +86,9 @@ export default {
         clearTimeout(c);
       }
     },
+    getImgUrl(image) {
+      return require("@/assets/img/" + image);
+    }
   },
   mounted() {
   },
@@ -116,7 +158,39 @@ export default {
     }
   }
   .services{
-    height: 750px;
+    height: 480px;;
+    width: 1092px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    .services-item{
+      margin: 0 4px;
+      color: rgb(255, 255, 255);
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      img,
+      .mask{
+        width: 344px;
+        height: 229px;
+      }
+      .mask{
+        position: absolute;
+        background: rgba(0, 150, 255, 0.8);
+        .services-title{
+          margin-top: 20%;
+          font-size: 16px;
+        }
+        .services-content{
+          margin-top: 8%;
+          font-size: 12px;
+        }
+      }
+      .mask:hover{
+        background: rgba(0, 150, 255, 1);
+      }
+    }
   }
   .footer{
     font-size: 12px;
@@ -124,6 +198,7 @@ export default {
     text-align: left;
     display: flex;
     justify-content: center;
+    margin-top: 60px;
     margin-bottom: 30px;
     .footer-left{
       width: 466px;
