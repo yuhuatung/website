@@ -1,0 +1,28 @@
+{
+    "customers": [
+        {
+            "type": "video",
+            "contentCht": "DG全方位行動化生活的好夥伴 DG是全方位行動化生活的平台，集合了遊戲、娛樂點數、支付、電商、IM溝通互動，並串接零用金，透過簡單人性化的介面，讓生活更豐富，從聊天群組裡即可揪團，為溝通製造更多樂趣! beanfun!不僅是呼朋引伴的最佳神器，更是行動生活的好夥伴，串聯食衣住行育樂，擴大交友圈，為生活，創造更多令人期待的可能性!",
+            "contentEng": "DG is a good partner for omnidirectional mobile life. DG is a platform for omnidirectional mobile life. It integrates games, entertainment points, payment, e-commerce, IM communication and interaction, and connects petty cash. Life is richer, you can find a group from the chat group, and create more fun for communication! Beanfun! Is not only the best artifact for wooing friends, but also a good partner for mobile life, connecting food, clothing, housing, and entertainment. Expand the circle of friends and create more exciting possibilities for life!",
+            "url": "https://www.308262.com/frontend/files/DG.mov"
+        },
+        {
+            "type": "video",
+            "contentCht": "在充滿驚奇的數位世界裡，Gamania總是吸引玩家目光。結合營運、平台與策略聯盟夥伴共同開發，完整佈局遊戲王國。玩家涵蓋中日韓。結合全新概念開發MOFFETT! AI 數位娛樂平台，打造耳目一新的遊戲體驗，豐富的遊戲類型 滿足玩家需求！",
+            "contentEng": "In a digital world full of surprises, Gamania always attracts players' attention. Combining operations, platforms and strategic alliance partners to develop together, the game kingdom is fully laid out. Players cover China, Japan and South Korea. The MOFFETT! AI digital entertainment platform is developed in conjunction with a new concept to create a refreshing game experience and a rich variety of game types to meet the needs of players!",
+            "url": "https://www.308262.com/frontend/files/Gamania.mov"
+        },
+        {
+            "type": "image",
+            "contentCht": "雲端數據與資安的超級專家，整合雲端機房、資安服務、行動安全，創造千萬玩家安全無虞的資安環境，聯盟夥伴，共創雲端數據大未來。Qata前身為Gamania資訊技術與資訊安全部門獨立的子公司，以十多年來維運規模達數千台伺服器所累積的技術經驗，提供國內外客戶在資訊安全、系統整合、IDC/NOC/SOC的量身訂做服務與解決方案。",
+            "contentEng": "Super experts of cloud data and security, integrate cloud computer room, security services, and mobile security to create a safe and secure security environment for tens of millions of players. Alliance partners create a big future for cloud data. Qata, formerly an independent subsidiary of Gamania ’s information technology and information security department, has accumulated technical experience accumulated over thousands of servers for more than ten years to provide domestic and foreign customers with information security, system integration, IDC / NOC SOC tailor-made services and solutions.",
+            "url": "https://www.308262.com/frontend/files/Qata.jpg"
+        },
+        {
+            "type": "image",
+            "contentCht": "當置身數位娛樂世界，如何讓消費變得輕鬆方便又心安？通通交給GASH吧！ 2015年，整合遊戲點數、行動支付與媒體採購事業，GASH重新調整品牌形象，推出全新品牌識別。以熱情的洋紅色象徵更具溫度的支付服務，並持續深化安全機制，展開多元服務，讓消費與智慧生活聰明串連。",
+            "contentEng": "When you are in the digital entertainment world, how can you make consumption easy and convenient? Give it to GASH! In 2015, integrating game points, mobile payment and media procurement, GASH readjusted its brand image and launched a new brand identification. The warm magenta symbolizes a warmer payment service, and continues to deepen the security mechanism, develop multiple services, and make consumption and smart life cleverly connected.",
+            "url": "https://www.308262.com/frontend/files/GASH.jpg"
+        }
+    ]
+}

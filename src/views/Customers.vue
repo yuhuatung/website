@@ -12,8 +12,20 @@
         Wanlian has been involved in many projects, utilizing an amalgamation of various solutions.
       </div>
     </div>
-    <div class="customers">
+    <div class="customers" :style="{ height: customersHeight + 'px' }">
       <img src="@/assets/img/icons8-expand_arrow-3_2x.png" class="arrow" />
+      <div v-for="(item, index) in data.customers" :key="index" class="content">
+        <div class="customers-list">
+          <video class="sleep-video" v-if="item.type == 'video'" controls>
+            <source :src="item.url" type="video/mp4">
+          </video>
+          <img :src="item.url" v-if="item.type == 'image'"/>
+          <div class="customers-content">
+            <div class="content-cht">{{item.contentCht}}</div>
+            <div class="content-eng">{{item.contentEng}}</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="footer">
       <div class="media">
@@ -26,6 +38,27 @@
 </template>
 
 <script>
+import data from "@/assets/json/customers.json";
+export default {
+  name: "Customers",
+  data() {
+    return {
+      data: data,
+    };
+  },
+  components: {
+  },
+  computed: {
+    customersHeight() {
+      let numOfData = data.customers.length;
+      return numOfData*320 + 80;
+    }
+  },
+  methods: {
+  },
+  mounted() {
+  }
+};
 </script>
 <style lang="scss">
 @import "../assets/style/utils/_variables.scss";
@@ -71,13 +104,39 @@
     }
   }
   .customers{
-    height: 1500px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: #fff;
     .arrow{
       margin-top: 15px;
       width: 32px;
+    }
+    .customers-list{
+      width: 1064px;
+      height: 280px;
+      margin: 20px auto;
+      display: flex;
+      video, img{
+        width: 353px;
+        height: 265px;
+      }
+      .customers-content{
+        width: 700px;
+        height: 265px;
+        text-align: left;
+        padding-top: 10px;
+        padding-left: 30px;
+        position: relative;
+        .content-cht{
+          font-size: 16px;
+        }
+        .content-eng{
+          top: 180px;
+          position: absolute;
+          font-size: 12px;
+          color: rgb(145, 145, 145);
+        }
+      }
     }
   }
   .footer{
