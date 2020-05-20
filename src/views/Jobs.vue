@@ -431,8 +431,9 @@ export default {
               height: 30px;
             }
             .choose-photo {
-              height: 46px;
+              // height: 46px;
               margin-top: 10px;
+              width: 100%;
             }
           }
         }
@@ -560,6 +561,7 @@ export default {
             .choose-photo {
               // width: 150px;
               margin-top: 0;
+              width: 100%;
             }
           }
         }
