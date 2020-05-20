@@ -12,8 +12,8 @@
         Wanlian has been involved in many projects, utilizing an amalgamation of various solutions.
       </div>
     </div>
-    <div class="customers" :style="{ height: customersHeight + 'px' }">
-      <img src="@/assets/img/icons8-expand_arrow-3_2x.png" class="arrow" />
+    <div class="customers" :style="{ height: customersHeight + 'px' }" ref="customers">
+      <img src="@/assets/img/icons8-expand_arrow-3_2x.png" class="arrow" @click="toCustomers(step)" />
       <div v-for="(item, index) in data.customers" :key="index" class="content">
         <div class="customers-list">
           <video class="sleep-video" v-if="item.type == 'video'" controls>
@@ -44,6 +44,7 @@ export default {
   data() {
     return {
       data: data,
+      step: 50,
     };
   },
   components: {
@@ -55,6 +56,16 @@ export default {
     }
   },
   methods: {
+    toCustomers(i) {
+      let height = this.$refs.customers.offsetTop;
+      document.documentElement.scrollTop += i;
+      let c;
+      if (document.documentElement.scrollTop < height) {
+        c = setTimeout(() => this.toCustomers(this.step), 16);
+      } else {
+        clearTimeout(c);
+      }
+    },
   },
   mounted() {
   }
@@ -110,6 +121,7 @@ export default {
     .arrow{
       margin-top: 15px;
       width: 32px;
+      cursor: pointer;
     }
     .customers-list{
       width: 1064px;
