@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: '/frontend/',
+  // publicPath: '/frontend/',
   css: {
     loaderOptions: {
       less: {
