@@ -87,7 +87,11 @@
       </div>
     </div>
     <transition name="background-opacity">
-      <div class="background-opacity" v-show="showApplyForm" @click="showApplyForm = false"></div>
+      <div
+        class="background-opacity"
+        v-show="showApplyForm && screenwidth<810"
+        @click="showApplyForm = false"
+      ></div>
     </transition>
     <transition name="slide-out">
       <div class="apply-form" v-show="showApplyForm || screenwidth>810">
@@ -421,12 +425,16 @@ export default {
               height: 50px;
             }
           }
-          .hint {
-            height: 30px;
-          }
-          .choose-photo {
-            height: 46px;
-            margin-top: 10px;
+          .content-btn {
+            margin-top: auto;
+            .hint {
+              height: 30px;
+            }
+            .choose-photo {
+              // height: 46px;
+              margin-top: 10px;
+              width: 100%;
+            }
           }
         }
         .form {
@@ -543,16 +551,18 @@ export default {
               height: 50px;
             }
           }
-          .hint {
-            // height: 30px;
+          .content-btn {
             margin-top: auto;
-            p {
-              margin: 0;
+            .hint {
+              p {
+                margin: 0;
+              }
             }
-          }
-          .choose-photo {
-            // width: 150px;
-            margin-top: 0;
+            .choose-photo {
+              // width: 150px;
+              margin-top: 0;
+              width: 100%;
+            }
           }
         }
         .form {
@@ -855,7 +865,9 @@ export default {
           align-items: center;
         }
         .content-btn {
-          margin-top: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           .hint {
             color: rgb(145, 145, 145);
             font-size: 12px;
