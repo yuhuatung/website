@@ -267,6 +267,9 @@ export default {
   .jobs {
     width: 100%;
     min-width: 1243px;
+    .header{
+      height:100vh;
+    }
     .subject {
     }
     .search {
@@ -366,6 +369,9 @@ export default {
 @media screen and (min-width: $smallWidth) and (max-width: $bigWidth) {
   .jobs {
     width: 100%;
+    .header{
+      height:60vh;
+    }
     .subject {
     }
     .search {
@@ -483,6 +489,9 @@ export default {
 @media screen and (max-width: $smallWidth) {
   .jobs {
     width: 100%;
+    .header{
+      height:100vh;
+    }
     .subject {
       text-align: left;
       padding-left: 10%;
@@ -620,7 +629,7 @@ export default {
   margin: 0 auto;
   .header {
     width: 100%;
-    height: 100vh;
+    // height: 100vh;
     // background-image: url("~@/assets/img/recruitment.jpg");
     background-repeat: no-repeat;
     position: relative;
