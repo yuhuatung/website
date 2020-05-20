@@ -9,7 +9,7 @@
       <div class="smallLogo">professional
       </div>
       <div class="our-service" @click="toBottom(stepBottom)">
-        <img src="@/assets/img/icons8-expand_arrow-4_2x.png" alt="subscribe-btn" />Our Service
+        <img src="@/assets/img/icons8-expand_arrow-4_2x.png" />Our Service
       </div>
       <div class="service-content">
         對於企業客戶，每一個決定都會產生影響，我們在這裡可以幫助您指導遷移或啟動過程中的動盪和壓力。 我們首先研究您的要求和需求，然後與我們經驗豐富的技術人員團隊一起開發可行的解決方案以及部署策略。
@@ -48,7 +48,11 @@ export default {
       }
     },
   },
-  mounted() {}
+  mounted() {
+  },
+  beforeDestroy() {
+    document.documentElement.scrollTop = 0;
+  }
 };
 </script>
 <style lang="scss">

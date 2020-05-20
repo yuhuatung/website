@@ -68,6 +68,9 @@ export default {
     },
   },
   mounted() {
+  },
+  beforeDestroy() {
+    document.documentElement.scrollTop = 0;
   }
 };
 </script>
