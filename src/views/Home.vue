@@ -62,7 +62,6 @@ export default {
   name: "Home",
   props: ["screenwidth"],
   created() {
-    console.log(this.baseDomain)
     fetchHome([]).then(response=>{
 
       console.log(response)
