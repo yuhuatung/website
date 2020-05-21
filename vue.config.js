@@ -1,5 +1,7 @@
+
+const publicPath = process.env.VUE_APP_PUBLIC_PATH ||  '' // dev port
 module.exports = {
-  // publicPath: '/frontend/',
+  publicPath: publicPath,
   css: {
     loaderOptions: {
       less: {
@@ -9,9 +11,9 @@ module.exports = {
   },
   chainWebpack: (config) => {
     const svgRule = config.module.rule('svg');
- 
+
     svgRule.uses.clear();
- 
+
     svgRule
       .use('babel-loader')
       .loader('babel-loader')
