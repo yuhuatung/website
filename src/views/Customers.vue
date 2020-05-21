@@ -55,7 +55,6 @@ import {fetchCustomer} from "@/api/customerArticle";
 export default {
   name: "Customers",
   created() {
-    console.log(this.baseDomain)
     fetchCustomer([]).then(response=>{
 
       if(response.success){
