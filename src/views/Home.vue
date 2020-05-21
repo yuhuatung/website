@@ -61,6 +61,9 @@ import data from "@/assets/json/home.json";
 export default {
   name: "Home",
   props: ["screenwidth"],
+  created() {
+    console.log(process.env.VUE_APP_BASE_DOMAIN)
+  },
   data() {
     return {
       data: data,

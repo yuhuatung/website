@@ -1,5 +1,12 @@
+'use strict'
+const path = require('path')
+
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
 
 const publicPath = process.env.VUE_APP_PUBLIC_PATH ||  '' // dev port
+console.log(publicPath)
 module.exports = {
   publicPath: publicPath,
   css: {
@@ -20,5 +27,5 @@ module.exports = {
       .end()
       .use('vue-svg-loader')
       .loader('vue-svg-loader');
-  },
+  }
 };
