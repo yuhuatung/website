@@ -6,3 +6,12 @@ export function groupBy(array, prop) {
         return groups
     }, {})
 }
+
+
+export function getJsonParseOrArray(jsonStr) {
+    try {
+        return JSON.parse(jsonStr)
+    } catch (e) {
+        return []
+    }
+}

@@ -2,7 +2,7 @@
   <div class="main" :class="selected === name?'selected':''" :style="{maxHeight:height}">
     <img
       class="btn"
-      :src="image"
+      :src="`${baseDomain}/storage/jobs/icon_member-${quota}.png`"
       alt="showListBtn"
       v-show="screenwidth<576 && showList===false"
       @click="showList = !showList"
@@ -22,7 +22,7 @@
     </transition>
     <transition name="opacity">
       <div class="list" v-show="showList || screenwidth>576">
-        <div v-for="(item, index) in requirement" :key="index" class="content">
+        <div v-for="(item, index) in requirementArray" :key="index" class="content">
           <div class="check">
             <input type="checkbox" />
           </div>
@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import {getJsonParseOrArray} from "@/utils";
+
 export default {
   name: "JobCard",
   props: [
@@ -52,16 +54,19 @@ export default {
     "priority",
     "selected",
     "link",
-    "screenwidth"
+    "screenwidth",
+    "quota"
   ],
   data() {
     return {
-      showList: false
+      baseDomain: process.env.VUE_APP_BASE_DOMAIN,
+      showList: false,
+      requirementArray: getJsonParseOrArray(this.requirement)
     };
   },
   computed: {
     numOfRequirement: function() {
-      return this.requirement.length;
+      return this.requirementArray.length;
     },
     image() {
       let img = [

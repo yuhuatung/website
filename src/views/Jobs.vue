@@ -28,7 +28,7 @@
       <div v-show="screenwidth<810 && showRightBtn === true" class="right-btn" @click="turnRight">
         <img src="@/assets/img/icons8-expand_arrow_2x.png" alt="jobs-right-bnt" />
       </div>
-      <div class="cards" :style="{left:`${left}px`}">
+      <div v-if="Object.keys(welfare).length>0" class="cards" :style="{left:`${left}px`}">
         <div class="outer">
           <span>{{welfareTitleToIndexMap[0]}}</span>
           <div class="card">
@@ -74,8 +74,8 @@
       </div>
     </div>
     <div class="vacancy">
-      <div class="title">job article title</div>
-      <div class="content">job article content</div>
+      <div class="title">最新職缺</div>
+      <div class="content">技最新職缺，我們將不定期更新最新職缺，若有適合您的職缺可以進行訂閱，系統將自動通知您的信箱。</div>
       <div class="subscribe" @click="toBottom(stepBottom)">
         立即訂閱
         <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="subscribe-btn" />
@@ -83,7 +83,7 @@
     </div>
     <div class="vacancy-card">
       <div v-for="(item, index) in jobs" :key="index">
-        <JobCard v-bind="item" :selected="selectedJOb" :screenwidth="screenwidth" ref="vacancy" />
+        <JobCard v-bind="item" :selected="selectedJOb" :screenwidth="screenwidth" ref="vacancy"/>
       </div>
     </div>
     <transition name="background-opacity">
@@ -177,9 +177,9 @@ export default {
       if(response.success){
 
         this.jobs=response.rows.jobs
-        this.welfare=response.rows.welfare
+        const tempWelfare =response.rows.welfare
 
-        this.welfare=groupBy(response.rows.welfare,'title')
+        this.welfare=groupBy(tempWelfare,'title')
 
       }
 
@@ -189,7 +189,7 @@ export default {
   data() {
     return {
       baseDomain: process.env.VUE_APP_BASE_DOMAIN,
-      welfare: [],
+      welfare: {},
       jobs: [],
       welfareTitleToIndexMap: {
         0: '基本權益',
