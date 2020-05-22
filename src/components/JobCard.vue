@@ -1,13 +1,15 @@
 <template>
   <div class="main" :class="selected === name?'selected':''" :style="{maxHeight:height}">
     <img
-      class="btn"
-      :src="`${baseDomain}/storage/jobs/icon_member-${quota}.png`"
-      alt="showListBtn"
-      v-show="screenwidth<576 && showList===false"
-      @click="showList = !showList"
+        class="btn"
+        :src="image"
+        alt="showListBtn"
+        v-show="screenwidth<576 && showList===false"
+        @click="showList = !showList"
     />
-    <div class="avatar"></div>
+    <div class="avatar">
+      <img :src="`${baseDomain}/storage/jobs/icon_member-${quota}.png`">
+    </div>
     <div class="title">{{name}}</div>
     <div class="salary">
       NT
