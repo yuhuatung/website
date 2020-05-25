@@ -48,31 +48,31 @@
           <div class="col1">
             <div class="first">
               <div class="form-name">姓名</div>
-              <input text="text" placeholder="請輸入真實姓名" />
+              <input text="text" placeholder="請輸入真實姓名" v-model="contactData.name"/>
             </div>
             <div class="first">
               <div class="form-name">信箱</div>
-              <input text="text" placeholder="@gmail.com" />
+              <input text="text" placeholder="@gmail.com"  v-model="contactData.email"/>
             </div>
           </div>
           <div class="col2">
             <div class="first">
               <div class="form-name">手機</div>
-              <input text="text" placeholder="+886-000-000-000" />
+              <input text="text" placeholder="+886-000-000-000" v-model="contactData.mobile"/>
             </div>
             <div class="first">
               <div class="form-name">職業</div>
-              <input text="text" placeholder="輸入您目前的職業性質" />
+              <input text="text" placeholder="輸入您目前的職業性質" v-model="contactData.job"/>
             </div>
           </div>
           <div class="col3">
             <div class="form-name">留言</div>
-            <input text="text" placeholder="輸入信息標題" class="message" />
-            <textarea placeholder="輸入訊息內容（300字）" maxlength="300" class="info" />
+            <input text="text" placeholder="輸入信息標題" class="message" v-model="contactData.message_title" />
+            <textarea placeholder="輸入訊息內容（300字）" maxlength="300" class="info" v-model="contactData.message_content" />
           </div>
         </div>
         <div class="row2">
-          <div class="subscribe">SEND</div>
+          <div class="subscribe" @click="sendContactData()">SEND</div>
           <div class="hint">我們將收入您寶貴的建議</div>
         </div>
       </div>
@@ -81,11 +81,23 @@
 </template>
 
 <script>
+  import {sendContact} from "@/api/contact";
+
 export default {
   name: "Contacts",
   props: ["screenwidth"],
   data() {
-    return {};
+    return {
+
+        contactData: {
+          "name":"",
+          "mobile":"",
+          "message_title":"",
+          "message_content":"",
+          "email":"",
+          "job":""
+        }
+    }
   },
   computed: {
     bigImage() {
@@ -94,6 +106,24 @@ export default {
         img = { src: require("@/assets/img/contact_iphone.jpg") };
       }
       return img.src;
+    }
+  },
+  methods:{
+
+    sendContactData(){
+
+      sendContact(this.contactData).then(response=>{
+
+        if(response.success){
+          alert('送出成功')
+        }else{
+          alert('送出失敗')
+        }
+      }).catch(e=>{
+        console.log(e)
+        alert('送出失敗')
+      })
+
     }
   }
 };

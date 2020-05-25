@@ -101,45 +101,47 @@
         <div class="containar">
           <div class="picture">
             <div class="photo">
-              <img class="icon-photo" src="@/assets/img/folder_filled_2x.png" />
+              <img class="icon-photo" v-if="avatarPreviewUrl" :src="avatarPreviewUrl" />
             </div>
             <div class="content-btn">
               <p class="hint">
                 請選擇進3個月的求職照片。
                 <br />照片大小限3MB
               </p>
-              <p class="choose-photo">選擇照片</p>
+              <p class="choose-photo" @click="$refs['avatar-file'].click()">選擇照片</p>
+              <input type="file" ref="avatar-file" @change="avatarChange" v-show="false">
+
             </div>
           </div>
           <div class="form">
             <div class="row1">
               <div>
                 <div class="form-name">姓名</div>
-                <input text="text" placeholder="請輸入真實姓名" />
+                <input text="text" placeholder="請輸入真實姓名" v-model="jobSubscriberData.name" />
               </div>
               <div>
                 <div class="form-name">手機</div>
-                <input text="text" placeholder="+886-000-000-000" />
+                <input text="text" placeholder="+886-000-000-000" v-model="jobSubscriberData.mobile"/>
               </div>
             </div>
             <div class="row2">
               <div>
                 <div class="form-name">信箱</div>
-                <input text="text" placeholder="@gmail.com" />
+                <input text="text" placeholder="@gmail.com" v-model="jobSubscriberData.email"/>
               </div>
               <div>
                 <div class="form-name">職業</div>
-                <input text="text" placeholder="輸入您目前的職業性質" />
+                <input text="text" placeholder="輸入您目前的職業性質" v-model="jobSubscriberData.job_title"/>
               </div>
             </div>
             <div class="row3">
               <div>
                 <div class="form-name">地址</div>
-                <input text="text" placeholder="縣市-區-路" />
+                <input text="text" placeholder="縣市-區-路" v-model="jobSubscriberData.address"/>
               </div>
             </div>
             <div class="row4">
-              <div class="subscribe">立即訂閱</div>
+              <div class="subscribe" @click="sendJobSubscriberData()">立即訂閱</div>
               <div class="hint" v-if="screenwidth>810">沒看到適合您的職缺嗎！ 別擔心，訂閱即可收到最新職缺通知。</div>
               <div class="hint" v-else>建立您的人履歷，將由專員親自與您聯繫。</div>
             </div>
@@ -150,7 +152,7 @@
     <div class="small-apply-form" v-show="screenwidth<810">
       <div class="subscribe" @click="showApplyForm = true">
         立即訂閱
-        <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="subscribe-btn" />
+        <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="subscribe-btn"/>
       </div>
       <div class="hint">
         沒看到適合您的職缺嗎！
@@ -164,6 +166,7 @@
 // @ is an alias to /src
 import JobCard from "@/components/JobCard.vue";
 import {fetchRecruiting} from "@/api/recruiting";
+import {addJobSubscriber} from "@/api/job";
 import {groupBy} from "@/utils";
 
 export default {
@@ -202,8 +205,18 @@ export default {
       showLeftBtn: false,
       showRightBtn: true,
       left: 0,
-      showApplyForm: false
-    };
+      showApplyForm: false,
+      avatarTemp:"",
+      avatarPreviewUrl:"",
+      jobSubscriberData: {
+        "name": "",
+        "mobile": "",
+        "email": "",
+        "job_title": "",
+        "address": "",
+        "avatar": ""
+      }
+    }
   },
   computed: {
     bigImage() {
@@ -227,6 +240,39 @@ export default {
     }
   },
   methods: {
+    avatarChange(e) {
+
+      this.jobSubscriberData.avatar = e.target.files[0]
+
+      this.avatarPreviewUrl = URL.createObjectURL(this.jobSubscriberData.avatar);
+
+    },
+    sendJobSubscriberData(){
+
+
+      const bodyFormData = new FormData()
+
+      bodyFormData.set('name', this.jobSubscriberData.name)
+      bodyFormData.append('avatar', this.jobSubscriberData.avatar)
+      bodyFormData.set('address', this.jobSubscriberData.address)
+      bodyFormData.set('job_title', this.jobSubscriberData.job_title)
+      bodyFormData.set('email', this.jobSubscriberData.email)
+      bodyFormData.set('mobile', this.jobSubscriberData.mobile)
+
+
+      addJobSubscriber(bodyFormData).then(response=>{
+
+        if(response.success){
+          alert('訂閱成功')
+        }else{
+          alert('訂閱失敗')
+        }
+      }).catch(e=>{
+        console.log(e)
+        alert('訂閱失敗')
+      })
+
+    },
     turnLeft() {
       if (this.screenwidth > 576) {
         this.showLeftBtn = false;
