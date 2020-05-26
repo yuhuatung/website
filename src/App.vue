@@ -19,9 +19,24 @@
 <script>
 // import Logo from "@/assets/svg/logo.svg";
 // import WanLian from "@/assets/svg/wanlian.svg";
-
+import {fetchAllCatalog} from '@/api/catalog'
 export default {
   name: "Home",
+  created() {
+
+    fetchAllCatalog()
+    .then(response=>{
+
+      if(response.success){
+        this.$store.dispatch('catalog/setCatalog', response.rows)
+      }
+
+    })
+    .catch(e=>{
+        console.log(e)
+      }
+    )
+  },
   components: {
     // Logo,
     // WanLian

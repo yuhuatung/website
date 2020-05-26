@@ -1,33 +1,11 @@
 import request from '../utils/request'
 
-export function fetchJobs(query) {
+export function addJobSubscriber(query) {
+  console.log(query)
   return request({
-    url: '/api/admin/v1/jobs',
-    method: 'get',
-    params: query
-  })
-}
-
-export function createJobs(data) {
-  return request({
-    url: '/api/admin/v1/jobs',
+    url: '/api/front/v1/jobs/subscribe',
     method: 'post',
-    data
+    data: query
   })
 }
 
-export function updateJobs(data) {
-  return request({
-    url: '/api/admin/v1/jobs',
-    method: 'put',
-    data
-  })
-}
-
-export function deleteJobs(data) {
-  return request({
-    url: '/api/admin/v1/jobs',
-    method: 'delete',
-    params: data
-  })
-}
