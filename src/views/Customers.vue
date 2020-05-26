@@ -68,9 +68,9 @@ export default {
   methods: {
     toCustomers(i) {
       let height = this.$refs.customers.offsetTop;
-      document.documentElement.scrollTop += i;
+      document.scrollingElement.scrollTop += i;
       let c;
-      if (document.documentElement.scrollTop < height) {
+      if (document.scrollingElement.scrollTop < height) {
         c = setTimeout(() => this.toCustomers(this.step), 16);
       } else {
         clearTimeout(c);
@@ -79,7 +79,7 @@ export default {
   },
   mounted() {},
   beforeDestroy() {
-    document.documentElement.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
   }
 };
 </script>

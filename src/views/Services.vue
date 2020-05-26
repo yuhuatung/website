@@ -78,9 +78,9 @@ export default {
         document.documentElement.clientHeight || document.body.clientHeight;
       let scrollHeight = document.documentElement.scrollHeight;
       let height = scrollHeight - clientHeight - 10; //超出窗口上界的值就是底部的scrolTop的值
-      document.documentElement.scrollTop += i;
+      document.scrollingElement.scrollTop += i;
       let c;
-      if (document.documentElement.scrollTop < height) {
+      if (document.scrollingElement.scrollTop < height) {
         c = setTimeout(() => this.toBottom(i), 16);
       } else {
         clearTimeout(c);
@@ -93,7 +93,7 @@ export default {
   mounted() {
   },
   beforeDestroy() {
-    document.documentElement.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
   }
 };
 </script>

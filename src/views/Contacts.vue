@@ -95,6 +95,11 @@ export default {
       }
       return img.src;
     }
+  },
+  methods: {
+    beforeDestroy() {
+      document.scrollingElement.scrollTop = 0;
+    }
   }
 };
 </script>
@@ -345,7 +350,7 @@ export default {
       .address {
         background: rgba(94, 94, 94, 0.7);
         .content {
-          text-align: left;
+          // text-align: left;
         }
       }
       .email {
