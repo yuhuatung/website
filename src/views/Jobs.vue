@@ -317,7 +317,7 @@ export default {
       }
     },
     handleMenuClick(e) {
-      let height = this.$refs.vacancy[e.key].$el.offsetTop - 30;
+      let height = this.$refs.vacancy[e.key].$el.offsetTop - 100;
       this.selectedJOb = this.jobs[e.key].name;
       this.toJobCard(this.stepJob, height);
     },
