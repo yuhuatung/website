@@ -12,7 +12,7 @@
             台北市信義區信義路四段
             <br />世紀金融大樓
           </div>
-          <div class="copy" @click.stop.prevent="copyAddress">
+          <div class="copy" @click.stop.prevent="copyText('addressToCopy')">
             <img src="@/assets/img/icons8-copy_2x.png" />copy
           </div>
           <div class="bottom"><a href="https://goo.gl/maps/s3Jbny6iqBcy7qkf8" target="_blank">Google Map</a></div>
@@ -20,7 +20,7 @@
         <div class="email">
           <div class="subject">E-mail</div>
           <div class="content" ref="emailToCopy">hr@Wanlian-tech.com</div>
-          <div class="copy" @click.stop.prevent="copyEmail">
+          <div class="copy" @click.stop.prevent="copyText('emailToCopy')">
             <img src="@/assets/img/icons8-copy_2x.png" />copy
           </div>
           <div class="bottom">Outlook</div>
@@ -124,19 +124,8 @@ export default {
         alert('送出失敗')
       })
     },
-    copyAddress () {
-      this.selectText(this.$refs.addressToCopy); // e.g. <div ref="text">
-      document.execCommand("copy");
-      try {
-        document.execCommand('copy');
-        alert('Copied the text.');
-      } catch (err) {
-        alert('Oops, unable to copy');
-      }
-    },
-    copyEmail () {
-      this.selectText(this.$refs.emailToCopy); // e.g. <div ref="text">
-      document.execCommand("copy");
+    copyText (text) {
+      this.selectText(this.$refs[text]); // e.g. <div ref="text">
       try {
         document.execCommand('copy');
         alert('Copied the text.');
@@ -474,6 +463,10 @@ export default {
         padding: 0px 15px;
         font-size: 12px;
       }
+      input:focus{
+        border: 1px #5facf0 solid;
+        outline: none;
+      }
       .row1 {
         font-size: 16px;
         text-align: left;
@@ -484,15 +477,17 @@ export default {
         .first + .first {
           margin-top: 30px;
         }
-
         .col3 {
           display: flex;
-
           .info {
             border-radius: 10px;
             font-size: 12px;
             padding: 10px 15px;
             border: 1px rgb(214, 214, 214) solid;
+          }
+          .info:focus{
+            border: 1px #5facf0 solid;
+            outline: none;
           }
         }
       }
