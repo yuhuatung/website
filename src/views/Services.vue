@@ -1,19 +1,18 @@
 <template>
   <div class="services-body">
     <div class="top">
-      <video class="sleep-video" autoplay muted loop>
-        <source src="https://www.308262.com/vue/files/service.mov" type="video/mp4">
+      <video v-if="screenwidth>810" class="sleep-video" autoplay muted loop>
+        <source src="https://www.308262.com/vue/files/service.mov" type="video/mp4" />
       </video>
-      <div class="bigLogo">WeAre
-      </div>
-      <div class="smallLogo">professional
-      </div>
+      <img v-if="screenwidth<810" class="sleep-video" :src="bigImage" alt="contactsImg" />
+      <div class="bigLogo">WeAre</div>
+      <div class="smallLogo">professional</div>
       <div class="our-service" @click="toBottom(stepBottom)">
         <img src="@/assets/img/icons8-expand_arrow-4_2x.png" />Our Service
       </div>
-      <div class="service-content">
-        對於企業客戶，每一個決定都會產生影響，我們在這裡可以幫助您指導遷移或啟動過程中的動盪和壓力。 我們首先研究您的要求和需求，然後與我們經驗豐富的技術人員團隊一起開發可行的解決方案以及部署策略。
-      </div>
+      <div
+        class="service-content"
+      >對於企業客戶，每一個決定都會產生影響，我們在這裡可以幫助您指導遷移或啟動過程中的動盪和壓力。 我們首先研究您的要求和需求，然後與我們經驗豐富的技術人員團隊一起開發可行的解決方案以及部署策略。</div>
     </div>
     <div class="services">
       <div v-for="(item, index) in services" :key="index" class="services-item">
@@ -25,15 +24,29 @@
       </div>
     </div>
     <div class="footer">
-      <div class="footer-left">For Enterprise clients every decision has repercussions and we are here to help guide you through the turbulence and stress involved in migrations or start-ups. We start by delving into your requirements and needs, then working with our team of experienced technicians to develop a working solution as well as a deployment strategy.</div>
-      <div class="footer-right">Consultation Services (Standardization, Strategic Technology and Adoption Assessment, Evaluation, POC, Mentoring) Implementation Services (Design, Architect, Plan and Build) Training Services (Standard or Customize) Managed Services (7/24 round the clock remote/on-site project nursing residency or support) Development Services (Java and Enterprise System Integration) Enterprise</div>
+      <div
+        class="footer-left"
+      >For Enterprise clients every decision has repercussions and we are here to help guide you through the turbulence and stress involved in migrations or start-ups. We start by delving into your requirements and needs, then working with our team of experienced technicians to develop a working solution as well as a deployment strategy.</div>
+      <div
+        class="footer-right"
+      >Consultation Services (Standardization, Strategic Technology and Adoption Assessment, Evaluation, POC, Mentoring) Implementation Services (Design, Architect, Plan and Build) Training Services (Standard or Customize) Managed Services (7/24 round the clock remote/on-site project nursing residency or support) Development Services (Java and Enterprise System Integration) Enterprise</div>
     </div>
   </div>
 </template>
 
 <script>
+// import { fetchService } from "@/api/serviceArticle";
+
 export default {
   name: "Services",
+  props: ["screenwidth"],
+  created() {
+    // fetchService([]).then(response => {
+    //   if (response.success) {
+    //     this.services = response.rows;
+    //   }
+    // });
+  },
   data() {
     return {
       stepBottom: 50, //此数据是控制动画快慢的
@@ -71,6 +84,13 @@ export default {
     };
   },
   computed: {
+    bigImage() {
+      let img = { src: require("@/assets/img/service.jpg") };
+      if (this.screenwidth < 576) {
+        img = { src: require("@/assets/img/service.jpg") };
+      }
+      return img.src;
+    }
   },
   methods: {
     toBottom(i) {
@@ -90,122 +110,306 @@ export default {
       return require("@/assets/img/" + image);
     }
   },
-  mounted() {
-  },
+  mounted() {},
   beforeDestroy() {
     document.scrollingElement.scrollTop = 0;
   }
 };
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 @import "../assets/style/utils/_variables.scss";
 @media screen and (min-width: $bigWidth) {
-}
-@media screen and (min-width: $smallWidth) and (max-width: $bigWidth) {
-}
-@media screen and (max-width: $smallWidth) {
-}
-.services-body {
-  .top{
-    height: 750px;
-    color: white;
-    position: relative;
-    .sleep-video {
-      left: 0;
-      top: 0;
-      position: fixed;
-      // width: 100%;
-      min-height: 100vh;
-      min-width: 100vw;
-      z-index: -20;
-    }
-    .bigLogo{
-      font-size: 96px;
-      position: absolute;
-      top: 80px;
-      left: 40px;
-    }
-    .smallLogo{
-      font-size: 64px;
-      position: absolute;
-      top: 180px;
-      left: 50px;
-    }
-    .our-service{
-      font-size: 16px;
-      position: absolute;
-      bottom: 180px;
-      right: 300px;
-      width: 150px;
-      height: 56px;
-      background-color: rgba(232, 235, 237, 0.5);
-      line-height: 56px;
-      padding-left: 10px;
-      cursor: pointer;
-      img{
-        width: 32px;
-        position: relative;
-        left: -10px;
+  .services-body {
+    .top {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      .sleep-video {
+        min-height: 100vh;
+        min-width: 100vw;
+        position: fixed;
+        height: auto;
+        width: auto;
+        left: 50%;
+        transform: translate(-50%);
+        top: 0;
+        z-index: -1;
+      }
+      .bigLogo {
+        font-size: 96px;
+        top: 80px;
+        left: 40px;
+      }
+      .smallLogo {
+        font-size: 64px;
+        top: 180px;
+        left: 50px;
+      }
+      .our-service {
+        font-size: 16px;
+        position: absolute;
+        width: 150px;
+        height: 56px;
+        right: 312px;
+        bottom: 180px;
+        img {
+          width: 32px;
+          padding-right: 10px;
+        }
+      }
+      .service-content {
+        position: absolute;
+        bottom: 80px;
+        right: 50px;
+        max-width: 413px;
+        font-size: 14px;
       }
     }
-    .service-content{
-      font-size: 14px;
+    .services {
+      min-width: 1056px;
+      padding: 0 20px;
+      width: 100%;
+      .services-item {
+        margin: 0 4px 8px;
+        display: flex;
+        position: relative;
+        img,
+        .mask {
+          max-width: 344px;
+          height: 229px;
+        }
+        .mask {
+          opacity: 0;
+          transition: opacity 0.3s;
+          .services-title {
+            margin-top: 20%;
+          }
+          .services-content {
+            margin-top: 8%;
+          }
+        }
+        .mask:hover {
+          opacity: 1;
+        }
+      }
+    }
+    .footer {
+      min-width: 1050px;
+      text-align: left;
+      margin: 60px auto 30px;
+      max-width: 1050px;
+      padding: 0 20px;
+      width: 100%;
+      justify-content: center;
+      .footer-left {
+        flex: 1;
+        margin-right: 20px;
+      }
+      .footer-right {
+        flex: 1;
+      }
+    }
+  }
+}
+@media screen and (min-width: $smallWidth) and (max-width: $bigWidth) {
+  .services-body {
+    background-color: rgb(3, 16, 47);
+    .top {
+      width: 100vw;
+      position: relative;
+      .sleep-video {
+        width: 100vw;
+      }
+      .bigLogo {
+        font-size: 96px;
+        top: 80px;
+        left: 40px;
+      }
+      .smallLogo {
+        font-size: 64px;
+        top: 180px;
+        left: 50px;
+      }
+      .our-service {
+        font-size: 16px;
+        position: absolute;
+        width: 150px;
+        height: 56px;
+        right: 30px;
+        bottom: 150px;
+        img {
+          width: 32px;
+          padding-right: 10px;
+        }
+      }
+      .service-content {
+        margin: 60px auto;
+        max-width: 413px;
+        font-size: 14px;
+      }
+    }
+    .services {
+      width: 100%;
+      .services-item {
+        margin: 10px;
+        img,
+        .mask {
+          max-width: 344px;
+        }
+        .mask {
+          bottom: 0;
+          .services-title {
+            margin-top: 15px;
+          }
+          .services-content {
+            margin-top: 15px;
+            margin-bottom: 15px;
+          }
+        }
+      }
+    }
+    .footer {
+      margin: 0 auto;
+      justify-content: center;
+      flex-wrap: wrap;
+      .footer-left,
+      .footer-right {
+        box-sizing: border-box;
+        width: 344px;
+        padding: 0 3px;
+        margin: 10px;
+      }
+    }
+  }
+}
+@media screen and (max-width: $smallWidth) {
+  .services-body {
+    background-color: rgb(3, 16, 47);
+    padding-bottom: 60px;
+    .top {
+      width: 100vw;
+      position: relative;
+      .sleep-video {
+        width: 100vw;
+      }
+      .bigLogo {
+        font-size: 24px;
+        top: 100px;
+        left: 20px;
+      }
+      .smallLogo {
+        font-size: 24px;
+        top: 130px;
+        left: 20px;
+      }
+      .our-service {
+        font-size: 12px;
+        bottom: 90px;
+        right: 30px;
+        // width: 116px;
+        padding: 7px;
+        img {
+          width: 15px;
+          margin-right: 5px;
+        }
+      }
+      .service-content {
+        margin: 20px auto;
+        max-width: 85%;
+        font-size: 12px;
+      }
+    }
+    .services {
+      width: 90%;
+      .services-item {
+        margin: 10px;
+        width: 100%;
+        img,
+        .mask {
+          width: 100%;
+          height: 100%;
+        }
+        .mask {
+          height: auto;
+          bottom: 0;
+          .services-title {
+            margin-top: 15px;
+          }
+          .services-content {
+            margin-top: 15px;
+            margin-bottom: 15px;
+          }
+        }
+      }
+    }
+    .footer {
+      margin: 0 auto;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 90%;
+      .footer-left,
+      .footer-right {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 3px;
+        margin: 10px;
+      }
+    }
+  }
+}
+.services-body {
+  width: 100%;
+  .top {
+    color: white;
+    .bigLogo,
+    .smallLogo {
       position: absolute;
-      bottom: 80px;
-      right: 50px;
-      width: 413px;
+    }
+    .our-service {
+      position: absolute;
+      background-color: rgba(232, 235, 237, 0.5);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .service-content {
+      width: 100%;
       text-align: left;
     }
   }
-  .services{
-    height: 480px;;
-    width: 1092px;
+  .services {
+    max-width: 1092px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
     margin: 0 auto;
-    .services-item{
-      margin: 0 4px;
+    .services-item {
       color: rgb(255, 255, 255);
       display: flex;
       position: relative;
-      overflow: hidden;
       img,
-      .mask{
-        width: 344px;
-        height: 229px;
+      .mask {
+        width: 100%;
       }
-      .mask{
+      .mask {
         position: absolute;
         background: rgba(0, 150, 255, 0.8);
-        .services-title{
-          margin-top: 20%;
+        .services-title {
           font-size: 16px;
         }
-        .services-content{
-          margin-top: 8%;
+        .services-content {
           font-size: 12px;
         }
       }
-      .mask:hover{
-        background: rgba(0, 150, 255, 1);
-      }
     }
   }
-  .footer{
+  .footer {
     font-size: 12px;
     color: white;
     text-align: left;
     display: flex;
-    justify-content: center;
-    margin-top: 60px;
-    margin-bottom: 30px;
-    .footer-left{
-      width: 466px;
-    }
-    .footer-right{
-      width: 466px;
-    }
+    align-items: center;
   }
 }
 </style>
