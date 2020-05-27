@@ -320,10 +320,6 @@ export default {
           .photo {
             width: 151px;
             height: 166px;
-            img {
-              width: 50px;
-              height: 50px;
-            }
           }
           .hint {
             margin-top: 30px;
@@ -428,10 +424,6 @@ export default {
             width: 117px;
             height: 130px;
             margin-right: 5%;
-            img {
-              width: 50px;
-              height: 50px;
-            }
           }
           .content-btn {
             margin-top: auto;
@@ -557,10 +549,6 @@ export default {
             width: 117px;
             height: 130px;
             margin-right: 12%;
-            img {
-              width: 50px;
-              height: 50px;
-            }
           }
           .content-btn {
             margin-top: auto;
@@ -874,6 +862,10 @@ export default {
           display: flex;
           justify-content: center;
           align-items: center;
+          img {
+            max-width: 100%;
+            max-height: 100%;
+          }
         }
         .content-btn {
           display: flex;
