@@ -33,7 +33,11 @@
           <span>{{welfareTitleToIndexMap[0]}}</span>
           <div class="card">
             <div class="inner">
-              <div v-for="(item, index) in welfare[welfareTitleToIndexMap[0]]" :key="index" class="content">
+              <div
+                v-for="(item, index) in welfare[welfareTitleToIndexMap[0]]"
+                :key="index"
+                class="content"
+              >
                 <div class="subject">{{item.name}}</div>
                 <div v-html="item.content"></div>
               </div>
@@ -44,7 +48,11 @@
           <span>{{welfareTitleToIndexMap[1]}}</span>
           <div class="card">
             <div class="inner">
-              <div v-for="(item, index) in welfare[welfareTitleToIndexMap[1]].slice(0, 4)" :key="index" class="content">
+              <div
+                v-for="(item, index) in welfare[welfareTitleToIndexMap[1]].slice(0, 4)"
+                :key="index"
+                class="content"
+              >
                 <div class="subject">{{item.name}}</div>
                 <div v-html="item.content"></div>
               </div>
@@ -64,7 +72,11 @@
           <span>{{welfareTitleToIndexMap[2]}}</span>
           <div class="card">
             <div class="inner">
-              <div v-for="(item, index) in welfare[welfareTitleToIndexMap[2]]" :key="index" class="content">
+              <div
+                v-for="(item, index) in welfare[welfareTitleToIndexMap[2]]"
+                :key="index"
+                class="content"
+              >
                 <div class="subject">{{item.name}}</div>
                 <div v-html="item.content"></div>
               </div>
@@ -83,7 +95,7 @@
     </div>
     <div class="vacancy-card">
       <div v-for="(item, index) in jobs" :key="index">
-        <JobCard v-bind="item" :selected="selectedJOb" :screenwidth="screenwidth" ref="vacancy"/>
+        <JobCard v-bind="item" :selected="selectedJOb" :screenwidth="screenwidth" ref="vacancy" />
       </div>
     </div>
     <transition name="background-opacity">
@@ -109,8 +121,7 @@
                 <br />照片大小限3MB
               </p>
               <p class="choose-photo" @click="$refs['avatar-file'].click()">選擇照片</p>
-              <input type="file" ref="avatar-file" @change="avatarChange" v-show="false">
-
+              <input type="file" ref="avatar-file" @change="avatarChange" v-show="false" />
             </div>
           </div>
           <div class="form">
@@ -121,23 +132,27 @@
               </div>
               <div>
                 <div class="form-name">手機</div>
-                <input text="text" placeholder="+886-000-000-000" v-model="jobSubscriberData.mobile"/>
+                <input
+                  text="text"
+                  placeholder="+886-000-000-000"
+                  v-model="jobSubscriberData.mobile"
+                />
               </div>
             </div>
             <div class="row2">
               <div>
                 <div class="form-name">信箱</div>
-                <input text="text" placeholder="@gmail.com" v-model="jobSubscriberData.email"/>
+                <input text="text" placeholder="@gmail.com" v-model="jobSubscriberData.email" />
               </div>
               <div>
                 <div class="form-name">職業</div>
-                <input text="text" placeholder="輸入您目前的職業性質" v-model="jobSubscriberData.job_title"/>
+                <input text="text" placeholder="輸入您目前的職業性質" v-model="jobSubscriberData.job_title" />
               </div>
             </div>
             <div class="row3">
               <div>
                 <div class="form-name">地址</div>
-                <input text="text" placeholder="縣市-區-路" v-model="jobSubscriberData.address"/>
+                <input text="text" placeholder="縣市-區-路" v-model="jobSubscriberData.address" />
               </div>
             </div>
             <div class="row4">
@@ -152,7 +167,7 @@
     <div class="small-apply-form" v-show="screenwidth<810">
       <div class="subscribe" @click="showApplyForm = true">
         立即訂閱
-        <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="subscribe-btn"/>
+        <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="subscribe-btn" />
       </div>
       <div class="hint">
         沒看到適合您的職缺嗎！
@@ -165,9 +180,9 @@
 <script>
 // @ is an alias to /src
 import JobCard from "@/components/JobCard.vue";
-import {fetchRecruiting} from "@/api/recruiting";
-import {addJobSubscriber} from "@/api/job";
-import {groupBy} from "@/utils";
+import { fetchRecruiting } from "@/api/recruiting";
+import { addJobSubscriber } from "@/api/job";
+import { groupBy } from "@/utils";
 
 export default {
   name: "Jobs",
@@ -175,18 +190,14 @@ export default {
     JobCard
   },
   created() {
-    fetchRecruiting([]).then(response=>{
+    fetchRecruiting([]).then(response => {
+      if (response.success) {
+        this.jobs = response.rows.jobs;
+        const tempWelfare = response.rows.welfare;
 
-      if(response.success){
-
-        this.jobs=response.rows.jobs
-        const tempWelfare =response.rows.welfare
-
-        this.welfare=groupBy(tempWelfare,'title')
-
+        this.welfare = groupBy(tempWelfare, "title");
       }
-
-    })
+    });
   },
   props: ["screenwidth"],
   data() {
@@ -195,9 +206,9 @@ export default {
       welfare: {},
       jobs: [],
       welfareTitleToIndexMap: {
-        0: '基本權益',
-        1: '獎金發放',
-        2: '休假申請'
+        0: "基本權益",
+        1: "獎金發放",
+        2: "休假申請"
       },
       stepBottom: 200, //此数据是控制动画快慢的
       stepJob: 50,
@@ -206,17 +217,17 @@ export default {
       showRightBtn: true,
       left: 0,
       showApplyForm: false,
-      avatarTemp:"",
-      avatarPreviewUrl:"",
+      avatarTemp: "",
+      avatarPreviewUrl: "",
       jobSubscriberData: {
-        "name": "",
-        "mobile": "",
-        "email": "",
-        "job_title": "",
-        "address": "",
-        "avatar": ""
+        name: "",
+        mobile: "",
+        email: "",
+        job_title: "",
+        address: "",
+        avatar: ""
       }
-    }
+    };
   },
   computed: {
     bigImage() {
@@ -241,37 +252,34 @@ export default {
   },
   methods: {
     avatarChange(e) {
+      this.jobSubscriberData.avatar = e.target.files[0];
 
-      this.jobSubscriberData.avatar = e.target.files[0]
-
-      this.avatarPreviewUrl = URL.createObjectURL(this.jobSubscriberData.avatar);
-
+      this.avatarPreviewUrl = URL.createObjectURL(
+        this.jobSubscriberData.avatar
+      );
     },
-    sendJobSubscriberData(){
+    sendJobSubscriberData() {
+      const bodyFormData = new FormData();
 
+      bodyFormData.set("name", this.jobSubscriberData.name);
+      bodyFormData.append("avatar", this.jobSubscriberData.avatar);
+      bodyFormData.set("address", this.jobSubscriberData.address);
+      bodyFormData.set("job_title", this.jobSubscriberData.job_title);
+      bodyFormData.set("email", this.jobSubscriberData.email);
+      bodyFormData.set("mobile", this.jobSubscriberData.mobile);
 
-      const bodyFormData = new FormData()
-
-      bodyFormData.set('name', this.jobSubscriberData.name)
-      bodyFormData.append('avatar', this.jobSubscriberData.avatar)
-      bodyFormData.set('address', this.jobSubscriberData.address)
-      bodyFormData.set('job_title', this.jobSubscriberData.job_title)
-      bodyFormData.set('email', this.jobSubscriberData.email)
-      bodyFormData.set('mobile', this.jobSubscriberData.mobile)
-
-
-      addJobSubscriber(bodyFormData).then(response=>{
-
-        if(response.success){
-          alert('訂閱成功')
-        }else{
-          alert('訂閱失敗')
-        }
-      }).catch(e=>{
-        console.log(e)
-        alert('訂閱失敗')
-      })
-
+      addJobSubscriber(bodyFormData)
+        .then(response => {
+          if (response.success) {
+            alert("訂閱成功");
+          } else {
+            alert("訂閱失敗");
+          }
+        })
+        .catch(e => {
+          console.log(e);
+          alert("訂閱失敗");
+        });
     },
     turnLeft() {
       if (this.screenwidth > 576) {
@@ -334,8 +342,8 @@ export default {
   .jobs {
     width: 100%;
     min-width: 1243px;
-    .header{
-      height:100vh;
+    .header {
+      height: 100vh;
     }
     .subject {
     }
@@ -432,8 +440,8 @@ export default {
 @media screen and (min-width: $smallWidth) and (max-width: $bigWidth) {
   .jobs {
     width: 100%;
-    .header{
-      height:60vh;
+    .header {
+      height: 60vh;
     }
     .subject {
     }
@@ -470,7 +478,6 @@ export default {
       width: 728px;
     }
     .apply-form {
-      // height: 139px;
       position: fixed;
       bottom: 0;
       z-index: 3;
@@ -478,15 +485,12 @@ export default {
       .containar {
         box-sizing: border-box;
         flex-direction: column;
-        // margin-top: 35px;
         overflow: auto;
         padding: 0 15px;
         height: 100%;
-        margin-top: 35px;
         .picture {
           margin-top: 5%;
           display: flex;
-          // height: 130px;
           .photo {
             width: 117px;
             height: 130px;
@@ -498,7 +502,6 @@ export default {
               height: 30px;
             }
             .choose-photo {
-              // height: 46px;
               margin-top: 10px;
               width: 100%;
             }
@@ -514,7 +517,6 @@ export default {
           .row2,
           .row3,
           .row4 {
-            // margin: 0 5%;
             div {
               width: 46%;
             }
@@ -548,8 +550,8 @@ export default {
 @media screen and (max-width: $smallWidth) {
   .jobs {
     width: 100%;
-    .header{
-      height:100vh;
+    .header {
+      height: calc(100vh - 60px);
     }
     .subject {
       text-align: left;
@@ -593,29 +595,30 @@ export default {
     }
 
     .apply-form {
-      // height: 139px;
       position: fixed;
       bottom: 0;
       z-index: 3;
       height: 80%;
       .containar {
+        display: flex;
+        flex-wrap: wrap;
         box-sizing: border-box;
-        flex-direction: column;
         overflow: auto;
         padding: 0 15px;
         height: 100%;
-        margin-top: 35px;
-        align-items: center;
+        justify-content: center;
         .picture {
           margin-top: 10%;
-          // height: 166px;
           display: flex;
-          // height: 140px;
           width: 90%;
           .photo {
             width: 117px;
             height: 130px;
-            margin-right: 12%;
+            margin-right: auto;
+            img {
+              width: 100%;
+              height: 100%;
+            }
           }
           .content-btn {
             margin-top: auto;
@@ -625,7 +628,6 @@ export default {
               }
             }
             .choose-photo {
-              // width: 150px;
               margin-top: 0;
               width: 100%;
             }
@@ -642,10 +644,8 @@ export default {
           .row3,
           .row4 {
             display: flex;
-            // flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
-            // margin: 0 5%;
             div {
               & + div {
                 margin-top: 28px;
@@ -665,6 +665,7 @@ export default {
     }
     .small-apply-form {
       flex-direction: column;
+      margin-bottom: 56px;
       .subscribe {
         margin-right: 0%;
       }
@@ -684,8 +685,6 @@ export default {
   margin: 0 auto;
   .header {
     width: 100%;
-    // height: 100vh;
-    // background-image: url("~@/assets/img/recruitment.jpg");
     background-repeat: no-repeat;
     position: relative;
     display: flex;
@@ -700,14 +699,12 @@ export default {
       z-index: -1;
     }
     .subject {
-      // margin-top: 270px;
       display: inline-block;
       font-size: 48px;
       color: #fff;
       line-height: 1.2;
     }
     .search {
-      // width: 560px;
       height: 56px;
       background-color: white;
       font-size: 20px;
@@ -718,8 +715,6 @@ export default {
       }
     }
     .footer {
-      // margin-top: 400px;
-
       font-size: 12px;
       color: #fff;
     }
@@ -899,8 +894,6 @@ export default {
   .apply-form {
     width: 100%;
     .close-btn {
-      position: absolute;
-      top: 0;
       width: 100%;
       height: 35px;
       line-height: 35px;
@@ -911,7 +904,7 @@ export default {
         rgb(235, 235, 235)
       );
       border-top-right-radius: 10px;
-      box-shadow: rgb(0, 0, 0) 0px 0px 1px;
+      border-bottom: 1px solid rgb(207, 206, 206);
       img {
         width: 24px;
         height: 24px;
@@ -920,7 +913,6 @@ export default {
     .containar {
       width: 100%;
       background-color: rgb(235, 235, 235);
-      display: flex;
       .picture {
         .photo {
           background-color: rgb(255, 255, 255);
@@ -1012,7 +1004,6 @@ export default {
     height: 139px;
     background-color: rgb(235, 235, 235);
     margin-top: 60px;
-    margin-bottom: 56px;
     // height: ;
     .subscribe {
       width: 241px;
