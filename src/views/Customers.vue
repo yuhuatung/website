@@ -94,7 +94,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 @import "../assets/style/utils/_variables.scss";
 @media screen and (min-width: $bigWidth) {
   .top {
@@ -273,6 +273,7 @@ export default {
   }
   .customers {
     margin-top: 85vh;
+    padding-bottom: 60px;
     .spread-out-enter-active,
     .spread-out-leave-active {
       transition: all .3s ease-in-out;
@@ -389,7 +390,7 @@ export default {
     width: 100%;
     background-color: rgb(94, 94, 94);
     display: flex;
-    margin: 20px 0 60px;
+    margin: 20px 0 0;
   }
 }
 </style>
