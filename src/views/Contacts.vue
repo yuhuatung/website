@@ -85,7 +85,16 @@ export default {
   name: "Contacts",
   props: ["screenwidth"],
   data() {
-    return {};
+    return {
+        contactData: {
+          "name":"",
+          "mobile":"",
+          "message_title":"",
+          "message_content":"",
+          "email":"",
+          "job":""
+        }
+    }
   },
   computed: {
     bigImage() {
@@ -149,7 +158,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 @import "../assets/style/utils/_variables.scss";
 @media screen and (min-width: $bigWidth) {
   .contacts {

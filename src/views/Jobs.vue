@@ -325,7 +325,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 @import "../assets/style/utils/_variables.scss";
 @media screen and (min-width: $bigWidth) {
   .jobs {
@@ -539,6 +539,7 @@ export default {
 @media screen and (max-width: $smallWidth) {
   .jobs {
     width: 100%;
+    padding-bottom: 60px;
     .header {
       height: calc(100vh - 60px);
     }
@@ -589,7 +590,6 @@ export default {
       z-index: 3;
       height: 80%;
       .containar {
-        display: flex;
         flex-wrap: wrap;
         box-sizing: border-box;
         overflow: auto;
@@ -654,7 +654,6 @@ export default {
     }
     .small-apply-form {
       flex-direction: column;
-      margin-bottom: 56px;
       .subscribe {
         margin-right: 0%;
       }
@@ -902,6 +901,7 @@ export default {
     .containar {
       width: 100%;
       background-color: rgb(235, 235, 235);
+      display: flex;
       .picture {
         .photo {
           background-color: rgb(255, 255, 255);
