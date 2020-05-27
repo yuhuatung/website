@@ -8,19 +8,19 @@
         <img v-show="screenwidth<810" class="sleep-video" :src="bigImage" alt="contactsImg" />
         <div class="address">
           <div class="subject">Address</div>
-          <div class="content">
+          <div class="content" ref="addressToCopy">
             台北市信義區信義路四段
             <br />世紀金融大樓
           </div>
-          <div class="copy">
+          <div class="copy" @click.stop.prevent="copyAddress">
             <img src="@/assets/img/icons8-copy_2x.png" />copy
           </div>
-          <div class="bottom">Google Map</div>
+          <div class="bottom"><a href="https://goo.gl/maps/s3Jbny6iqBcy7qkf8" target="_blank">Google Map</a></div>
         </div>
         <div class="email">
           <div class="subject">E-mail</div>
-          <div class="content">hr@Wanlian-tech.com</div>
-          <div class="copy">
+          <div class="content" ref="emailToCopy">hr@Wanlian-tech.com</div>
+          <div class="copy" @click.stop.prevent="copyEmail">
             <img src="@/assets/img/icons8-copy_2x.png" />copy
           </div>
           <div class="bottom">Outlook</div>
@@ -123,6 +123,40 @@ export default {
         console.log(e)
         alert('送出失敗')
       })
+    },
+    copyAddress () {
+      this.selectText(this.$refs.addressToCopy); // e.g. <div ref="text">
+      document.execCommand("copy");
+      try {
+        document.execCommand('copy');
+        alert('Copied the text.');
+      } catch (err) {
+        alert('Oops, unable to copy');
+      }
+    },
+    copyEmail () {
+      this.selectText(this.$refs.emailToCopy); // e.g. <div ref="text">
+      document.execCommand("copy");
+      try {
+        document.execCommand('copy');
+        alert('Copied the text.');
+      } catch (err) {
+        alert('Oops, unable to copy');
+      }
+    },
+    selectText(element) {
+      var range;
+      if (document.selection) {
+        // IE
+        range = document.body.createTextRange();
+        range.moveToElementText(element);
+        range.select();
+      } else if (window.getSelection) {
+        range = document.createRange();
+        range.selectNode(element);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+      }
     }
   }
 };
@@ -347,7 +381,7 @@ export default {
 }
 
 .contacts {
-  width: 100vw;
+  // width: 100vw;
   .animation {
     position: relative;
     .video-outer {
@@ -408,6 +442,9 @@ export default {
         padding: 6px;
         border-width: 1px;
         cursor: pointer;
+        a{
+          color: rgb(255, 255, 255);
+        }
       }
     }
   }
