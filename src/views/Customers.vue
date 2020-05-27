@@ -2,7 +2,7 @@
   <div class="customers-body">
     <div class="top">
       <video class="sleep-video" autoplay muted loop>
-        <source src="https://www.308262.com/vue/files/customers.mov" type="video/mp4">
+        <source src="https://www.308262.com/vue/files/customers.mov" type="video/mp4" />
       </video>
       <img
         v-show="screenwidth<810"
@@ -16,12 +16,7 @@
         class="customer-content"
       >Wanlian has been involved in many projects, utilizing an amalgamation of various solutions.</div>
     </div>
-    <div
-      v-show="true"
-      class="customers"
-      :style="{ height: customersHeight + 'px' }"
-      ref="customers"
-    >
+    <div class="customers" ref="customers">
       <img src="@/assets/img/icons8-expand_arrow-3_2x.png" class="arrow" @click="toCustomers(step)" />
       <div v-for="(item, index) in data.customers" :key="index" class="content">
         <div class="customers-list">
@@ -42,30 +37,37 @@
         <img src="@/assets/img/icons8-facebook_new_2x.png" />
         <img src="@/assets/img/icons8-facebook_messenger_2x.png" />
       </div>
-      <div class="company">WANLIAN TECHNOLOGY LIMITED</div>
     </div>
   </div>
 </template>
 
 <script>
 import data from "@/assets/json/customers.json";
+// import { fetchCustomer } from "@/api/customerArticle";
 export default {
   name: "Customers",
+  created() {
+    // fetchCustomer([]).then(response => {
+    //   if (response.success) {
+    //     this.data = response.rows;
+    //   }
+    // });
+  },
   props: ["screenwidth"],
   data() {
     return {
       data: data,
-      step: 50
+      step: 50,
+      baseDomain: process.env.VUE_APP_BASE_DOMAIN,
+      showText: null
     };
   },
   components: {},
-  computed: {
-    customersHeight() {
-      let numOfData = data.customers.length;
-      return numOfData * 320 + 80;
-    }
-  },
   methods: {
+    showContent(index) {
+      if (index === this.showText) this.showText = null;
+      else this.showText = index;
+    },
     toCustomers(i) {
       let height = this.$refs.customers.offsetTop;
       document.scrollingElement.scrollTop += i;
@@ -114,9 +116,45 @@ export default {
   }
   .customers {
     margin-top: 90vh;
-    .customers-list{
+    .content {
+      width: 100%;
+    }
+    .customers-list {
+      display: flex;
+      justify-content: center;
+      padding: 20px 30px;
+      video,
+      img {
+        width: 353px;
+        // height: 265px;
+        // min-width: 353px;
+      }
       .customers-content {
-        width: 700px;
+        max-width: 700px;
+        display: flex;
+        flex-direction: column;
+        padding-top: 10px;
+        padding-left: 30px;
+        .content-eng {
+          margin-top: auto;
+          padding-top: 5px;
+          padding-bottom: 15px;
+        }
+      }
+    }
+    .footer {
+      .media {
+        margin-top: 45px;
+        margin-left: 145px;
+        img {
+          width: 40px;
+          margin-right: 30px;
+        }
+      }
+      .company {
+        margin-top: 56px;
+        color: white;
+        font-size: 16px;
       }
     }
   }
@@ -149,12 +187,46 @@ export default {
       right: 50px;
     }
   }
+
   .customers {
-    margin-top: 400px;
-    .customers-list{
-      flex-wrap: wrap;
-      .customers-content {
-        width: 40%;
+    margin-top: 380px;
+    .content {
+      width: 100%;
+      .customers-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px 30px;
+        video,
+        img {
+          width: 353px;
+          // height: 265px;
+          // min-width: 353px;
+        }
+        .customers-content {
+          box-sizing: border-box;
+          width: calc(100% - 353px);
+          padding-top: 10px;
+          padding-left: 25px;
+        }
+        .content-eng {
+          margin-top: 20px;
+          // padding: 3% 5%;
+        }
+      }
+    }
+    .footer {
+      .media {
+        margin-top: 45px;
+        margin-left: 45px;
+        img {
+          width: 40px;
+          margin-right: 30px;
+        }
+      }
+      .company {
+        margin-top: 56px;
+        color: white;
+        font-size: 16px;
       }
     }
   }
@@ -175,12 +247,12 @@ export default {
     }
     .bigLogo {
       font-size: 45px;
-      top: 16%;
+      top: 12%;
       left: 5%;
     }
     .smallLogo {
       font-size: 26px;
-      top: 23%;
+      top: 20%;
       left: 5%;
     }
     .customer-content {
@@ -192,6 +264,64 @@ export default {
   }
   .customers {
     margin-top: 85vh;
+    .spread-out-enter-active,
+    .spread-out-leave-active {
+      transition: all .3s ease-in-out;
+    }
+    .spread-out-enter {
+      max-height: 0 !important;
+      opacity: 0;
+    }
+    .spread-out-leave-to {
+      max-height: 0 !important;
+      z-index: -1;
+    }
+    .customers-list {
+      width: 85%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      video,
+      img {
+        width: 100%;
+      }
+      .customers-content {
+        max-height: 400px;
+      }
+      .content-cht {
+        margin-top: 10px;
+      }
+      .content-eng {
+        margin: 10px 0;
+      }
+      .mobile-btn {
+        width: 100%;
+        height: 20px;
+        background-color: rgba(0, 0, 0, 0.733);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .media {
+        img {
+          width: 40px;
+          margin-right: 20px;
+        }
+      }
+      .company {
+        color: white;
+        font-size: 14px;
+      }
+    }
   }
 }
 .customers-body {
@@ -219,7 +349,9 @@ export default {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: #fff;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .arrow {
       margin-top: 15px;
       width: 32px;
@@ -253,8 +385,7 @@ export default {
           font-size: 16px;
         }
         .content-eng {
-          margin-top: auto;
-          margin-bottom: 30px;
+          text-align: left;
           font-size: 12px;
           color: rgb(145, 145, 145);
         }
@@ -263,21 +394,10 @@ export default {
   }
   .footer {
     height: 142px;
+    width: 100%;
     background-color: rgb(94, 94, 94);
     display: flex;
-    .media {
-      margin-top: 45px;
-      margin-left: 145px;
-      img {
-        width: 40px;
-        margin-right: 30px;
-      }
-    }
-    .company {
-      margin-top: 56px;
-      color: white;
-      font-size: 16px;
-    }
+    margin: 20px 0 60px;
   }
 }
 </style>
