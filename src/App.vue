@@ -72,7 +72,7 @@ body {
 @media screen and (min-width: $bigWidth) {
   .nav {
     width: 100vw;
-    min-width: 1243px;
+    // min-width: 1243px;
     justify-content: space-between;
     .link {
       a {
