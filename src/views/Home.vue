@@ -176,7 +176,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "../assets/style/utils/_variables.scss";
 @media screen and (min-width: $bigWidth) {
   .home {
