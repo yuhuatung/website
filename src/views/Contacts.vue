@@ -2,10 +2,10 @@
   <div class="contacts">
     <div class="animation">
       <div class="video-outer">
-        <video class="sleep-video" autoplay muted loop v-show="screenwidth>810">
+        <video class="sleep-video" autoplay muted loop v-if="screenwidth>810">
           <source src="https://www.308262.com/vue/files/contacts.mov" type="video/mp4" />
         </video>
-        <img v-show="screenwidth<810" class="sleep-video" :src="bigImage" alt="contactsImg" />
+        <img v-if="screenwidth<810" class="sleep-video" :src="bigImage" alt="contactsImg" />
         <div class="address">
           <div class="subject">Address</div>
           <div class="content" ref="addressToCopy">

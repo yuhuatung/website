@@ -1,11 +1,11 @@
 <template>
   <div class="customers-body">
     <div class="top">
-      <video class="sleep-video" autoplay muted loop>
+      <video v-if="screenwidth>810" class="sleep-video" autoplay muted loop>
         <source src="https://www.308262.com/vue/files/customers.mov" type="video/mp4" />
       </video>
       <img
-        v-show="screenwidth<810"
+        v-if="screenwidth<810"
         class="sleep-video"
         src="@/assets/img/customer.jpg"
         alt="customersImg"
