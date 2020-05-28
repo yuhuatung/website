@@ -37,7 +37,7 @@
       </div>
     </transition>
     <div class="bottom" v-show="screenwidth>576">請勾選工作需求後前往應徵。</div>
-    <div class="close" @click.stop="showList = false" v-show="showList">
+    <div class="close" @click.stop="showList = false" v-show="showList && screenwidth<576">
       <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="closeBtn" />
     </div>
   </div>
