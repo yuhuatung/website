@@ -318,7 +318,8 @@ export default {
       }else if(this.screenwidth < 810 && (e.key > (this.numOfJobs - 4))){
         height = this.$refs.vacancy[e.key].$el.offsetTop - 300;
       }
-      this.selectedJOb = this.jobs[e.key].name;
+      console.log(this.jobs)
+      this.selectedJOb = this.jobs.vacancy[e.key].name;
       this.toJobCard(this.stepJob, height);
     },
     toJobCard(i, height) {
