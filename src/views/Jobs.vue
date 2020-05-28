@@ -318,6 +318,17 @@ export default {
     },
     handleMenuClick(e) {
       let height = this.$refs.vacancy[e.key].$el.offsetTop - 150;
+      if ((this.screenwidth < 576) && (e.key > (this.numOfJobs - 4))) {
+        height = this.$refs.vacancy[e.key].$el.offsetTop - 200;
+        if (e.key == (this.numOfJobs - 2)) {
+          height = height - 100;
+        }
+        if (e.key == (this.numOfJobs - 1)) {
+          height = height - 300;
+        }
+      }else if(this.screenwidth < 810 && (e.key > (this.numOfJobs - 4))){
+        height = this.$refs.vacancy[e.key].$el.offsetTop - 300;
+      }
       this.selectedJOb = this.jobs[e.key].name;
       this.toJobCard(this.stepJob, height);
     },
@@ -963,6 +974,10 @@ export default {
           margin-top: 15px;
           padding: 0px 15px;
           box-sizing: border-box;
+        }
+        input:focus{
+          border: 1px #5facf0 solid;
+          outline: none;
         }
         .row1,
         .row2 {
