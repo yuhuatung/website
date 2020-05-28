@@ -91,7 +91,7 @@ export default {
       showLeftBtnBorder: false,
       showRightBtnBorder: false,
       timer: null,
-      listDirection: ""
+      slideDirection: ""
     };
   },
   components: {
