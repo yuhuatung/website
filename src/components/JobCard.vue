@@ -1,11 +1,10 @@
 <template>
-  <div class="main" :class="selected === name?'selected':''" :style="{maxHeight:height}">
+  <div class="main" :class="selected === name?'selected':''" :style="{maxHeight:height}" @click="showList = true">
     <img
         class="btn"
         :src="image"
         alt="showListBtn"
         v-show="screenwidth<576 && showList===false"
-        @click="showList = !showList"
     />
     <div class="avatar">
       <img :src="`${baseDomain}/storage/jobs/icon_member-${quota}.png`">
@@ -38,7 +37,7 @@
       </div>
     </transition>
     <div class="bottom" v-show="screenwidth>576">請勾選工作需求後前往應徵。</div>
-    <div class="close" @click="showList = false" v-show="showList">
+    <div class="close" @click.stop="showList = false" v-show="showList">
       <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="closeBtn" />
     </div>
   </div>
