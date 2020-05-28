@@ -146,6 +146,9 @@ export default {
         window.getSelection().addRange(range);
       }
     }
+  },
+  beforeDestroy() {
+    document.scrollingElement.scrollTop = 0;
   }
 };
 </script>
