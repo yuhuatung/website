@@ -272,7 +272,7 @@ export default {
     }
   }
   .customers {
-    margin-top: 85vh;
+    margin-top: 80vh;
     padding-bottom: 60px;
     .spread-out-enter-active,
     .spread-out-leave-active {
@@ -306,7 +306,7 @@ export default {
       }
       .mobile-btn {
         width: 100%;
-        height: 20px;
+        height: 30px;
         background-color: rgba(0, 0, 0, 0.733);
         display: flex;
         justify-content: center;
