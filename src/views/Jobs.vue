@@ -120,18 +120,18 @@
                 請選擇進3個月的求職照片。
                 <br />照片大小限3MB
               </p>
-              <p class="choose-photo" @click="$refs['avatar-file'].click()">選擇照片</p>
+              <p class="choose-photo" @click="$refs['avatar-file'].click()"><span>* </span>選擇照片</p>
               <input type="file" ref="avatar-file" @change="avatarChange" v-show="false" />
             </div>
           </div>
           <div class="form">
             <div class="row1">
               <div>
-                <div class="form-name">姓名</div>
+                <div class="form-name"><span>* </span>姓名</div>
                 <input text="text" placeholder="請輸入真實姓名" v-model="jobSubscriberData.name" />
               </div>
               <div>
-                <div class="form-name">手機</div>
+                <div class="form-name"><span>* </span>手機</div>
                 <input
                   text="text"
                   placeholder="+886-000-000-000"
@@ -141,17 +141,17 @@
             </div>
             <div class="row2">
               <div>
-                <div class="form-name">信箱</div>
+                <div class="form-name"><span>* </span>信箱</div>
                 <input text="text" placeholder="@gmail.com" v-model="jobSubscriberData.email" />
               </div>
               <div>
-                <div class="form-name">職業</div>
+                <div class="form-name"><span>* </span>職業</div>
                 <input text="text" placeholder="輸入您目前的職業性質" v-model="jobSubscriberData.job_title" />
               </div>
             </div>
             <div class="row3">
               <div>
-                <div class="form-name">地址</div>
+                <div class="form-name"><span>* </span>地址</div>
                 <input text="text" placeholder="縣市-區-路" v-model="jobSubscriberData.address" />
               </div>
             </div>
@@ -955,12 +955,18 @@ export default {
             border-radius: 10px;
             line-height: 46px;
             cursor: pointer;
+            span{
+              color: red;
+            }
           }
         }
       }
       .form {
         .form-name {
           padding-left: 10px;
+          span{
+            color: red;
+          }
         }
         ::placeholder {
           color: rgb(145, 145, 145);
