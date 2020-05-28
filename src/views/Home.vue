@@ -125,11 +125,13 @@ export default {
   },
   methods: {
     slideLeft() {
+      if (this.showRightBtn === false) return;
       this.turnPage(1);
       this.slideDirection = "slideLeft";
       this.borderAnimation("right");
     },
     slideRight() {
+      if (this.showLeftBtn === false) return;
       this.turnPage(-1);
       this.slideDirection = "slideRight";
       this.borderAnimation("left");
@@ -284,11 +286,11 @@ export default {
     height: 100%;
   }
   .slideLeft-enter-to {
-    transition: all .5s ease;
+    transition: all 0.5s ease;
     transform: translateX(0);
   }
   .slideLeft-leave-active {
-    transition: all .5s ease;
+    transition: all 0.5s ease;
     transform: translateX(-100%);
   }
   .slideLeft-enter {
@@ -298,11 +300,11 @@ export default {
     transform: translateX(0);
   }
   .slideRight-enter-to {
-    transition: all .5s ease;
+    transition: all 0.5s ease;
     transform: translateX(0);
   }
   .slideRight-leave-active {
-    transition: all .5s ease;
+    transition: all 0.5s ease;
     transform: translateX(100%);
   }
   .slideRight-enter {
