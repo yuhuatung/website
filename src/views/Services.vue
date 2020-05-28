@@ -7,7 +7,7 @@
       <img v-if="screenwidth<810" class="sleep-video" :src="bigImage" alt="contactsImg" />
       <div class="bigLogo">WeAre</div>
       <div class="smallLogo">professional</div>
-      <div class="our-service" @click="toBottom(stepBottom)">
+      <div class="our-service" @click="toService()">
         <img src="@/assets/img/icons8-expand_arrow-4_2x.png" />Our Service
       </div>
       <div
@@ -15,7 +15,7 @@
       >對於企業客戶，每一個決定都會產生影響，我們在這裡可以幫助您指導遷移或啟動過程中的動盪和壓力。 我們首先研究您的要求和需求，然後與我們經驗豐富的技術人員團隊一起開發可行的解決方案以及部署策略。</div>
     </div>
     <div class="services">
-      <div v-for="(item, index) in services" :key="index" class="services-item">
+      <div v-for="(item, index) in services" :key="index" class="services-item" ref="servicesItem">
         <img :src="getImgUrl(item.image)" >
         <div class="mask">
           <div class="services-title">{{item.title}}</div>
@@ -93,6 +93,25 @@ export default {
     }
   },
   methods: {
+    toService() {
+      let clientHeight =
+          document.documentElement.clientHeight || document.body.clientHeight;
+      let scrollHeight = document.documentElement.scrollHeight;
+      let height = scrollHeight - clientHeight - 10;
+      if (this.screenwidth < 576) {
+        height = this.$refs.servicesItem[0].offsetTop - 80;
+      }
+      this.toServiceCard(this.stepBottom, height);
+    },
+    toServiceCard(i, height) {
+      document.scrollingElement.scrollTop += i;
+      let c;
+      if (document.scrollingElement.scrollTop < height) {
+        c = setTimeout(() => this.toServiceCard(i, height), 16);
+      } else {
+        clearTimeout(c);
+      }
+    },
     toBottom(i) {
       let clientHeight =
         document.documentElement.clientHeight || document.body.clientHeight;
