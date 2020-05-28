@@ -1,17 +1,29 @@
 <template>
   <div class="home">
-    <img
+    <transition-group :name="slideDirection" tag="div">
+      <img
+        v-for="(item,k) in image"
+        :key="k"
+        :alt="`Big image${k}`"
+        :src="item.src"
+        class="big-image"
+        v-show="page === k"
+        v-touch:swipeleft="slideLeft"
+        v-touch:swiperight="slideRight"
+      />
+    </transition-group>
+
+    <!-- <img
       v-for="(item,k) in image"
-      :key="k"
+      :key="'image'+k"
       :alt="`Big image${k}`"
-      :src="item.src"
+      :src="(baseDomain +'/storage/home/'+ item)"
       class="big-image"
       :style="{left:`${screenwidth*(k - page)}px`}"
-      v-touch:swipeleft="leftSlide"
-      v-touch:swiperight="rightSlide"
-    />
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <div v-for="(item,k) in data.homepage" :key="item.titleCht" class="page" v-show="page === k">
+      v-touch:swipeleft="slideLeft"
+      v-touch:swiperight="slideRight"
+    />-->
+    <div v-for="(item,k) in data.homepage" :key="'text'+k" class="page" v-show="page === k">
       <div class="container">
         <transition name="fadeTitle">
           <div v-show="show && page === k" class="title">{{item.title}}</div>
@@ -35,14 +47,14 @@
       </transition>
     </div>
     <div class="img-btn">
-      <div class="left-btn" @click="turnPage(-1);borderAnimation('left')" v-show="showLeftBtn">
+      <div class="left-btn" @click="slideRight()" v-show="showLeftBtn">
         <img src="@/assets/img/icons8-expand_arrow_2x.png" alt="left-btn" />
         <span :class="{animateLeft:showLeftBtnBorder}" class="left"></span>
         <span :class="{animateTop:showLeftBtnBorder}" class="top"></span>
         <span :class="{animateRight:showLeftBtnBorder}" class="right"></span>
         <span :class="{animateBottom:showLeftBtnBorder}" class="bottom"></span>
       </div>
-      <div class="right-btn" @click="turnPage(1);borderAnimation('right')" v-show="showRightBtn">
+      <div class="right-btn" @click="slideLeft()" v-show="showRightBtn">
         <img src="@/assets/img/icons8-expand_arrow_2x.png" alt="right-btn" />
         <span :class="{animateLeft:showRightBtnBorder}" class="left"></span>
         <span :class="{animateTop:showRightBtnBorder}" class="top"></span>
@@ -57,10 +69,19 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import data from "@/assets/json/home.json";
+// import { fetchHome } from "@/api/home";
 
 export default {
   name: "Home",
   props: ["screenwidth"],
+  created() {
+    // fetchHome([]).then(response => {
+    //   console.log(response);
+    //   if (response.success) {
+    //     this.data = response.rows;
+    //   }
+    // });
+  },
   data() {
     return {
       data: data,
@@ -70,13 +91,7 @@ export default {
       showLeftBtnBorder: false,
       showRightBtnBorder: false,
       timer: null,
-      // image: [
-      //   { src: require("@/assets/img/philosophy.jpg") },
-      //   { src: require("@/assets/img/concept.jpg") },
-      //   {
-      //     src: require("@/assets/img/garrhet-sampson-JzNmtlSJ0wk-unsplash_2x.jpg")
-      //   }
-      // ]
+      listDirection: ""
     };
   },
   components: {
@@ -124,15 +139,17 @@ export default {
         show = false;
       }
       return show;
-    },
+    }
   },
   methods: {
-    leftSlide() {
+    slideLeft() {
       this.turnPage(1);
+      this.slideDirection = "slideLeft";
       this.borderAnimation("right");
     },
-    rightSlide() {
+    slideRight() {
       this.turnPage(-1);
+      this.slideDirection = "slideRight";
       this.borderAnimation("left");
     },
     closeBottom() {
@@ -271,6 +288,7 @@ export default {
     }
   }
 }
+
 .home {
   margin: 0 auto;
   position: relative;
@@ -282,8 +300,34 @@ export default {
     top: 0;
     width: 100%;
     height: 100%;
-    transition: left 0.5s;
-    background-size: contain;
+  }
+  .slideLeft-enter-to {
+    transition: all .5s ease;
+    transform: translateX(0);
+  }
+  .slideLeft-leave-active {
+    transition: all .5s ease;
+    transform: translateX(-100%);
+  }
+  .slideLeft-enter {
+    transform: translateX(100%);
+  }
+  .slideLeft-leave {
+    transform: translateX(0);
+  }
+  .slideRight-enter-to {
+    transition: all .5s ease;
+    transform: translateX(0);
+  }
+  .slideRight-leave-active {
+    transition: all .5s ease;
+    transform: translateX(100%);
+  }
+  .slideRight-enter {
+    transform: translateX(-100%);
+  }
+  .slideRight-leave {
+    transform: translateX(0);
   }
   // .blur {
   //   -webkit-filter: blur(4px);
@@ -358,6 +402,7 @@ export default {
       }
       span {
         margin-top: 20px;
+        font-size: 14px;
       }
     }
     .fadeBottom-enter-active,
