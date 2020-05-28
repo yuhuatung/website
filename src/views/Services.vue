@@ -126,47 +126,47 @@ export default {
         z-index: -1;
       }
       .bigLogo {
-        font-size: 96px;
-        top: 80px;
-        left: 40px;
+        font-size: 6rem;
+        top: 5rem;
+        left: 2.5rem;
       }
       .smallLogo {
-        font-size: 64px;
-        top: 180px;
-        left: 50px;
+        font-size: 4rem;
+        top: 11.25rem;
+        left: 3.125rem;
       }
       .our-service {
-        font-size: 16px;
+        font-size: 1rem;
         position: absolute;
-        width: 150px;
-        height: 56px;
-        right: 312px;
-        bottom: 180px;
+        width: 9.375rem;
+        height: 3.5rem;
+        right: 19.5rem;
+        bottom: 11.25rem;
         img {
-          width: 32px;
-          padding-right: 10px;
+          width: 2rem;
+          padding-right: .625rem;
         }
       }
       .service-content {
         position: absolute;
-        bottom: 80px;
-        right: 50px;
-        max-width: 413px;
-        font-size: 14px;
+        bottom: 5rem;
+        right: 3.125rem;
+        max-width: 25.8125rem;
+        font-size: .875rem;
       }
     }
     .services {
-      min-width: 1056px;
-      padding: 0 20px;
+      min-width: 66rem;
+      padding: 0 1.25rem;
       width: 100%;
       .services-item {
-        margin: 0 4px 8px;
+        margin: 0 .25rem .5rem;
         display: flex;
         position: relative;
         img,
         .mask {
-          max-width: 344px;
-          height: 229px;
+          max-width: 21.5rem;
+          height: 14.3125rem;
         }
         .mask {
           opacity: 0;
@@ -184,16 +184,16 @@ export default {
       }
     }
     .footer {
-      min-width: 1050px;
+      min-width: 65.625rem;
       text-align: left;
-      margin: 60px auto 30px;
-      max-width: 1050px;
-      padding: 0 20px;
+      margin: 3.75rem auto 1.875rem;
+      max-width: 65.625rem;
+      padding: 0 1.25rem;
       width: 100%;
       justify-content: center;
       .footer-left {
         flex: 1;
-        margin-right: 20px;
+        margin-right: 1.25rem;
       }
       .footer-right {
         flex: 1;
@@ -211,49 +211,49 @@ export default {
         width: 100vw;
       }
       .bigLogo {
-        font-size: 96px;
-        top: 80px;
-        left: 40px;
+        font-size: 6rem;
+        top: 5rem;
+        left: 2.5rem;
       }
       .smallLogo {
-        font-size: 64px;
-        top: 180px;
-        left: 50px;
+        font-size: 4rem;
+        top: 11.25rem;
+        left: 3.125rem;
       }
       .our-service {
-        font-size: 16px;
+        font-size: 1rem;
         position: absolute;
-        width: 150px;
-        height: 56px;
-        right: 30px;
-        bottom: 150px;
+        width: 9.375rem;
+        height: 3.5rem;
+        right: 1.875rem;
+        bottom: 9.375rem;
         img {
-          width: 32px;
-          padding-right: 10px;
+          width: 2rem;
+          padding-right: .625rem;
         }
       }
       .service-content {
-        margin: 60px auto;
-        max-width: 413px;
-        font-size: 14px;
+        margin: 3.75rem auto;
+        max-width: 25.8125rem;
+        font-size: .875rem;
       }
     }
     .services {
       width: 100%;
       .services-item {
-        margin: 10px;
+        margin: .625rem;
         img,
         .mask {
-          max-width: 344px;
+          max-width: 21.5rem;
         }
         .mask {
           bottom: 0;
           .services-title {
-            margin-top: 15px;
+            margin-top: .9375rem;
           }
           .services-content {
-            margin-top: 15px;
-            margin-bottom: 15px;
+            margin-top: .9375rem;
+            margin-bottom: .9375rem;
           }
         }
       }
@@ -265,9 +265,9 @@ export default {
       .footer-left,
       .footer-right {
         box-sizing: border-box;
-        width: 344px;
-        padding: 0 3px;
-        margin: 10px;
+        width: 21.5rem;
+        padding: 0 .1875rem;
+        margin: .625rem;
       }
     }
   }
@@ -275,7 +275,7 @@ export default {
 @media screen and (max-width: $smallWidth) {
   .services-body {
     background-color: rgb(3, 16, 47);
-    padding-bottom: 60px;
+    padding-bottom: 3.75rem;
     .top {
       width: 100vw;
       position: relative;
@@ -283,36 +283,36 @@ export default {
         width: 100vw;
       }
       .bigLogo {
-        font-size: 24px;
-        top: 100px;
-        left: 20px;
+        font-size: 1.5rem;
+        top: 6.25rem;
+        left: 1.25rem;
       }
       .smallLogo {
-        font-size: 24px;
-        top: 130px;
-        left: 20px;
+        font-size: 1.5rem;
+        top: 8.125rem;
+        left: 1.25rem;
       }
       .our-service {
-        font-size: 12px;
-        bottom: 90px;
-        right: 30px;
+        font-size: .75rem;
+        bottom: 5.625rem;
+        right: 1.875rem;
         // width: 116px;
-        padding: 7px;
+        padding: .4375rem;
         img {
-          width: 15px;
-          margin-right: 5px;
+          width: .9375rem;
+          margin-right: .3125rem;
         }
       }
       .service-content {
-        margin: 20px auto;
+        margin: 1.25rem auto;
         max-width: 85%;
-        font-size: 12px;
+        font-size: .75rem;
       }
     }
     .services {
       width: 90%;
       .services-item {
-        margin: 10px;
+        margin: .625rem;
         width: 100%;
         img,
         .mask {
@@ -323,11 +323,11 @@ export default {
           height: auto;
           bottom: 0;
           .services-title {
-            margin-top: 15px;
+            margin-top: .9375rem;
           }
           .services-content {
-            margin-top: 15px;
-            margin-bottom: 15px;
+            margin-top: .9375rem;
+            margin-bottom: .9375rem;
           }
         }
       }
@@ -341,8 +341,8 @@ export default {
       .footer-right {
         box-sizing: border-box;
         width: 100%;
-        padding: 0 3px;
-        margin: 10px;
+        padding: 0 .1875rem;
+        margin: .625rem;
       }
     }
   }
@@ -369,7 +369,7 @@ export default {
     }
   }
   .services {
-    max-width: 1092px;
+    max-width: 68.25rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -386,16 +386,16 @@ export default {
         position: absolute;
         background: rgba(0, 150, 255, 0.8);
         .services-title {
-          font-size: 16px;
+          font-size: 1rem;
         }
         .services-content {
-          font-size: 12px;
+          font-size: .75rem;
         }
       }
     }
   }
   .footer {
-    font-size: 12px;
+    font-size: .75rem;
     color: white;
     text-align: left;
     display: flex;

@@ -169,21 +169,21 @@ export default {
 @media screen and (min-width: $bigWidth) {
   .home {
     width: 100%;
-    min-width: 1243px;
+    min-width: 77.6875rem;
     .page {
       .container {
-        left: 30px;
-        width: 400px;
+        left: 1.875rem;
+        width: 25rem;
         .title {
-          font-size: 80px;
+          font-size: 5rem;
         }
         .content {
-          margin: 30px 0 40px;
-          font-size: 16px;
+          margin: 1.875rem 0 2.5rem;
+          font-size: 1rem;
         }
         .more-content {
-          height: 40px;
-          box-shadow: rgb(0, 0, 0) 0px 0px 2px;
+          height: 2.5rem;
+          box-shadow: rgb(0, 0, 0) 0rem 0rem .125rem;
         }
       }
     }
@@ -194,8 +194,8 @@ export default {
       }
     }
     .img-btn {
-      top: 390px;
-      right: 80px;
+      top: 24.375rem;
+      right: 5rem;
       .left-btn,
       .right-btn {
         span {
@@ -210,18 +210,18 @@ export default {
     width: 100%;
     .page {
       .container {
-        left: 30px;
-        width: 400px;
+        left: 1.875rem;
+        width: 25rem;
         .title {
-          font-size: 80px;
+          font-size: 5rem;
         }
         .content {
-          margin: 30px 0 40px;
-          font-size: 16px;
+          margin: 1.875rem 0 2.5rem;
+          font-size: 1rem;
         }
         .more-content {
-          height: 40px;
-          box-shadow: rgb(0, 0, 0) 0px 0px 2px;
+          height: 2.5rem;
+          box-shadow: rgb(0, 0, 0) 0rem 0rem .125rem;
         }
       }
     }
@@ -232,8 +232,8 @@ export default {
       }
     }
     .img-btn {
-      top: 480px;
-      right: 80px;
+      top: 30rem;
+      right: 5rem;
     }
   }
 }
@@ -242,19 +242,19 @@ export default {
     width: 100%;
     .page {
       .container {
-        left: 15px;
+        left: .9375rem;
         width: 80%;
-        padding-top: 35px;
+        padding-top: 2.1875rem;
         .title {
-          font-size: 24px;
+          font-size: 1.5rem;
         }
         .content {
-          margin: 15px 0 20px;
-          font-size: 14px;
+          margin: .9375rem 0 1.25rem;
+          font-size: .875rem;
         }
         .more-content {
-          height: 32px;
-          margin-left: 8px;
+          height: 2rem;
+          margin-left: .5rem;
         }
       }
     }
@@ -265,8 +265,8 @@ export default {
       }
     }
     .img-btn {
-      top: 300px;
-      right: 30px;
+      top: 18.75rem;
+      right: 1.875rem;
     }
   }
 }
@@ -321,7 +321,7 @@ export default {
   .page {
     .container {
       position: absolute;
-      top: 100px;
+      top: 6.25rem;
       z-index: 2;
       .title {
         color: #fff;
@@ -332,7 +332,7 @@ export default {
       .content {
         color: #fff;
         width: 100%;
-        padding-left: 10px;
+        padding-left: .625rem;
         text-align: left;
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
       }
@@ -344,47 +344,47 @@ export default {
         transform: translate(0%, 100%);
       }
       .more-content {
-        font-size: 30px;
+        font-size: 1.875rem;
         color: #fff;
-        width: 129px;
-        border: 1px solid rgb(255, 255, 255);
-        border-radius: 20px;
+        width: 8.0625rem;
+        border: .0625rem solid rgb(255, 255, 255);
+        border-radius: 1.25rem;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         .icon-more {
-          width: 24px;
-          height: 24px;
-          margin-right: 7px;
+          width: 1.5rem;
+          height: 1.5rem;
+          margin-right: .4375rem;
         }
         span {
-          font-size: 16px;
+          font-size: 1rem;
           font-weight: 100;
         }
       }
     }
     .bottom-content {
       width: 100%;
-      height: 300px;
+      height: 18.75rem;
       opacity: 0.9;
       background-color: rgb(255, 255, 255);
-      border-width: 0px;
+      border-width: 0rem;
       border-color: rgb(216, 221, 228);
       position: absolute;
       z-index: 2;
-      box-shadow: rgb(0, 0, 0) 0px 0px 1px;
-      bottom: 0px;
+      box-shadow: rgb(0, 0, 0) 0rem 0rem .0625rem;
+      bottom: 0rem;
       h1,
       span {
-        font-size: 16px;
-        margin: 40px auto 0;
+        font-size: 1rem;
+        margin: 2.5rem auto 0;
         flex-direction: column;
         display: flex;
       }
       span {
-        margin-top: 20px;
-        font-size: 14px;
+        margin-top: 1.25rem;
+        font-size: .875rem;
       }
     }
     .fadeBottom-enter-active,
@@ -393,7 +393,7 @@ export default {
     }
     .fadeBottom-enter,
     .fadeBottom-leave-to {
-      bottom: -300px;
+      bottom: -18.75rem;
     }
     .background {
       width: 100%;
@@ -413,7 +413,7 @@ export default {
     }
   }
   .img-btn {
-    width: 100px;
+    width: 6.25rem;
     // height: 43px;
     position: absolute;
     // background-color: #fff;
@@ -421,8 +421,8 @@ export default {
     justify-content: space-between;
     .left-btn,
     .right-btn {
-      width: 45px;
-      height: 45px;
+      width: 2.8125rem;
+      height: 2.8125rem;
       background-color: rgba(0, 0, 0, 0.6);
       display: flex;
       align-items: center;
@@ -430,8 +430,8 @@ export default {
       cursor: pointer;
       position: relative;
       img {
-        width: 22px;
-        height: 22px;
+        width: 1.375rem;
+        height: 1.375rem;
       }
       span {
         position: absolute;
@@ -439,24 +439,24 @@ export default {
         background-color: rgb(255, 255, 255);
       }
       .left {
-        left: 0px;
-        bottom: 0px;
-        width: 2px;
+        left: 0rem;
+        bottom: 0rem;
+        width: .125rem;
       }
       .top {
-        left: 2px;
-        top: 0px;
-        height: 2px;
+        left: .125rem;
+        top: 0rem;
+        height: .125rem;
       }
       .right {
-        right: 0px;
-        top: 2px;
-        width: 2px;
+        right: 0rem;
+        top: .125rem;
+        width: .125rem;
       }
       .bottom {
-        right: 2px;
-        bottom: 0px;
-        height: 2px;
+        right: .125rem;
+        bottom: 0rem;
+        height: .125rem;
       }
       .animateLeft {
         animation: animateLeft 0.1s linear 0s;
@@ -479,7 +479,7 @@ export default {
           height: 0;
         }
         to {
-          height: 45px;
+          height: 2.8125rem;
         }
       }
       @keyframes animateTop {
@@ -487,7 +487,7 @@ export default {
           width: 0;
         }
         to {
-          width: 43px;
+          width: 2.6875rem;
         }
       }
       @keyframes animateRight {
@@ -495,7 +495,7 @@ export default {
           height: 0;
         }
         to {
-          height: 43px;
+          height: 2.6875rem;
         }
       }
       @keyframes animateBottom {
@@ -503,7 +503,7 @@ export default {
           width: 0;
         }
         to {
-          width: 41px;
+          width: 2.5625rem;
         }
       }
     }
