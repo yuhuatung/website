@@ -1,13 +1,13 @@
 <template>
-  <div class="main" :class="selected === name?'selected':''" :style="{maxHeight:height}" @click="showList = true">
-    <img
-        class="btn"
-        :src="image"
-        alt="showListBtn"
-        v-show="screenwidth<576 && showList===false"
-    />
+  <div
+    class="main"
+    :class="selected === name?'selected':''"
+    :style="{maxHeight:height}"
+    @click="show()"
+  >
+    <img class="btn" :src="image" alt="showListBtn" v-show="screenwidth<576 && showList===false" />
     <div class="avatar">
-      <img :src="`${baseDomain}/storage/jobs/icon_member-${quota}.png`">
+      <img :src="`${baseDomain}/storage/jobs/icon_member-${quota}.png`" />
     </div>
     <div class="title">{{name}}</div>
     <div class="salary">
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import {getJsonParseOrArray} from "@/utils";
+import { getJsonParseOrArray } from "@/utils";
 
 export default {
   name: "JobCard",
@@ -86,6 +86,9 @@ export default {
   methods: {
     openLink: function(url) {
       window.open(url, "_blank");
+    },
+    show() {
+      if (this.screenwidth < 576) this.showList = true;
     }
   }
 };
