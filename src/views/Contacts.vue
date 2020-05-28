@@ -47,26 +47,26 @@
         <div class="row1">
           <div class="col1">
             <div class="first">
-              <div class="form-name">姓名</div>
+              <div class="form-name"><span>* </span>姓名</div>
               <input text="text" placeholder="請輸入真實姓名" v-model="contactData.name"/>
             </div>
             <div class="first">
-              <div class="form-name">信箱</div>
+              <div class="form-name"><span>* </span>信箱</div>
               <input text="text" placeholder="@gmail.com"  v-model="contactData.email"/>
             </div>
           </div>
           <div class="col2">
             <div class="first">
-              <div class="form-name">手機</div>
+              <div class="form-name"><span>* </span>手機</div>
               <input text="text" placeholder="+886-000-000-000" v-model="contactData.mobile"/>
             </div>
             <div class="first">
-              <div class="form-name">職業</div>
+              <div class="form-name"><span>* </span>職業</div>
               <input text="text" placeholder="輸入您目前的職業性質" v-model="contactData.job"/>
             </div>
           </div>
           <div class="col3">
-            <div class="form-name">留言</div>
+            <div class="form-name"><span>* </span>留言</div>
             <input text="text" placeholder="輸入信息標題" class="message" v-model="contactData.message_title" />
             <textarea placeholder="輸入訊息內容（300字）" maxlength="300" class="info" v-model="contactData.message_content" />
           </div>
@@ -146,9 +146,6 @@ export default {
         window.getSelection().addRange(range);
       }
     }
-  },
-  beforeDestroy() {
-    document.scrollingElement.scrollTop = 0;
   }
 };
 </script>
@@ -475,6 +472,9 @@ export default {
         display: flex;
         .form-name {
           margin-left: 5px;
+          span{
+            color: red;
+          }
         }
         .first + .first {
           margin-top: 30px;
