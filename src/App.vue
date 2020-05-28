@@ -87,12 +87,12 @@ body {
 @media screen and (min-width: $bigWidth) {
   .nav {
     width: 100vw;
-    // min-width: 1243px;
+    // min-width: 77.6875rem;
     justify-content: space-between;
     .link {
       a {
         color: #fff;
-        margin-right: 40px;
+        margin-right: 2.5rem;
       }
     }
   }
@@ -103,11 +103,11 @@ body {
     justify-content: space-between;
     .link {
       a + a {
-        border-left: 1px solid #fff;
+        border-left: 0.0625rem solid #fff;
       }
       a {
         color: #fff;
-        padding: 2px 20px;
+        padding: 0.125rem 1.25rem;
       }
     }
   }
@@ -120,25 +120,25 @@ body {
       position: fixed;
       bottom: 0;
       width: 100%;
-      height: 60px;
-      box-shadow: rgb(0, 0, 0) 0px 0px 1px inset;
+      height: 3.75rem;
+      box-shadow: rgb(0, 0, 0) 0rem 0rem 0.0625rem inset;
       background-color: rgba(255, 255, 255, 0.9);
       justify-content: center;
       a + a {
-        border-left: 1.5px solid rgb(214, 214, 214);
+        border-left: 0.0938rem solid rgb(214, 214, 214);
       }
       a {
         color: rgb(121, 121, 121);
-        padding: 3px 4%;
+        padding: 0.1875rem 4%;
       }
     }
   }
 }
 .nav {
   box-sizing: border-box;
-  padding: 0 20px;
-  margin: 0px auto;
-  height: 56px;
+  padding: 0 1.25rem;
+  margin: 0rem auto;
+  height: 3.5rem;
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   z-index: 3;
@@ -149,7 +149,7 @@ body {
   a {
     // font-weight: bold;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 0.75rem;
     // &.router-link-exact-active {
     //   color: #42b983;
     // }
@@ -159,19 +159,19 @@ body {
     align-items: center;
   }
   .logo {
-    margin-left: 20px;
+    margin-left: 1.25rem;
     display: flex;
     align-items: center;
     .logo-img {
-      width: 22px;
-      height: 31px;
-      margin-right: 10px;
+      width: 1.375rem;
+      height: 1.9375rem;
+      margin-right: 0.625rem;
     }
     .company {
-      width: 69px;
-      height: 16px;
-      margin-top: 5px;
-      // margin: 10px;
+      width: 4.3125rem;
+      height: 1rem;
+      margin-top: 0.3125rem;
+      // margin: 0.625rem;
     }
   }
 }

@@ -98,25 +98,25 @@ export default {
 @import "../assets/style/utils/_variables.scss";
 @media screen and (min-width: $bigWidth) {
   .main {
-    border: 6px solid rgb(235, 235, 235);
+    border: 0.375rem solid rgb(235, 235, 235);
   }
 }
 @media screen and (min-width: $smallWidth) and (max-width: $bigWidth) {
   .main {
-    border: 6px solid rgb(235, 235, 235);
+    border: 0.375rem solid rgb(235, 235, 235);
   }
 }
 @media screen and (max-width: $smallWidth) {
   .main {
-    border: 1px solid rgb(235, 235, 235);
+    border: 0.0625rem solid rgb(235, 235, 235);
   }
 }
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 0.125rem;
 }
 ::-webkit-scrollbar-thumb {
   background: #d6d6d6;
-  border-radius: 1px;
+  border-radius: 0.0625rem;
 }
 .main {
   .opacity-enter {
@@ -125,10 +125,10 @@ export default {
   .opacity-enter-active {
     transition: opacity 1s;
   }
-  width: 322px;
-  height: 603px;
-  border-radius: 10px;
-  margin: 30px 15px 0;
+  width: 20.125rem;
+  height: 37.6875rem;
+  border-radius: 0.625rem;
+  margin: 1.875rem 0.9375rem 0;
   position: relative;
   transition: max-height 0.4s;
   .btn {
@@ -136,40 +136,40 @@ export default {
     top: 0;
     bottom: 0;
     margin: auto;
-    right: -5px;
-    width: 30px;
-    height: 30px;
+    right: -0.3125rem;
+    width: 1.875rem;
+    height: 1.875rem;
     transform: rotate(90deg);
   }
   .avatar {
-    transform: translateX(35px) translateY(38px) rotateY(0deg);
-    width: 64px;
-    height: 64px;
+    transform: translateX(2.1875rem) translateY(2.375rem) rotateY(0deg);
+    width: 4rem;
+    height: 4rem;
     position: absolute;
-    border-radius: 10px;
-    box-shadow: rgb(192, 192, 192) 0px 0px 8px inset;
+    border-radius: 0.625rem;
+    box-shadow: rgb(192, 192, 192) 0rem 0rem 0.5rem inset;
   }
   .title {
-    transform: translateX(113px) translateY(29px) rotateY(0deg);
-    font-size: 18px;
-    padding: 8px;
-    width: 161px;
-    height: 26px;
+    transform: translateX(7.0625rem) translateY(1.8125rem) rotateY(0deg);
+    font-size: 1.125rem;
+    padding: 0.5rem;
+    width: 10.0625rem;
+    height: 1.625rem;
     position: absolute;
     text-align: left;
     font-weight: 700;
     color: rgb(0, 0, 0);
   }
   .salary {
-    transform: translateX(111px) translateY(65px) rotateY(0deg);
-    width: 143px;
-    height: 26px;
+    transform: translateX(6.9375rem) translateY(4.0625rem) rotateY(0deg);
+    width: 8.9375rem;
+    height: 1.625rem;
     position: absolute;
-    padding: 8px;
+    padding: 0.5rem;
     text-align: left;
     color: rgb(145, 145, 145);
     .num {
-      font-size: 26px;
+      font-size: 1.625rem;
       color: rgb(0, 0, 0);
     }
     i {
@@ -177,81 +177,81 @@ export default {
     }
   }
   .requirement {
-    transform: translateX(32px) translateY(116px) rotateY(0deg);
-    width: 252px;
-    height: 25px;
+    transform: translateX(2rem) translateY(7.25rem) rotateY(0deg);
+    width: 15.75rem;
+    height: 1.5625rem;
     position: absolute;
-    padding: 8px;
+    padding: 0.5rem;
     text-align: left;
     color: rgb(0, 0, 0);
     font-family: "Noto Sans HK";
     font-weight: bold;
-    border-bottom: 1px solid rgb(145, 145, 145);
+    border-bottom: 0.0625rem solid rgb(145, 145, 145);
     .total {
       font-weight: normal;
     }
   }
   .list {
-    // transform: translateX(32px) translateY(157px) rotateY(0deg);
-    width: 268px;
-    height: 315px;
+    // transform: translateX(2rem) translateY(9.8125rem) rotateY(0deg);
+    width: 16.75rem;
+    height: 19.6875rem;
     // position: absolute;
-    border-bottom: 1px solid rgb(145, 145, 145);
+    border-bottom: 0.0625rem solid rgb(145, 145, 145);
     overflow: auto;
-    margin: 157px auto 0;
+    margin: 9.8125rem auto 0;
     .content {
-      width: 250px;
+      width: 15.625rem;
       text-align: left;
-      padding: 15px 15px 15px 0;
-      font-size: 14px;
+      padding: 0.9375rem 0.9375rem 0.9375rem 0;
+      font-size: 0.875rem;
       display: flex;
       .check {
-        width: 50px;
+        width: 3.125rem;
         input[type="checkbox"] {
           position: relative;
           cursor: pointer;
-          margin: 5px;
+          margin: 0.3125rem;
         }
         input[type="checkbox"]:before {
           content: "";
           display: block;
           position: absolute;
           background-color: white;
-          width: 24px;
-          height: 24px;
-          top: -2px;
-          left: -2px;
-          border-radius: 3px;
-          box-shadow: rgb(146, 146, 146) 0px 0px 4px inset;
+          width: 1.5rem;
+          height: 1.5rem;
+          top: -0.125rem;
+          left: -0.125rem;
+          border-radius: 0.1875rem;
+          box-shadow: rgb(146, 146, 146) 0rem 0rem 0.25rem inset;
         }
         input[type="checkbox"]:checked:after {
           content: "";
           display: block;
-          width: 4px;
-          height: 11px;
+          width: 0.25rem;
+          height: 0.6875rem;
           border: solid #00bfff;
-          border-width: 0 1.5px 1.5px 0;
+          border-width: 0 0.0938rem 0.0938rem 0;
           transform: rotate(45deg);
           position: absolute;
-          top: 3px;
-          left: 8px;
+          top: 0.1875rem;
+          left: 0.5rem;
         }
       }
       .item-list {
-        width: 250px;
+        width: 15.625rem;
       }
     }
   }
   .buttom {
-    // transform: translateX(34px) translateY(495px) rotateY(0deg);
-    width: 260px;
-    height: 48px;
+    // transform: translateX(2.125rem) translateY(30.9375rem) rotateY(0deg);
+    width: 16.25rem;
+    height: 3rem;
     // position: absolute;
-    margin: 25px auto 0;
+    margin: 1.5625rem auto 0;
     border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
-    box-shadow: rgb(145, 145, 145) 0px 0px 3px;
+    border-width: 0.0625rem;
+    border-radius: 0.3125rem;
+    box-shadow: rgb(145, 145, 145) 0rem 0rem 0.1875rem;
     background-image: -webkit-linear-gradient(
       225deg,
       rgb(99, 179, 242),
@@ -260,20 +260,20 @@ export default {
     border-color: rgb(0, 111, 216);
     cursor: pointer;
     .apply {
-      transform: translateX(126px) translateY(502px) rotateY(0deg);
-      font-size: 16px;
+      transform: translateX(7.875rem) translateY(31.375rem) rotateY(0deg);
+      font-size: 1rem;
       color: rgb(255, 255, 255);
       position: relative;
-      top: 14px;
+      top: 0.875rem;
     }
   }
   .bottom {
-    // transform: translateX(85px) translateY(554px) rotateY(0deg);
+    // transform: translateX(5.3125rem) translateY(34.625rem) rotateY(0deg);
     // position: absolute;
-    margin-top: 20px;
+    margin-top: 1.25rem;
     color: rgb(0, 0, 0);
     font-family: "Noto Sans HK";
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 }
 .selected {
@@ -283,8 +283,8 @@ export default {
     rgb(100, 182, 243),
     rgb(80, 116, 224)
   );
-  border-radius: 10px;
-  border: 1px solid rgb(0, 150, 255);
+  border-radius: 0.625rem;
+  border: 0.0625rem solid rgb(0, 150, 255);
   .avatar {
     box-shadow: unset;
     background-color: white;
@@ -299,7 +299,7 @@ export default {
   }
   .requirement,
   .list {
-    border-bottom: 1px solid white;
+    border-bottom: 0.0625rem solid white;
   }
   .list .content .check input[type="checkbox"]:before {
     box-shadow: unset;
@@ -307,26 +307,26 @@ export default {
   .buttom {
     background-image: unset;
     background-color: white;
-    box-shadow: rgb(0, 0, 0) 0px 0px 3px;
+    box-shadow: rgb(0, 0, 0) 0rem 0rem 0.1875rem;
     .apply {
       color: rgb(0, 150, 255);
     }
   }
 }
 .close {
-  width: 324px;
-  height: 34px;
+  width: 20.25rem;
+  height: 2.125rem;
   position: absolute;
-  bottom: -1px;
-  left: -1px;
+  bottom: -0.0625rem;
+  left: -0.0625rem;
   background-color: rgb(232, 235, 237);
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  box-shadow: rgb(94, 94, 94) 0px 0px 1px inset;
-  line-height: 34px;
+  border-bottom-left-radius: 0.625rem;
+  border-bottom-right-radius: 0.625rem;
+  box-shadow: rgb(94, 94, 94) 0rem 0rem 0.0625rem inset;
+  line-height: 2.125rem;
   img {
-    width: 24px;
-    height: 24px;
+    width: 1.5rem;
+    height: 1.5rem;
     transform: rotate(180deg);
   }
 }
