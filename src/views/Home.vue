@@ -4,7 +4,7 @@
       v-for="(item,k) in data"
       :key="'image'+k"
       :alt="`Big image${k}`"
-      :src="(baseDomain +'/storage/home/'+ item.img)"
+      :src="item.imageURLMiddle"
       class="big-image"
       :style="{left:`${screenwidth*(k - page)}px`}"
       v-touch:swipeleft="leftSlide"

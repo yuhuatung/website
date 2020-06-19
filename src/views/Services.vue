@@ -17,7 +17,7 @@
     </div>
     <div class="services">
       <div v-for="(item, index) in services" :key="index" class="services-item">
-        <img :src="(baseDomain +'/storage/service/'+ item.img)" >
+        <img :src="item.imageURLMiddle" >
         <div class="mask">
           <div class="services-title">{{item.title}}</div>
           <div class="services-content">{{item.content}}</div>
