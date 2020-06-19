@@ -2,25 +2,25 @@
   <div class="contacts">
     <div class="animation">
       <div class="video-outer">
-        <video class="sleep-video" autoplay muted loop v-show="screenwidth>810">
+        <video class="sleep-video" autoplay muted loop v-if="screenwidth>810">
           <source src="https://www.308262.com/vue/files/contacts.mov" type="video/mp4" />
         </video>
-        <img v-show="screenwidth<810" class="sleep-video" :src="bigImage" alt="contactsImg" />
+        <img v-if="screenwidth<810" class="sleep-video" :src="bigImage" alt="contactsImg" />
         <div class="address">
           <div class="subject">Address</div>
-          <div class="content">
+          <div class="content" ref="addressToCopy">
             台北市信義區信義路四段
             <br />世紀金融大樓
           </div>
-          <div class="copy">
+          <div class="copy" @click.stop.prevent="copyText('addressToCopy')">
             <img src="@/assets/img/icons8-copy_2x.png" />copy
           </div>
-          <div class="bottom">Google Map</div>
+          <div class="bottom"><a href="https://goo.gl/maps/s3Jbny6iqBcy7qkf8" target="_blank">Google Map</a></div>
         </div>
         <div class="email">
           <div class="subject">E-mail</div>
-          <div class="content">hr@Wanlian-tech.com</div>
-          <div class="copy">
+          <div class="content" ref="emailToCopy">hr@Wanlian-tech.com</div>
+          <div class="copy" @click.stop.prevent="copyText('emailToCopy')">
             <img src="@/assets/img/icons8-copy_2x.png" />copy
           </div>
           <div class="bottom">Outlook</div>
@@ -47,26 +47,26 @@
         <div class="row1">
           <div class="col1">
             <div class="first">
-              <div class="form-name">姓名</div>
+              <div class="form-name"><span>* </span>姓名</div>
               <input text="text" placeholder="請輸入真實姓名" v-model="contactData.name"/>
             </div>
             <div class="first">
-              <div class="form-name">信箱</div>
+              <div class="form-name"><span>* </span>信箱</div>
               <input text="text" placeholder="@gmail.com"  v-model="contactData.email"/>
             </div>
           </div>
           <div class="col2">
             <div class="first">
-              <div class="form-name">手機</div>
+              <div class="form-name"><span>* </span>手機</div>
               <input text="text" placeholder="+886-000-000-000" v-model="contactData.mobile"/>
             </div>
             <div class="first">
-              <div class="form-name">職業</div>
+              <div class="form-name"><span>* </span>職業</div>
               <input text="text" placeholder="輸入您目前的職業性質" v-model="contactData.job"/>
             </div>
           </div>
           <div class="col3">
-            <div class="form-name">留言</div>
+            <div class="form-name"><span>* </span>留言</div>
             <input text="text" placeholder="輸入信息標題" class="message" v-model="contactData.message_title" />
             <textarea placeholder="輸入訊息內容（300字）" maxlength="300" class="info" v-model="contactData.message_content" />
           </div>
@@ -88,7 +88,6 @@ export default {
   props: ["screenwidth"],
   data() {
     return {
-
         contactData: {
           "name":"",
           "mobile":"",
@@ -108,12 +107,12 @@ export default {
       return img.src;
     }
   },
-  methods:{
-
+  methods: {
+    beforeDestroy() {
+      document.scrollingElement.scrollTop = 0;
+    },
     sendContactData(){
-
       sendContact(this.contactData).then(response=>{
-
         if(response.success){
           alert('送出成功')
         }else{
@@ -123,16 +122,38 @@ export default {
         console.log(e)
         alert('送出失敗')
       })
-
+    },
+    copyText (text) {
+      this.selectText(this.$refs[text]); // e.g. <div ref="text">
+      try {
+        document.execCommand('copy');
+        alert('Copied the text.');
+      } catch (err) {
+        alert('Oops, unable to copy');
+      }
+    },
+    selectText(element) {
+      var range;
+      if (document.selection) {
+        // IE
+        range = document.body.createTextRange();
+        range.moveToElementText(element);
+        range.select();
+      } else if (window.getSelection) {
+        range = document.createRange();
+        range.selectNode(element);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+      }
     }
   }
 };
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 @import "../assets/style/utils/_variables.scss";
 @media screen and (min-width: $bigWidth) {
   .contacts {
-    min-width: 1243px;
+    min-width: 77.6875rem;
     .video-outer {
       max-height: 80vh;
       min-height: 80vh;
@@ -154,39 +175,39 @@ export default {
         background: rgba(94, 94, 94, 0.7);
       }
       .copy {
-        margin-bottom: 45px;
+        margin-bottom: 2.8125rem;
       }
     }
     .contact-us {
       .title {
-        width: 1045px;
+        width: 65.3125rem;
         .subject {
-          font-size: 64px;
+          font-size: 4rem;
         }
       }
       .form {
-        width: 1045px;
-        margin: 50px auto 0;
+        width: 65.3125rem;
+        margin: 3.125rem auto 0;
         .row1 {
           justify-content: flex-start;
           input {
-            margin-top: 15px;
+            margin-top: 0.9375rem;
           }
           .col1 {
-            margin-right: 35px;
+            margin-right: 2.1875rem;
           }
           .col2 {
-            margin-right: 35px;
+            margin-right: 2.1875rem;
           }
           .col3 {
             flex-direction: column;
             .message {
-              width: 460px;
+              width: 28.75rem;
             }
             .info {
-              width: 460px;
+              width: 28.75rem;
               margin-top: auto;
-              height: 75px;
+              height: 4.6875rem;
             }
           }
         }
@@ -218,7 +239,7 @@ export default {
       background-color: rgba(0, 0, 0, 0.8);
     }
     .copy {
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
     }
   }
   .contact-us {
@@ -226,36 +247,36 @@ export default {
       width: 100%;
       justify-content: center;
       .subject {
-        font-size: 64px;
+        font-size: 4rem;
       }
     }
     .form {
       width: 100%;
-      margin: 50px auto 0;
+      margin: 3.125rem auto 0;
       .row1 {
         width: 100%;
         justify-content: center;
         flex-wrap: wrap;
         input {
-          margin-top: 15px;
+          margin-top: 0.9375rem;
         }
         .col1 {
-          margin-right: 35px;
+          margin-right: 2.1875rem;
         }
         .col3 {
-          width: 513px;
+          width: 32.0625rem;
           justify-content: center;
-          margin-top: 40px;
+          margin-top: 2.5rem;
           flex-direction: column;
           .message {
             box-sizing: border-box;
             width: 100%;
           }
           .info {
-            margin-top: 15px;
+            margin-top: 0.9375rem;
             box-sizing: border-box;
             width: 100%;
-            height: 75px;
+            height: 4.6875rem;
           }
         }
       }
@@ -286,7 +307,7 @@ export default {
       background-color: rgba(0, 0, 0, 0.8);
     }
     .copy {
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
     }
   }
   .contact-us {
@@ -296,7 +317,7 @@ export default {
       flex-direction: column;
       justify-content: center;
       .subject {
-        font-size: 36px;
+        font-size: 2.25rem;
       }
       .content {
         justify-content: center;
@@ -304,7 +325,7 @@ export default {
     }
     .form {
       width: 100%;
-      margin-top: 20px;
+      margin-top: 1.25rem;
       .row1 {
         width: 100%;
         justify-content: center;
@@ -315,28 +336,28 @@ export default {
             display: flex;
             align-items: center;
             .form-name {
-              margin-right: 20px;
+              margin-right: 1.25rem;
             }
           }
         }
         .col2 {
-          margin-top: 35px;
+          margin-top: 2.1875rem;
         }
         .col3 {
-          width: 513px;
+          width: 32.0625rem;
           justify-content: center;
-          margin-top: 35px;
+          margin-top: 2.1875rem;
           flex-wrap: wrap;
           .form-name {
-            line-height: 48px;
-            margin-right: 20px;
+            line-height: 3rem;
+            margin-right: 1.25rem;
           }
           .info {
-            margin-top: 15px;
+            margin-top: 0.9375rem;
             box-sizing: border-box;
             width: 80%;
-            height: 175px;
-            max-width: 296px;
+            height: 10.9375rem;
+            max-width: 18.5rem;
           }
         }
       }
@@ -348,7 +369,7 @@ export default {
 }
 
 .contacts {
-  width: 100vw;
+  // width: 100vw;
   .animation {
     position: relative;
     .video-outer {
@@ -375,54 +396,57 @@ export default {
       .address {
         background: rgba(94, 94, 94, 0.7);
         .content {
-          text-align: left;
+          // text-align: left;
         }
       }
       .email {
         background: rgba(0, 150, 255, 0.7);
       }
       .subject {
-        font-size: 36px;
-        margin-bottom: 15px;
+        font-size: 2.25rem;
+        margin-bottom: 0.9375rem;
       }
       .content {
-        font-size: 16px;
-        margin-bottom: 5px;
+        font-size: 1rem;
+        margin-bottom: 0.3125rem;
       }
       .copy {
-        font-size: 12px;
+        font-size: 0.75rem;
         cursor: pointer;
         font-style: italic;
         img {
-          width: 16px;
-          margin-right: 5px;
+          width: 1rem;
+          margin-right: 0.3125rem;
         }
       }
       .bottom {
-        width: 98px;
-        height: 16px;
-        border-radius: 13px;
+        width: 6.125rem;
+        height: 1rem;
+        border-radius: 0.8125rem;
         border-color: rgb(255, 255, 255);
-        font-size: 13px;
+        font-size: 0.8125rem;
         color: rgb(255, 255, 255);
         border-style: solid;
-        padding: 6px;
-        border-width: 1px;
+        padding: 0.375rem;
+        border-width: 0.0625rem;
         cursor: pointer;
+        a{
+          color: rgb(255, 255, 255);
+        }
       }
     }
   }
   .contact-us {
-    padding: 60px 0 100px;
+    padding: 3.75rem 0 6.25rem;
     .title {
       display: flex;
       margin: 0 auto;
       .content {
-        margin: 10px 26px;
+        margin: 0.625rem 1.625rem;
         display: flex;
         text-align: left;
         align-items: center;
-        line-height: 20px;
+        line-height: 1.25rem;
       }
     }
     .form {
@@ -431,60 +455,69 @@ export default {
         font-size: 12p;
       }
       input {
-        border: 1px rgb(214, 214, 214) solid;
-        width: 207px;
-        height: 46px;
-        border-radius: 10px;
-        padding: 0px 15px;
-        font-size: 12px;
+        border: 0.0625rem rgb(214, 214, 214) solid;
+        width: 12.9375rem;
+        height: 2.875rem;
+        border-radius: 0.625rem;
+        padding: 0rem 0.9375rem;
+        font-size: 0.75rem;
+      }
+      input:focus{
+        border: 0.0625rem #5facf0 solid;
+        outline: none;
       }
       .row1 {
-        font-size: 16px;
+        font-size: 1rem;
         text-align: left;
         display: flex;
         .form-name {
-          margin-left: 5px;
+          margin-left: 0.3125rem;
+          span{
+            color: red;
+          }
         }
         .first + .first {
-          margin-top: 30px;
+          margin-top: 1.875rem;
         }
-
         .col3 {
           display: flex;
-
           .info {
-            border-radius: 10px;
-            font-size: 12px;
-            padding: 10px 15px;
-            border: 1px rgb(214, 214, 214) solid;
+            border-radius: 0.625rem;
+            font-size: 0.75rem;
+            padding: 0.625rem 0.9375rem;
+            border: 0.0625rem rgb(214, 214, 214) solid;
+          }
+          .info:focus{
+            border: 0.0625rem #5facf0 solid;
+            outline: none;
           }
         }
       }
       .row2 {
         display: flex;
         flex-direction: column;
-        margin-top: 60px;
+        margin-top: 3.75rem;
         .subscribe {
-          width: 241px;
-          height: 46px;
+          width: 15.0625rem;
+          height: 2.875rem;
           background-color: rgba(0, 0, 0, 0.8);
           color: rgb(255, 255, 255);
-          font-size: 18px;
-          border-radius: 10px;
-          line-height: 46px;
+          font-size: 1.125rem;
+          border-radius: 0.625rem;
+          line-height: 2.875rem;
           text-align: center;
           cursor: pointer;
         }
         .hint {
-          width: 228px;
-          height: 21px;
-          letter-spacing: 0px;
-          font-size: 12px;
-          line-height: 18px;
+          width: 14.25rem;
+          height: 1.3125rem;
+          letter-spacing: 0rem;
+          font-size: 0.75rem;
+          line-height: 1.125rem;
           overflow-wrap: break-word;
           text-align: center;
           color: rgb(121, 121, 121);
-          margin-top: 20px;
+          margin-top: 1.25rem;
         }
       }
     }

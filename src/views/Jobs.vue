@@ -33,7 +33,11 @@
           <span>{{welfareTitleToIndexMap[0]}}</span>
           <div class="card">
             <div class="inner">
-              <div v-for="(item, index) in welfare[welfareTitleToIndexMap[0]]" :key="index" class="content">
+              <div
+                v-for="(item, index) in welfare[welfareTitleToIndexMap[0]]"
+                :key="index"
+                class="content"
+              >
                 <div class="subject">{{item.name}}</div>
                 <div v-html="item.content"></div>
               </div>
@@ -44,7 +48,11 @@
           <span>{{welfareTitleToIndexMap[1]}}</span>
           <div class="card">
             <div class="inner">
-              <div v-for="(item, index) in welfare[welfareTitleToIndexMap[1]].slice(0, 4)" :key="index" class="content">
+              <div
+                v-for="(item, index) in welfare[welfareTitleToIndexMap[1]].slice(0, 4)"
+                :key="index"
+                class="content"
+              >
                 <div class="subject">{{item.name}}</div>
                 <div v-html="item.content"></div>
               </div>
@@ -64,7 +72,11 @@
           <span>{{welfareTitleToIndexMap[2]}}</span>
           <div class="card">
             <div class="inner">
-              <div v-for="(item, index) in welfare[welfareTitleToIndexMap[2]]" :key="index" class="content">
+              <div
+                v-for="(item, index) in welfare[welfareTitleToIndexMap[2]]"
+                :key="index"
+                class="content"
+              >
                 <div class="subject">{{item.name}}</div>
                 <div v-html="item.content"></div>
               </div>
@@ -83,7 +95,7 @@
     </div>
     <div class="vacancy-card">
       <div v-for="(item, index) in jobs" :key="index">
-        <JobCard v-bind="item" :selected="selectedJOb" :screenwidth="screenwidth" ref="vacancy"/>
+        <JobCard v-bind="item" :selected="selectedJOb" :screenwidth="screenwidth" ref="vacancy" />
       </div>
     </div>
     <transition name="background-opacity">
@@ -108,36 +120,39 @@
                 請選擇進3個月的求職照片。
                 <br />照片大小限3MB
               </p>
-              <p class="choose-photo" @click="$refs['avatar-file'].click()">選擇照片</p>
-              <input type="file" ref="avatar-file" @change="avatarChange" v-show="false">
-
+              <p class="choose-photo" @click="$refs['avatar-file'].click()"><span>* </span>選擇照片</p>
+              <input type="file" ref="avatar-file" @change="avatarChange" v-show="false" />
             </div>
           </div>
           <div class="form">
             <div class="row1">
               <div>
-                <div class="form-name">姓名</div>
+                <div class="form-name"><span>* </span>姓名</div>
                 <input text="text" placeholder="請輸入真實姓名" v-model="jobSubscriberData.name" />
               </div>
               <div>
-                <div class="form-name">手機</div>
-                <input text="text" placeholder="+886-000-000-000" v-model="jobSubscriberData.mobile"/>
+                <div class="form-name"><span>* </span>手機</div>
+                <input
+                  text="text"
+                  placeholder="+886-000-000-000"
+                  v-model="jobSubscriberData.mobile"
+                />
               </div>
             </div>
             <div class="row2">
               <div>
-                <div class="form-name">信箱</div>
-                <input text="text" placeholder="@gmail.com" v-model="jobSubscriberData.email"/>
+                <div class="form-name"><span>* </span>信箱</div>
+                <input text="text" placeholder="@gmail.com" v-model="jobSubscriberData.email" />
               </div>
               <div>
-                <div class="form-name">職業</div>
-                <input text="text" placeholder="輸入您目前的職業性質" v-model="jobSubscriberData.job_title"/>
+                <div class="form-name"><span>* </span>職業</div>
+                <input text="text" placeholder="輸入您目前的職業性質" v-model="jobSubscriberData.job_title" />
               </div>
             </div>
             <div class="row3">
               <div>
-                <div class="form-name">地址</div>
-                <input text="text" placeholder="縣市-區-路" v-model="jobSubscriberData.address"/>
+                <div class="form-name"><span>* </span>地址</div>
+                <input text="text" placeholder="縣市-區-路" v-model="jobSubscriberData.address" />
               </div>
             </div>
             <div class="row4">
@@ -152,7 +167,7 @@
     <div class="small-apply-form" v-show="screenwidth<810">
       <div class="subscribe" @click="showApplyForm = true">
         立即訂閱
-        <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="subscribe-btn"/>
+        <img src="@/assets/img/icons8-expand_arrow-1_2x.png" alt="subscribe-btn" />
       </div>
       <div class="hint">
         沒看到適合您的職缺嗎！
@@ -165,9 +180,9 @@
 <script>
 // @ is an alias to /src
 import JobCard from "@/components/JobCard.vue";
-import {fetchRecruiting} from "@/api/recruiting";
-import {addJobSubscriber} from "@/api/job";
-import {groupBy} from "@/utils";
+import { fetchRecruiting } from "@/api/recruiting";
+import { addJobSubscriber } from "@/api/job";
+import { groupBy } from "@/utils";
 
 export default {
   name: "Jobs",
@@ -175,18 +190,14 @@ export default {
     JobCard
   },
   created() {
-    fetchRecruiting([]).then(response=>{
+    fetchRecruiting([]).then(response => {
+      if (response.success) {
+        this.jobs = response.rows.jobs;
+        const tempWelfare = response.rows.welfare;
 
-      if(response.success){
-
-        this.jobs=response.rows.jobs
-        const tempWelfare =response.rows.welfare
-
-        this.welfare=groupBy(tempWelfare,'title')
-
+        this.welfare = groupBy(tempWelfare, "title");
       }
-
-    })
+    });
   },
   props: ["screenwidth"],
   data() {
@@ -195,9 +206,9 @@ export default {
       welfare: {},
       jobs: [],
       welfareTitleToIndexMap: {
-        0: '基本權益',
-        1: '獎金發放',
-        2: '休假申請'
+        0: "基本權益",
+        1: "獎金發放",
+        2: "休假申請"
       },
       stepBottom: 200, //此数据是控制动画快慢的
       stepJob: 50,
@@ -206,17 +217,17 @@ export default {
       showRightBtn: true,
       left: 0,
       showApplyForm: false,
-      avatarTemp:"",
-      avatarPreviewUrl:"",
+      avatarTemp: "",
+      avatarPreviewUrl: "",
       jobSubscriberData: {
-        "name": "",
-        "mobile": "",
-        "email": "",
-        "job_title": "",
-        "address": "",
-        "avatar": ""
+        name: "",
+        mobile: "",
+        email: "",
+        job_title: "",
+        address: "",
+        avatar: ""
       }
-    }
+    };
   },
   computed: {
     bigImage() {
@@ -241,37 +252,34 @@ export default {
   },
   methods: {
     avatarChange(e) {
+      this.jobSubscriberData.avatar = e.target.files[0];
 
-      this.jobSubscriberData.avatar = e.target.files[0]
-
-      this.avatarPreviewUrl = URL.createObjectURL(this.jobSubscriberData.avatar);
-
+      this.avatarPreviewUrl = URL.createObjectURL(
+        this.jobSubscriberData.avatar
+      );
     },
-    sendJobSubscriberData(){
+    sendJobSubscriberData() {
+      const bodyFormData = new FormData();
 
+      bodyFormData.set("name", this.jobSubscriberData.name);
+      bodyFormData.append("avatar", this.jobSubscriberData.avatar);
+      bodyFormData.set("address", this.jobSubscriberData.address);
+      bodyFormData.set("job_title", this.jobSubscriberData.job_title);
+      bodyFormData.set("email", this.jobSubscriberData.email);
+      bodyFormData.set("mobile", this.jobSubscriberData.mobile);
 
-      const bodyFormData = new FormData()
-
-      bodyFormData.set('name', this.jobSubscriberData.name)
-      bodyFormData.append('avatar', this.jobSubscriberData.avatar)
-      bodyFormData.set('address', this.jobSubscriberData.address)
-      bodyFormData.set('job_title', this.jobSubscriberData.job_title)
-      bodyFormData.set('email', this.jobSubscriberData.email)
-      bodyFormData.set('mobile', this.jobSubscriberData.mobile)
-
-
-      addJobSubscriber(bodyFormData).then(response=>{
-
-        if(response.success){
-          alert('訂閱成功')
-        }else{
-          alert('訂閱失敗')
-        }
-      }).catch(e=>{
-        console.log(e)
-        alert('訂閱失敗')
-      })
-
+      addJobSubscriber(bodyFormData)
+        .then(response => {
+          if (response.success) {
+            alert("訂閱成功");
+          } else {
+            alert("訂閱失敗");
+          }
+        })
+        .catch(e => {
+          console.log(e);
+          alert("訂閱失敗");
+        });
     },
     turnLeft() {
       if (this.screenwidth > 576) {
@@ -300,23 +308,34 @@ export default {
         document.documentElement.clientHeight || document.body.clientHeight;
       let scrollHeight = document.documentElement.scrollHeight;
       let height = scrollHeight - clientHeight - 10; //超出窗口上界的值就是底部的scrolTop的值
-      document.documentElement.scrollTop += i;
+      document.scrollingElement.scrollTop += i;
       let c;
-      if (document.documentElement.scrollTop < height) {
+      if (document.scrollingElement.scrollTop < height) {
         c = setTimeout(() => this.toBottom(i), 16);
       } else {
         clearTimeout(c);
       }
     },
     handleMenuClick(e) {
-      let height = this.$refs.vacancy[e.key].$el.offsetTop - 30;
+      let height = this.$refs.vacancy[e.key].$el.offsetTop - 150;
+      if ((this.screenwidth < 576) && (e.key > (this.numOfJobs - 4))) {
+        height = this.$refs.vacancy[e.key].$el.offsetTop - 200;
+        if (e.key == (this.numOfJobs - 2)) {
+          height = height - 100;
+        }
+        if (e.key == (this.numOfJobs - 1)) {
+          height = height - 300;
+        }
+      }else if(this.screenwidth < 810 && (e.key > (this.numOfJobs - 4))){
+        height = this.$refs.vacancy[e.key].$el.offsetTop - 300;
+      }
       this.selectedJOb = this.jobs[e.key].name;
       this.toJobCard(this.stepJob, height);
     },
     toJobCard(i, height) {
-      document.documentElement.scrollTop += i;
+      document.scrollingElement.scrollTop += i;
       let c;
-      if (document.documentElement.scrollTop < height) {
+      if (document.scrollingElement.scrollTop < height) {
         c = setTimeout(() => this.toJobCard(i, height), 16);
       } else {
         clearTimeout(c);
@@ -324,106 +343,102 @@ export default {
     }
   },
   beforeDestroy() {
-    document.documentElement.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
   }
 };
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 @import "../assets/style/utils/_variables.scss";
 @media screen and (min-width: $bigWidth) {
   .jobs {
     width: 100%;
-    min-width: 1243px;
-    .header{
-      height:100vh;
+    min-width: 77.6875rem;
+    .header {
+      height: 100vh;
     }
     .subject {
     }
     .search {
-      width: 560px;
+      width: 35rem;
       margin-top: 5%;
     }
     .footer {
       position: absolute;
-      bottom: 35px;
+      bottom: 2.1875rem;
     }
     .welfare .content,
     .vacancy .content {
-      width: 540px;
+      width: 33.75rem;
     }
     .vacancy {
       flex-direction: column;
       .subscribe {
-        width: 216px;
+        width: 13.5rem;
       }
     }
     .welfare-card .cards {
-      width: 1092px;
+      width: 68.25rem;
       justify-content: center;
       left: 0;
       right: 0;
       margin: auto;
       .outer {
-        margin: 0 10px;
+        margin: 0 0.625rem;
         span {
-          margin-bottom: 25px;
+          margin-bottom: 1.5625rem;
         }
       }
     }
     .vacancy-card {
-      width: 1092px;
+      width: 68.25rem;
     }
     .apply-form {
-      margin-top: 60px;
+      margin-top: 3.75rem;
       .containar {
-        padding-top: 80px;
-        height: 570px;
+        padding-top: 5rem;
+        height: 35.625rem;
         justify-content: center;
         .picture {
-          width: 200px;
+          width: 12.5rem;
           display: flex;
           flex-direction: column;
           align-items: center;
           .photo {
-            width: 151px;
-            height: 166px;
-            img {
-              width: 50px;
-              height: 50px;
-            }
+            width: 9.4375rem;
+            height: 10.375rem;
           }
           .hint {
-            margin-top: 30px;
+            margin-top: 1.875rem;
           }
           .choose-photo {
-            width: 158px;
-            height: 46px;
-            margin-top: 10px;
+            width: 9.875rem;
+            height: 2.875rem;
+            margin-top: 0.625rem;
           }
         }
         .form {
-          margin-left: 90px;
-          width: 560px;
+          margin-left: 5.625rem;
+          width: 35rem;
           input {
-            width: 207px;
+            width: 12.9375rem;
           }
           .row1,
           .row2 {
             justify-content: space-around;
           }
           .row2 {
-            margin: 30px 0;
+            margin: 1.875rem 0;
           }
           .row3 {
             display: flex;
             justify-content: center;
             input {
-              width: 487px;
+              width: 30.4375rem;
             }
           }
           .row4 {
             align-items: flex-end;
-            margin: 15px 35px 100px;
+            margin: 0.9375rem 2.1875rem 6.25rem;
           }
         }
       }
@@ -436,8 +451,8 @@ export default {
 @media screen and (min-width: $smallWidth) and (max-width: $bigWidth) {
   .jobs {
     width: 100%;
-    .header{
-      height:60vh;
+    .header {
+      height: 60vh;
     }
     .subject {
     }
@@ -447,34 +462,33 @@ export default {
     }
     .footer {
       position: absolute;
-      bottom: 35px;
+      bottom: 2.1875rem;
     }
     .welfare .content,
     .vacancy .content {
-      width: 540px;
+      width: 33.75rem;
     }
     .vacancy {
       flex-direction: column;
       .subscribe {
-        width: 216px;
+        width: 13.5rem;
       }
     }
     .welfare-card .cards {
       justify-content: flex-start;
       .outer {
-        margin: 0 5px;
+        margin: 0 0.3125rem;
         span {
-          margin-bottom: 15px;
+          margin-bottom: 0.9375rem;
           text-align: left;
-          padding-left: 10px;
+          padding-left: 0.625rem;
         }
       }
     }
     .vacancy-card {
-      width: 728px;
+      width: 45.5rem;
     }
     .apply-form {
-      // height: 139px;
       position: fixed;
       bottom: 0;
       z-index: 3;
@@ -482,39 +496,31 @@ export default {
       .containar {
         box-sizing: border-box;
         flex-direction: column;
-        // margin-top: 35px;
         overflow: auto;
-        padding: 0 15px;
+        padding: 0 0.9375rem;
         height: 100%;
-        margin-top: 35px;
         .picture {
           margin-top: 5%;
           display: flex;
-          // height: 130px;
           .photo {
-            width: 117px;
-            height: 130px;
+            width: 7.3125rem;
+            height: 8.125rem;
             margin-right: 5%;
-            img {
-              width: 50px;
-              height: 50px;
-            }
           }
           .content-btn {
             margin-top: auto;
             .hint {
-              height: 30px;
+              height: 1.875rem;
             }
             .choose-photo {
-              // height: 46px;
-              margin-top: 10px;
+              margin-top: 0.625rem;
               width: 100%;
             }
           }
         }
         .form {
           width: 100%;
-          margin-top: 30px;
+          margin-top: 1.875rem;
           input {
             width: 100%;
           }
@@ -522,7 +528,6 @@ export default {
           .row2,
           .row3,
           .row4 {
-            // margin: 0 5%;
             div {
               width: 46%;
             }
@@ -532,11 +537,11 @@ export default {
             justify-content: space-between;
           }
           .row2 {
-            margin: 30px 0;
+            margin: 1.875rem 0;
           }
           .row4 {
             align-items: center;
-            margin: 30px 20px 60px;
+            margin: 1.875rem 1.25rem 3.75rem;
           }
         }
       }
@@ -548,7 +553,7 @@ export default {
       }
       .hint {
         text-align: left;
-        line-height: 18px;
+        line-height: 1.125rem;
       }
     }
   }
@@ -556,8 +561,9 @@ export default {
 @media screen and (max-width: $smallWidth) {
   .jobs {
     width: 100%;
-    .header{
-      height:100vh;
+    padding-bottom: 3.75rem;
+    .header {
+      height: calc(100vh - 3.75rem);
     }
     .subject {
       text-align: left;
@@ -588,45 +594,41 @@ export default {
     .welfare-card .cards {
       justify-content: flex-start;
       .outer {
-        margin: 0 5px;
+        margin: 0 0.3125rem;
         span {
-          margin-bottom: 15px;
+          margin-bottom: 0.9375rem;
           text-align: left;
-          padding-left: 10px;
+          padding-left: 0.625rem;
         }
       }
     }
     .vacancy-card {
-      width: 364px;
+      width: 22.75rem;
     }
 
     .apply-form {
-      // height: 139px;
       position: fixed;
       bottom: 0;
       z-index: 3;
       height: 80%;
       .containar {
+        flex-wrap: wrap;
         box-sizing: border-box;
-        flex-direction: column;
         overflow: auto;
-        padding: 0 15px;
+        padding: 0 0.9375rem;
         height: 100%;
-        margin-top: 35px;
-        align-items: center;
+        justify-content: center;
         .picture {
           margin-top: 10%;
-          // height: 166px;
           display: flex;
-          // height: 140px;
           width: 90%;
           .photo {
-            width: 117px;
-            height: 130px;
-            margin-right: 12%;
+            width: 7.3125rem;
+            height: 8.125rem;
+            margin-right: auto;
             img {
-              width: 50px;
-              height: 50px;
+              width: 100%;
+              height: 100%;
             }
           }
           .content-btn {
@@ -637,7 +639,6 @@ export default {
               }
             }
             .choose-photo {
-              // width: 150px;
               margin-top: 0;
               width: 100%;
             }
@@ -645,7 +646,7 @@ export default {
         }
         .form {
           width: 100%;
-          margin-top: 30px;
+          margin-top: 1.875rem;
           input {
             width: 100%;
           }
@@ -654,19 +655,17 @@ export default {
           .row3,
           .row4 {
             display: flex;
-            // flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
-            // margin: 0 5%;
             div {
               & + div {
-                margin-top: 28px;
+                margin-top: 1.75rem;
               }
               width: 90%;
             }
           }
           .row2 {
-            margin: 28px 0;
+            margin: 1.75rem 0;
           }
           .row4 {
             align-items: center;
@@ -681,7 +680,7 @@ export default {
         margin-right: 0%;
       }
       .hint {
-        margin-top: 10px;
+        margin-top: 0.625rem;
         text-align: center;
         line-height: unset;
       }
@@ -689,15 +688,13 @@ export default {
   }
 }
 .ant-dropdown-menu {
-  max-height: 280px;
+  max-height: 17.5rem;
   overflow: scroll;
 }
 .jobs {
   margin: 0 auto;
   .header {
     width: 100%;
-    // height: 100vh;
-    // background-image: url("~@/assets/img/recruitment.jpg");
     background-repeat: no-repeat;
     position: relative;
     display: flex;
@@ -707,79 +704,75 @@ export default {
     .big-img {
       width: 100%;
       height: 100%;
-      filter: blur(3px);
+      filter: blur(0.1875rem);
       position: absolute;
       z-index: -1;
     }
     .subject {
-      // margin-top: 270px;
       display: inline-block;
-      font-size: 48px;
+      font-size: 3rem;
       color: #fff;
       line-height: 1.2;
     }
     .search {
-      // width: 560px;
-      height: 56px;
+      height: 3.5rem;
       background-color: white;
-      font-size: 20px;
-      border-radius: 8px;
+      font-size: 1.25rem;
+      border-radius: 0.5rem;
 
       i {
-        margin-left: 20px;
+        margin-left: 1.25rem;
       }
     }
     .footer {
-      // margin-top: 400px;
-
-      font-size: 12px;
+      font-size: 0.75rem;
       color: #fff;
     }
     .to-bottom {
-      width: 50px;
-      height: 50px;
+      width: 3.125rem;
+      height: 3.125rem;
       position: absolute;
       background-color: rgb(95, 172, 240);
       background-image: url("~@/assets/img/icons8-expand_arrow_2x.png");
       background-repeat: no-repeat;
-      background-size: 32px 32px;
+      background-size: 2rem 2rem;
       background-position: center;
-      right: 15px;
-      bottom: 50px;
+      right: 0.9375rem;
+      bottom: 3.125rem;
       cursor: pointer;
     }
   }
   .welfare {
     width: 100%;
     .title {
-      margin-top: 80px;
-      font-size: 24px;
+      margin-top: 5rem;
+      font-size: 1.5rem;
       font-weight: bold;
     }
     .content {
-      margin: 30px auto;
-      font-size: 16px;
+      margin: 1.875rem auto;
+      font-size: 1rem;
     }
   }
   .welfare-card {
     position: relative;
     overflow: hidden;
-    height: 596px;
+    height: 37.25rem;
     .left-btn,
     .right-btn {
       position: absolute;
-      width: 43px;
-      height: 43px;
+      width: 2.6875rem;
+      height: 2.6875rem;
       background-color: rgba(0, 0, 0, 0.8);
       opacity: 0.7;
-      bottom: 240px;
+      bottom: 15rem;
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 1;
       img {
-        width: 22px;
-        height: 22px;
+        width: 1.375rem;
+        height: 1.375rem;
       }
     }
     .left-btn {
@@ -799,40 +792,40 @@ export default {
       position: absolute;
       left: 0;
       transition: all 0.3s;
-      padding: 0 20px;
+      padding: 0 1.25rem;
       .outer {
-        width: 333px;
+        width: 20.8125rem;
         flex-shrink: 0;
         span {
-          margin-top: 35px;
+          margin-top: 2.1875rem;
           display: block;
         }
         .card {
           ::-webkit-scrollbar {
-            width: 2px;
+            width: 0.125rem;
           }
-          height: 496px;
-          border-radius: 8px;
+          height: 31rem;
+          border-radius: 0.5rem;
           border-style: solid;
           background-color: rgb(235, 235, 235);
-          border-width: 0px;
+          border-width: 0rem;
           border-color: rgb(214, 214, 214);
-          box-shadow: rgb(0, 0, 0) 0px 0px 1px;
-          padding: 10px;
+          box-shadow: rgb(0, 0, 0) 0rem 0rem 0.0625rem;
+          padding: 0.625rem;
           .inner {
-            margin-right: 25px;
-            margin-left: 25px;
+            margin-right: 1.5625rem;
+            margin-left: 1.5625rem;
             overflow: auto;
-            height: 490px;
+            height: 30.625rem;
             .border {
-              margin-top: 20px;
-              border-bottom: 1px solid rgb(0, 0, 0);
+              margin-top: 1.25rem;
+              border-bottom: 0.0625rem solid rgb(0, 0, 0);
             }
             .content {
-              font-size: 14px;
-              margin-top: 20px;
+              font-size: 0.875rem;
+              margin-top: 1.25rem;
               text-align: left;
-              line-height: 23px;
+              line-height: 1.4375rem;
               .subject {
                 font-weight: bold;
               }
@@ -845,26 +838,26 @@ export default {
   .vacancy,
   .small-apply-form {
     width: 100%;
-    height: 250px;
+    height: 15.625rem;
     display: flex;
     justify-content: center;
     align-items: center;
     .title {
-      font-size: 24px;
+      font-size: 1.5rem;
       font-weight: bold;
     }
     .content {
-      margin-top: 30px;
-      font-size: 16px;
+      margin-top: 1.875rem;
+      font-size: 1rem;
     }
     .subscribe {
       position: relative;
-      height: 48px;
+      height: 3rem;
       background-color: rgba(0, 0, 0, 0.8);
       color: rgb(255, 255, 255);
-      border-radius: 10px;
-      margin-top: 40px;
-      line-height: 46px;
+      border-radius: 0.625rem;
+      margin-top: 2.5rem;
+      line-height: 2.875rem;
       cursor: pointer;
       img {
         position: absolute;
@@ -872,8 +865,8 @@ export default {
         right: 10%;
         top: 0;
         bottom: 0;
-        width: 22px;
-        height: 22px;
+        width: 1.375rem;
+        height: 1.375rem;
         transform: rotate(-90deg);
       }
     }
@@ -902,7 +895,7 @@ export default {
   }
   .slide-out-enter,
   .slide-out-leave-to {
-    bottom: -800px;
+    bottom: -50rem;
   }
   .slide-out-enter-active,
   .slide-out-leave-active {
@@ -911,22 +904,20 @@ export default {
   .apply-form {
     width: 100%;
     .close-btn {
-      position: absolute;
-      top: 0;
       width: 100%;
-      height: 35px;
-      line-height: 35px;
-      border-top-left-radius: 10px;
+      height: 2.1875rem;
+      line-height: 2.1875rem;
+      border-top-left-radius: 0.625rem;
       background-image: -webkit-linear-gradient(
         270deg,
         rgb(255, 255, 255),
         rgb(235, 235, 235)
       );
-      border-top-right-radius: 10px;
-      box-shadow: rgb(0, 0, 0) 0px 0px 1px;
+      border-top-right-radius: 0.625rem;
+      border-bottom: 0.0625rem solid rgb(207, 206, 206);
       img {
-        width: 24px;
-        height: 24px;
+        width: 1.5rem;
+        height: 1.5rem;
       }
     }
     .containar {
@@ -936,11 +927,15 @@ export default {
       .picture {
         .photo {
           background-color: rgb(255, 255, 255);
-          border-radius: 8px;
-          border: 1px solid rgb(214, 214, 214);
+          border-radius: 0.5rem;
+          border: 0.0625rem solid rgb(214, 214, 214);
           display: flex;
           justify-content: center;
           align-items: center;
+          img {
+            max-width: 100%;
+            max-height: 100%;
+          }
         }
         .content-btn {
           display: flex;
@@ -948,37 +943,47 @@ export default {
           align-items: center;
           .hint {
             color: rgb(145, 145, 145);
-            font-size: 12px;
+            font-size: 0.75rem;
             text-align: left;
           }
           .choose-photo {
             margin-bottom: 0;
             border-style: solid;
             background-color: rgb(255, 255, 255);
-            border-width: 1px;
+            border-width: 0.0625rem;
             border-color: rgb(214, 214, 214);
-            border-radius: 10px;
-            line-height: 46px;
+            border-radius: 0.625rem;
+            line-height: 2.875rem;
             cursor: pointer;
+            span{
+              color: red;
+            }
           }
         }
       }
       .form {
         .form-name {
-          padding-left: 10px;
+          padding-left: 0.625rem;
+          span{
+            color: red;
+          }
         }
         ::placeholder {
           color: rgb(145, 145, 145);
-          // padding: 10px;
+          // padding: 0.625rem;
           font-size: 12p;
         }
         input {
-          border: 1px rgb(214, 214, 214) solid;
-          height: 46px;
-          border-radius: 10px;
-          margin-top: 15px;
-          padding: 0px 15px;
+          border: 0.0625rem rgb(214, 214, 214) solid;
+          height: 2.875rem;
+          border-radius: 0.625rem;
+          margin-top: 0.9375rem;
+          padding: 0rem 0.9375rem;
           box-sizing: border-box;
+        }
+        input:focus{
+          border: 0.0625rem #5facf0 solid;
+          outline: none;
         }
         .row1,
         .row2 {
@@ -992,51 +997,50 @@ export default {
           display: flex;
           flex-direction: column;
           .subscribe {
-            width: 241px;
-            height: 46px;
+            width: 15.0625rem;
+            height: 2.875rem;
             background-color: rgba(0, 0, 0, 0.8);
             color: rgb(255, 255, 255);
-            font-size: 18px;
-            border-radius: 10px;
-            margin-top: 30px;
-            line-height: 46px;
+            font-size: 1.125rem;
+            border-radius: 0.625rem;
+            margin-top: 1.875rem;
+            line-height: 2.875rem;
             cursor: pointer;
           }
           .hint {
-            width: 228px;
-            height: 21px;
-            letter-spacing: 0px;
-            font-size: 12px;
-            line-height: 18px;
+            width: 14.25rem;
+            height: 1.3125rem;
+            letter-spacing: 0rem;
+            font-size: 0.75rem;
+            line-height: 1.125rem;
             overflow-wrap: break-word;
             color: rgb(121, 121, 121);
-            margin-top: 10px;
+            margin-top: 0.625rem;
           }
         }
       }
     }
   }
   .small-apply-form {
-    height: 139px;
+    height: 8.6875rem;
     background-color: rgb(235, 235, 235);
-    margin-top: 60px;
-    margin-bottom: 56px;
+    margin-top: 3.75rem;
     // height: ;
     .subscribe {
-      width: 241px;
-      height: 46px;
+      width: 15.0625rem;
+      height: 2.875rem;
       background-color: rgb(0, 0, 0);
       color: rgb(255, 255, 255);
-      font-size: 18px;
-      border-radius: 10px;
+      font-size: 1.125rem;
+      border-radius: 0.625rem;
       cursor: pointer;
       margin-top: 0;
     }
     .hint {
-      width: 228px;
+      width: 14.25rem;
       display: inline-block;
-      letter-spacing: 0px;
-      font-size: 12px;
+      letter-spacing: 0rem;
+      font-size: 0.75rem;
       overflow-wrap: break-word;
       color: rgb(121, 121, 121);
     }
