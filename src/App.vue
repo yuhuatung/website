@@ -21,7 +21,7 @@
 // import WanLian from "@/assets/svg/wanlian.svg";
 
 export default {
-  name: "Home",
+  name: "App",
   components: {
     // Logo,
     // WanLian

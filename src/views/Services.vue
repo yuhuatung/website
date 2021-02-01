@@ -1,10 +1,7 @@
 <template>
   <div class="services-body">
     <div class="top">
-      <video v-if="screenwidth>810" class="sleep-video" autoplay muted loop>
-        <source src="https://www.308262.com/vue/files/service.mov" type="video/mp4" />
-      </video>
-      <img v-if="screenwidth<810" class="sleep-video" :src="bigImage" alt="contactsImg" />
+      <img class="sleep-video" src="@/assets/img/service.jpg" alt="contactsImg" />
       <div class="bigLogo">WeAre</div>
       <div class="smallLogo">professional</div>
       <div class="our-service" @click="toService()">
@@ -16,7 +13,7 @@
     </div>
     <div class="services">
       <div v-for="(item, index) in services" :key="index" class="services-item" ref="servicesItem">
-        <img :src="getImgUrl(item.image)" >
+        <img :src="item.image" >
         <div class="mask">
           <div class="services-title">{{item.title}}</div>
           <div class="services-content">{{item.content}}</div>
@@ -26,11 +23,10 @@
     <div class="footer">
       <div
         class="footer-left"
-      >For Enterprise clients every decision has repercussions and we are here to help guide you through the turbulence and stress involved in migrations or start-ups. We start by delving into your requirements and needs, then working with our team of experienced technicians to develop a working solution as well as a deployment strategy.</div>
-      <div
-        class="footer-right"
-      >Consultation Services (Standardization, Strategic Technology and Adoption Assessment, Evaluation, POC, Mentoring) Implementation Services (Design, Architect, Plan and Build) Training Services (Standard or Customize) Managed Services (7/24 round the clock remote/on-site project nursing residency or support) Development Services (Java and Enterprise System Integration) Enterprise</div>
-    </div>
+      >For Enterprise clients every decision has repercussions and we are here to help guide you through the turbulence and stress involved in migrations or start-ups. We start by delving into your requirements and needs, then working with our team of experienced technicians to develop a working solution as well as a deployment strategy.
+      For Enterprise clients every decision has repercussions and we are here to help guide you through the turbulence and stress involved in migrations or start-ups. We start by delving into your requirements and needs, then working with our team of experienced technicians to develop a working solution as well as a deployment strategy.
+      </div>
+      </div>
   </div>
 </template>
 
@@ -54,43 +50,34 @@ export default {
         {
           "title": "諮詢服務",
           "content": "標準化/戰略技術/採用評估/決策/POC/指導",
-          "image": "service_imge_step01.jpg"
+          "image": require("../assets/img/service_imge_step01.jpg")
         },
         {
           "title": "實施服務",
           "content": "設計/架構師/計劃/構建",
-          "image": "service_imge_step02.jpeg"
+          "image": require("../assets/img/service_imge_step02.jpeg")
         },
         {
           "title": "培訓服務",
           "content": "標准/定制/限制條件",
-          "image": "service_imge_step03.jpg"
+          "image": require("../assets/img/service_imge_step03.jpg")
         },
         {
           "title": "託管服務",
           "content": "全天候24小時/遠程與現場/項目維護駐留或支持",
-          "image": "service_imge_step04.jpeg"
+          "image": require("../assets/img/service_imge_step04.jpeg")
         },
         {
           "title": "測試服務",
           "content": "取得修正資訊創造更好的成果",
-          "image": "service_imge_step05.jpeg"
+          "image": require("../assets/img/service_imge_step05.jpeg")
         },
         {
           "title": "開發服務",
           "content": "Java和企業系統集成",
-          "image": "service_imge_step06.jpg"
+          "image": require("../assets/img/service_imge_step06.jpg")
         }]
     };
-  },
-  computed: {
-    bigImage() {
-      let img = { src: require("@/assets/img/service.jpg") };
-      if (this.screenwidth < 576) {
-        img = { src: require("@/assets/img/service.jpg") };
-      }
-      return img.src;
-    }
   },
   methods: {
     toService() {
@@ -140,8 +127,8 @@ export default {
 @media screen and (min-width: $bigWidth) {
   .services-body {
     .top {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 600px;
       position: relative;
       .sleep-video {
         min-height: 100vh;
@@ -220,13 +207,6 @@ export default {
       padding: 0 20px;
       width: 100%;
       justify-content: center;
-      .footer-left {
-        flex: 1;
-        margin-right: 20px;
-      }
-      .footer-right {
-        flex: 1;
-      }
     }
   }
 }
@@ -234,10 +214,9 @@ export default {
   .services-body {
     background-color: rgb(3, 16, 47);
     .top {
-      width: 100vw;
       position: relative;
       .sleep-video {
-        width: 100vw;
+        width: 100%;
       }
       .bigLogo {
         font-size: 96px;
@@ -291,13 +270,6 @@ export default {
       margin: 0 auto;
       justify-content: center;
       flex-wrap: wrap;
-      .footer-left,
-      .footer-right {
-        box-sizing: border-box;
-        width: 344px;
-        padding: 0 3px;
-        margin: 10px;
-      }
     }
   }
 }
@@ -306,10 +278,9 @@ export default {
     background-color: rgb(3, 16, 47);
     padding-bottom: 60px;
     .top {
-      width: 100vw;
       position: relative;
       .sleep-video {
-        width: 100vw;
+        width: 100%;
       }
       .bigLogo {
         font-size: 24px;
@@ -366,13 +337,6 @@ export default {
       justify-content: center;
       flex-wrap: wrap;
       width: 90%;
-      .footer-left,
-      .footer-right {
-        box-sizing: border-box;
-        width: 100%;
-        padding: 0 3px;
-        margin: 10px;
-      }
     }
   }
 }
@@ -429,6 +393,10 @@ export default {
     text-align: left;
     display: flex;
     align-items: center;
+    .footer-left {
+      flex: 1;
+      margin: 0 10px;
+    }
   }
 }
 </style>
