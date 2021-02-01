@@ -7,12 +7,12 @@
   >
     <img class="btn" :src="image" alt="showListBtn" v-show="screenwidth<576 && showList===false" />
     <div class="avatar">
-      <img
+      <!-- <img
         class="btn"
         :src="image"
         alt="showListBtn"
         v-show="screenwidth<576 && showList===false"
-    />
+    /> -->
     </div>
     <div class="title">{{name}}</div>
     <div class="salary">
