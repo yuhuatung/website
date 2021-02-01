@@ -1,11 +1,7 @@
 <template>
   <div class="customers-body">
     <div class="top">
-      <video v-if="screenwidth>810" class="sleep-video" autoplay muted loop>
-        <source src="https://www.308262.com/vue/files/customers.mov" type="video/mp4" />
-      </video>
       <img
-        v-if="screenwidth<810"
         class="sleep-video"
         src="@/assets/img/customer.jpg"
         alt="customersImg"
@@ -20,10 +16,7 @@
       <img src="@/assets/img/icons8-expand_arrow-3_2x.png" class="arrow" @click="toCustomers(step)" />
       <div v-for="(item, index) in data.customers" :key="index" class="content">
         <div class="customers-list">
-          <video class="sleep-video" v-if="item.type == 'video'" controls>
-            <source :src="item.url" type="video/mp4" />
-          </video>
-          <img :src="item.url" v-if="item.type == 'image'" />
+          <iframe class="video" :src="item.url" allow="autoplay;" frameborder="0" allowfullscreen></iframe>
           <div class="customers-content">
             <div class="content-cht">{{item.contentCht}}</div>
             <div v-show="screenwidth>810" class="content-eng">{{item.contentEng}}</div>
@@ -87,13 +80,87 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "../assets/style/utils/_variables.scss";
+.top {
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+  .sleep-video {
+    position: absolute;
+  }
+  .bigLogo {
+    position: absolute;
+  }
+  .smallLogo {
+    position: absolute;
+  }
+  .customer-content {
+    position: absolute;
+    text-align: left;
+  }
+}
+.customers {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .arrow {
+    margin-top: 15px;
+    width: 32px;
+    cursor: pointer;
+  }
+  .customers-list {
+    // width: 1064px;
+    // height: 280px;
+    margin: 20px auto;
+    padding: 0 30px;
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    .video,
+    img {
+      width: 353px;
+      height: 265px;
+      min-width: 353px;
+    }
+    .customers-content {
+      height: 265px;
+      text-align: left;
+      padding-top: 10px;
+      padding-left: 30px;
+      // position: relative;
+      display: flex;
+      flex-direction: column;
+
+      .content-cht {
+        font-size: 16px;
+      }
+      .content-eng {
+        text-align: left;
+        font-size: 12px;
+        color: rgb(145, 145, 145);
+      }
+    }
+  }
+}
+.footer {
+  height: 142px;
+  width: 100%;
+  background-color: rgb(94, 94, 94);
+  display: flex;
+  margin: 20px 0 0;
+}
 @media screen and (min-width: $bigWidth) {
   .top {
     height: 90vh;
     .sleep-video {
       min-height: 100vh;
       min-width: 100vw;
-      top: 40%;
+      top: 50%;
       transform: translateX(-50%) translateY(-50%);
       left: 50%;
     }
@@ -123,7 +190,7 @@ export default {
       display: flex;
       justify-content: center;
       padding: 20px 30px;
-      video,
+      .video,
       img {
         width: 353px;
         // height: 265px;
@@ -136,6 +203,7 @@ export default {
         padding-top: 10px;
         padding-left: 30px;
         .content-eng {
+          text-align: left;
           margin-top: auto;
           padding-top: 5px;
           padding-bottom: 15px;
@@ -196,7 +264,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         margin: 20px 30px;
-        video,
+        .video,
         img {
           width: 353px;
           // height: 265px;
@@ -209,6 +277,7 @@ export default {
           padding-left: 25px;
         }
         .content-eng {
+          text-align: left;
           margin-top: 20px;
           // padding: 3% 5%;
         }
@@ -282,17 +351,20 @@ export default {
       margin: auto;
       display: flex;
       flex-direction: column;
-      video,
+      .video,
       img {
         width: 100%;
       }
       .customers-content {
+        height: auto;
         max-height: 400px;
+        padding: 0;
       }
       .content-cht {
         margin-top: 10px;
       }
       .content-eng {
+        text-align: left;
         margin: 10px 0;
       }
       .mobile-btn {
@@ -325,80 +397,6 @@ export default {
     }
   }
 }
-.customers-body {
-  .top {
-    color: white;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: -1;
-    .sleep-video {
-      position: absolute;
-    }
-    .bigLogo {
-      position: absolute;
-    }
-    .smallLogo {
-      position: absolute;
-    }
-    .customer-content {
-      position: absolute;
-      text-align: left;
-    }
-  }
-  .customers {
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .arrow {
-      margin-top: 15px;
-      width: 32px;
-      cursor: pointer;
-    }
-    .customers-list {
-      // width: 1064px;
-      // height: 280px;
-      margin: 20px auto;
-      padding: 0 30px;
-      display: flex;
-      
-      justify-content: center;
-      align-items: center;
-      video,
-      img {
-        width: 353px;
-        height: 265px;
-        min-width: 353px;
-      }
-      .customers-content {
-        height: 265px;
-        text-align: left;
-        padding-top: 10px;
-        padding-left: 30px;
-        // position: relative;
-        display: flex;
-        flex-direction: column;
 
-        .content-cht {
-          font-size: 16px;
-        }
-        .content-eng {
-          text-align: left;
-          font-size: 12px;
-          color: rgb(145, 145, 145);
-        }
-      }
-    }
-  }
-  .footer {
-    height: 142px;
-    width: 100%;
-    background-color: rgb(94, 94, 94);
-    display: flex;
-    margin: 20px 0 0;
-  }
-}
+
 </style>

@@ -68,6 +68,9 @@ export default {
 body {
   margin: 0;
   line-height: unset;
+  @media screen and (max-width: $smallWidth) {
+    overflow-x: hidden;
+  }
 }
 @media screen and (min-width: $bigWidth) {
   .nav {
